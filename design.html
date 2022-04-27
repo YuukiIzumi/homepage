@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+    <title>佑木いずみ</title>
+</head>
+<script src="jquery-3.3.1.min.js"></script>
+<style type=" ">
+    @import url("./websitecss.css");
+
+</style>
+<header>
+    
+    <link href="./websitecss.css" rel="stylesheet" type="text/css" />
+    <div id="mainf" class="frame">
+        <video class="videobg" id="bg" autoplay loop muted style="position: fixed;  right:0;bottom: 0;min-width: 100%;min-height: 100%;width: auto;height:translate(100%);z-index: -9999;filter:blur(4px)grayscale(100%)opacity(25%);height: 100%;"><source src="bg.mp4"></video>
+        <div id="tbarh" class="navi">
+            <ul>
+                <li><a href="index.html"><img class="logo" src="ICON.png"></a></li>
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="music.html">MUSIC</a></li>
+                <li><a href="design.html"><strong>DESIGN</strong></a></li>
+                <li><a href="movie.html">MOVIE</a></li>
+                <li><a href="vtb.html">VTUBER</a></li>
+                <li><a href="goods.html">GOODS</a></li>
+                <li><a href="contact.html">CONTACT</a></li>
+            </ul>
+        </div>
+    
+</header>
+<body bgcolor="#000000">
+    <script>
+        var arrLang = {
+    "en": {
+      "HOME": "Home",
+      "ABOUT": "About Us",
+      "CONTACT": "Contact Us",
+    },
+    "zh": {
+      "HOME": "首页",
+      "ABOUT": "关于我们",
+      "CONTACT": "联络我们",
+    }
+  };
+  
+  // The default language is English
+  var lang = "en";
+  // Check for localStorage support
+  if('localStorage' in window){
+     var lang = localStorage.getItem('lang') || navigator.language.slice(0, 2);
+     if (!Object.keys(arrLang).includes(lang)) lang = 'en';
+  }
+  
+  $(document).ready(function() {
+    $(".lang").each(function(index, element) {
+      $(this).text(arrLang[lang][$(this).attr("key")]);
+    });
+  });
+  
+  // get/set the selected language
+  $(".translate").click(function() {
+    var lang = $(this).attr("id");
+  
+    // update localStorage key
+    if('localStorage' in window){
+      localStorage.setItem('lang', lang);
+      console.log( localStorage.getItem('lang') );
+    }
+  
+    $(".lang").each(function(index, element) {
+      $(this).text(arrLang[lang][$(this).attr("key")]);
+    });
+  });
+    </script>
+    <link href="./websitecss.css" rel="stylesheet" type="text/css" />
+        <div id="bo" class="bodyf">
+            <div class="update">
+                <h3>最新动态</h3>
+            <div id="newcontent" class="showcase">
+                <div class="imgfr">
+                    <a href="https://www.bilibili.com/video/BV1nY4y1v7kp"><img src="https://i0.hdslb.com/bfs/archive/dcc96b696cbf5bada8a64dfd4d4d1429fb4097bf.jpg" alt="《Resux 溯》连山归藏测试PV发布"></a>
+                </div>
+                <h4>《溯 Resux》首次游戏性测试“连山归藏”预告PV发布！                </h4>
+                <p>“今古不灭，何以家为？”</p>
+                <p> </p>
+                <a href="#"><button type="button">前往bilibili</button></a>
+            </div>
+            <div id="newcontent" class="showcase">
+                <img src="BANNER.png" alt="《Resux 溯》连山归藏测试PV发布">
+                <h4>新BANNER公布！</h4>
+                <p>woo</p>
+            </div>
+            </div>            
+            <h4>TITLE B</h4>
+            <h6>Yoooo</h6>
+
+        </div>
+        <aside class="box" id="test">
+            <div class="sub">
+            <div class="cont">
+                <div class="spa"><p class="space">a</p></div>
+                <ul>
+                <li><a href="https://space.bilibili.com/184934952" data-sw-translate="">哔哩哔哩主页</a></li>
+                <li><a href="https://twitter.com/tnik_0f">Twitter</a></li>
+                <li><a href="https://space.bilibili.com/4191585">友情链接：刹那仮想</a></li>
+            </ul>
+            <h4 class="sidetit">各种杂七杂八链接</h4>
+        </div>
+        </div>
+        </aside>
+    </div>
+</body>
+<footer align="center">
+    <p>©Copyright 佑木いずみ, 2021. All rights reserved. &nbsp;  &nbsp;  &nbsp; Designed by 佑木いずみ</p>
+</footer>
+</html>
