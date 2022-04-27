@@ -283,7 +283,7 @@ h6{
 }
 h6:hover{
     font-weight: 500;}
-.box {
+    .box {
         float: right;
         position: absolute;
         top: 15%;
