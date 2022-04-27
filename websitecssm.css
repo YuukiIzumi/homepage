@@ -1,4 +1,8 @@
 /* websitecss.css */
+@font-face {
+    font-family: Tektur;
+    src: url("./fonts/Tektur[wdth\,wght].ttf");
+  }
 body{font-family: 'Bahnschrift', "思源黑体";
 max-width: 1910px;
 max-height: 1080px;
