@@ -299,8 +299,7 @@ aside ul li a {
         font-weight: 100;
         font-size: 16px;
         overflow: hidden;
-    }
-    
+    }   
 aside ul li a:hover {
         border-radius: 50px 0px 0px 50px;
         background: #6cf;
@@ -311,4 +310,52 @@ aside ul li a:hover {
 
 footer p{
     text-align: center;
+}
+.container{
+    display: flexbox;
+    max-width: fit-content;
+    justify-content: center;
+    text-align: center;
+}
+.design{
+    border-radius: 24px;
+    height: 30%;
+    width: 30%;
+    object-fit: scale-down;
+    display: inline-block;
+        background-color: #114577;
+    padding: 0%;
+    transition-duration: 0.5s;
+    align-content: center;
+    margin: 5px;
+}
+.design:hover{
+    height: 30%;
+    width: 40%;
+    border-radius: 10px;
+    padding: 1%;
+    background-color: #b4dcff55;
+}
+.design img{
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    object-fit: scale-down;
+    display: inline-block;
+}
+#bar{
+    width: 61.25%;
+}
+#bar:hover{
+    width: 80%;
+}
+.container a{
+    text-decoration: none;
+    color: #fff;
+    font-weight: 300;
+    font-size: 14px;
+}
+.container a:hover{
+    font-weight: 700;
+    font-size: larger;
 }

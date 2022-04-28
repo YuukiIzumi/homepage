@@ -30,67 +30,16 @@
     
 </header>
 <body bgcolor="#000000">
-    <script>
-        var arrLang = {
-    "en": {
-      "HOME": "Home",
-      "ABOUT": "About Us",
-      "CONTACT": "Contact Us",
-    },
-    "zh": {
-      "HOME": "首页",
-      "ABOUT": "关于我们",
-      "CONTACT": "联络我们",
-    }
-  };
-  
-  // The default language is English
-  var lang = "en";
-  // Check for localStorage support
-  if('localStorage' in window){
-     var lang = localStorage.getItem('lang') || navigator.language.slice(0, 2);
-     if (!Object.keys(arrLang).includes(lang)) lang = 'en';
-  }
-  
-  $(document).ready(function() {
-    $(".lang").each(function(index, element) {
-      $(this).text(arrLang[lang][$(this).attr("key")]);
-    });
-  });
-  
-  // get/set the selected language
-  $(".translate").click(function() {
-    var lang = $(this).attr("id");
-  
-    // update localStorage key
-    if('localStorage' in window){
-      localStorage.setItem('lang', lang);
-      console.log( localStorage.getItem('lang') );
-    }
-  
-    $(".lang").each(function(index, element) {
-      $(this).text(arrLang[lang][$(this).attr("key")]);
-    });
-  });
-    </script>
-    <link href="./websitecss.css" rel="stylesheet" type="text/css" />
+       <link href="./websitecss.css" rel="stylesheet" type="text/css" />
         <div id="bo" class="bodyf">
             <div class="update">
-                <h3>最新动态</h3>
-            <div id="newcontent" class="showcase">
-                <div class="imgfr">
-                    <a href="https://www.bilibili.com/video/BV1nY4y1v7kp"><img src="https://i0.hdslb.com/bfs/archive/dcc96b696cbf5bada8a64dfd4d4d1429fb4097bf.jpg" alt="《Resux 溯》连山归藏测试PV发布"></a>
+                <h3>DESIGN IN 2022</h3>
+                <div class="container">
+                  <a href="#" class="design" id="bar" ><img src="./BANNER.png">BANNER 2022</a>
+                  <br>
+                  <a href="#" class="design" ><img src="./2022/01.png"></a>
+                  <a href="#" class="design" ><img src="./ICON.png"></a>
                 </div>
-                <h4>《溯 Resux》首次游戏性测试“连山归藏”预告PV发布！                </h4>
-                <p>“今古不灭，何以家为？”</p>
-                <p> </p>
-                <a href="#"><button type="button">前往bilibili</button></a>
-            </div>
-            <div id="newcontent" class="showcase">
-                <img src="BANNER.png" alt="《Resux 溯》连山归藏测试PV发布">
-                <h4>新BANNER公布！</h4>
-                <p>woo</p>
-            </div>
             </div>            
             <h4>TITLE B</h4>
             <h6>Yoooo</h6>
@@ -112,6 +61,6 @@
     </div>
 </body>
 <footer align="center">
-    <p>©Copyright 佑木いずみ, 2021. All rights reserved. &nbsp;  &nbsp;  &nbsp; Designed by 佑木いずみ</p>
+    <p>©Copyright 佑木いずみ, 2022. All rights reserved. &nbsp;  &nbsp;  &nbsp; Designed by 佑木いずみ</p>
 </footer>
 </html>
