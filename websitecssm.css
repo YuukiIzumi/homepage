@@ -1,6 +1,7 @@
 /* websitecss.css */
 @font-face {
     font-family: Tektur;
+    font-display: optional;
     src: url("./fonts/Tektur[wdth\,wght].ttf");
   }
   @font-face {
