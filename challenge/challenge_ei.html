@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+</head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Kaisei+Decol:wght@400;500&display=swap" rel="stylesheet">
+<style>
+    * {
+        font-family: "Roboto Slab", "Kaisei Decol", "ZCOOL XiaoWei";
+        user-select: none;
+    }
+    
+    h1 {
+        font-weight: 300;
+    }
+    
+    small {
+        font-size: 20px;
+    }
+    
+    #tit {
+        position: absolute;
+        text-align: center;
+        top: 50%;
+        left: 50%;
+        transform: translateY(-50%)translateX(-50%);
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    a {
+        margin: 25px;
+        text-decoration: none;
+        outline: none;
+        color: black;
+        border: 3px solid black;
+        padding: 5px;
+        font-size: 20px;
+        transition: 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+    
+    a:hover {
+        transform: scale(1.1);
+        background-color: black;
+        color: aliceblue;
+        border: 3px solid black;
+    }
+    
+    a:active {
+        transform: scale(0.9);
+        background-color: #aeefff;
+        color: rgb(10, 141, 255);
+        border: 3px solid #aeefff;
+    }
+</style>
+
+<body>
+    <div id="tit">
+        <h1><small>Yuuki Izumi's Composition Challenge!</small><br>佑木いずみ的写曲子挑战</h1>
+        <audio controls src="./celt2challenge.mp3">音频不可用。</audio>
+        <a href="./challenge.mid">获取MIDI</a>
+    </div>
+
+</body>
