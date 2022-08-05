@@ -7,8 +7,7 @@
 </head>
 <script src="jquery-3.3.1.min.js"></script>
 <style type=" ">
-    @import url("./websitecssm.css");
-
+    @import url("./websitecssm.css"); .final{ margin-top: 20px; color: antiquewhite; }
 </style>
 <header>
 
@@ -18,77 +17,31 @@
         <div id="tbarh" class="navi">
             <ul>
                 <li>
-                    <a href="index.html"><img class="logo" src="ICON.png"></a>
+                    <a href="natsuk.html"><img class="logo" src="n.png"></a>
                 </li>
-                <li><a href="index.html">HOME</a></li>
-                <li><a href="music.html"><strong>MUSIC</strong></a></li>
+                <li><a href="natsuk.html">HOME</a></li>
+                <li><a href="#music"><strong>MUSIC</strong></a></li>
             </ul>
         </div>
 
 </header>
 
 <body bgcolor="#000000">
-    <script>
-        var arrLang = {
-            "en": {
-                "HOME": "Home",
-                "ABOUT": "About Us",
-                "CONTACT": "Contact Us",
-            },
-            "zh": {
-                "HOME": "首页",
-                "ABOUT": "关于我们",
-                "CONTACT": "联络我们",
-            }
-        };
-
-        // The default language is English
-        var lang = "en";
-        // Check for localStorage support
-        if ('localStorage' in window) {
-            var lang = localStorage.getItem('lang') || navigator.language.slice(0, 2);
-            if (!Object.keys(arrLang).includes(lang)) lang = 'en';
-        }
-
-        $(document).ready(function() {
-            $(".lang").each(function(index, element) {
-                $(this).text(arrLang[lang][$(this).attr("key")]);
-            });
-        });
-
-        // get/set the selected language
-        $(".translate").click(function() {
-            var lang = $(this).attr("id");
-
-            // update localStorage key
-            if ('localStorage' in window) {
-                localStorage.setItem('lang', lang);
-                console.log(localStorage.getItem('lang'));
-            }
-
-            $(".lang").each(function(index, element) {
-                $(this).text(arrLang[lang][$(this).attr("key")]);
-            });
-        });
-    </script>
     <link href="./websitecssm.css" rel="stylesheet" type="text/css" />
     <div id="bo" class="bodyf">
-        <div class="update">
+        <div class="update" anchor="music">
             <h3 style="font-family:'Urbanist', '思源黑体'">Team “NAH!夏休み”</h3>
             <div id="collab" class="showcase">
                 <div class="imgfr">
-                    <a href="#"><img src="./q.png" alt=""></a>
+                    <a href="#"><img src="./IICON.png" alt=""></a>
                 </div>
                 <div class="column">
-                    <h4>げtoゲther.Δiхιzsé&nbsp;&nbsp;&nbsp;<b><small>COLLABORATIVE</small></b></h4>
+                    <h4>制作中<b><small>9月アピール予定</small></b></h4>
                     <ul>
-                        <li><a href="#">Trapped (n' Belonged) (佑木いずみ)</a></li>
-                        <li><a href="#">Inveniendam Veritatem -本当（リアル）を探して- (神尾光临)</a></li>
-                        <li><a href="#">芜 (姜米條)</a></li>
-                        <li><a href="#">Escape From You (654エンブリ)</a></li>
-                        <li><a href="#">Across the Sky (All_Life_X)</a></li>
-                        <li><a href="#">時の桜 (KEDream)</a></li>
-                        <li><a href="#">後の物語、外の物語 ~Afterstory, Outerstory~ (佑木いずみ ft. 姜米條)</a></li>
+                        <li><a href="#">???</a></li>
+                        <li><a href="#">???</a></li>
+                        <li><a href="#">???</a></li>
+                        <li class="final"><b>FINAL STRIKER</b><br><a href="#">???</a></li>
                     </ul>
                     <div class="spa">
                         <p class="space">a</p>
