@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="Unicode">
+    <title>主页 - 佑木いずみ</title>
+</head>
+<script>
+    var iht = function init() {
+        var he = window.innerHeight;
+        var hei = he - 202;
+        document.getElementById("content-mask").style = ("height:" + hei + "px");
+        document.getElementById("num").innerHTML = hei1;
+    }
+    setInterval(iht, 10);
+</script>
+<style>
+    * {
+        font-family: "San Francisco Display", "苹方-简";
+        font-weight: 400;
+        transition: 0.45s cubic-bezier(0.215, 0.610, 0.355, 1);
+        border-radius: 30px;
+        color: aliceblue;
+    }
+    
+     ::-webkit-scrollbar {
+        display: none
+    }
+    
+     ::-webkit-scrollbar-track {
+        width: 6px;
+        background: rgba(#101F1C, 0.1);
+        -webkit-border-radius: 2em;
+        -moz-border-radius: 2em;
+        border-radius: 2em;
+        transform: translateX(-110%);
+    }
+    
+     ::-webkit-scrollbar-thumb {
+        background-color: rgba(245, 248, 253, 0.829);
+        background-clip: padding-box;
+        min-height: 28px;
+        -webkit-border-radius: 2em;
+        -moz-border-radius: 2em;
+        border-radius: 2em;
+        transition: background-color .3s;
+        cursor: pointer;
+        transform: translateX(-110%);
+    }
+    
+     ::-webkit-scrollbar-thumb:hover {
+        background-color: rgba(255, 255, 255, 0.959);
+    }
+    
+     ::-webkit-scrollbar-button {
+        display: none;
+    }
+    
+     ::-webkit-scrollbar-corner {
+        display: none;
+    }
+    
+    body {
+        background-image: url("BANNER.png");
+    }
+    
+    .top-navi {
+        position: fixed;
+        transform: translateX(-50%);
+        left: 50%;
+        top: 20px;
+        width: 95%;
+        height: 82px;
+        border-radius: 30px;
+        backdrop-filter: blur(7px);
+        background-color: #000a;
+        filter: drop-shadow(0px 0px 2px #0004);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow-x: scroll;
+        scroll-behavior: smooth;
+    }
+    
+    .top-navi::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .navi-link {
+        color: aliceblue;
+        font-size: 1.1em;
+        text-rendering: optimizeLegibility;
+        text-decoration: none;
+        width: 110px;
+        height: 40px;
+        background-color: transparent;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 15px;
+        margin: 5px;
+    }
+    
+    .btm-back {
+        position: fixed;
+        transform: translateX(-50%);
+        left: 50%;
+        bottom: 20px;
+        width: 95%;
+        height: 40px;
+        border-radius: 30px;
+        backdrop-filter: blur(7px);
+        background-color: #000a;
+        filter: drop-shadow(0px 0px 3px #000);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .navi-link:hover {
+        transform: scale(1.1);
+        background-color: #0009;
+        font-weight: 900;
+        color: rgb(240, 240, 240);
+        border-radius: 13.5px;
+    }
+    
+    .navi-btn-group {
+        display: flex;
+    }
+    
+    .logo-ico {
+        width: 100%;
+        height: 50%;
+        object-fit: contain;
+    }
+    
+    #content-mask {
+        position: fixed;
+        top: 122px;
+        width: 95%;
+        left: 50%;
+        transform: translateX(-50%);
+        overflow: auto;
+        background-color: #0009;
+    }
+    
+    .content-frame {
+        position: relative;
+        min-height: 1100px;
+        width: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        backdrop-filter: blur(4px)grayscale(0.2);
+        z-index: -50;
+        overflow-y: scroll;
+    }
+    
+    strong {
+        font-weight: 800;
+    }
+    
+    .bottom-info-txt {
+        margin: 6px;
+    }
+    
+    .main {
+        padding: 15px;
+        text-align: center;
+    }
+</style>
+
+<body onload="init();">
+    <div class="top-navi">
+        <div class="navi-btn-group">
+            <a class="navi-link" href="./design.html"><img class="logo-ico" src="./LOGO.png"></a>
+            <a class="navi-link" href="./design.html">ACTIVITY</a>
+            <a class="navi-link" href="./music.html">MUSIC</a>
+            <a class="navi-link" href="./design.html">DESIGN</a>
+            <a class="navi-link" href="./design.html">STORE</a>
+            <a class="navi-link" href="./design.html">CONTACT</a>
+        </div>
+    </div>
+    <div id="content-mask">
+        <div class="content-frame">
+            <div class="box main">
+                <h5 id="num">aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</h5>
+                <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+            </div>
+        </div>
+    </div>
+    <div class="btm-back">
+        <span class="bottom-info-txt">备案号 粤0</span>
+        <span class="bottom-info-txt">© 2021-2022, <strong>Yuuki Izumi</strong>.</span>
+    </div>
+</body>
