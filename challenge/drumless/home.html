@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+
+<head>
+    <title>ビートレス・ソール | BEATLESS SOUL</title>
+    <style>
+        @font-face {
+            font-family: "Readex Pro";
+            src: url("./Readexpro[HEXP\,wght].ttf");
+        }
+        
+        @font-face {
+            font-family: '思源黑体';
+            font-display: swap;
+            @font-face {
+                font-family: '思源黑体';
+                font-display: swap;
+                src: url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100;300;400;500;700;900&display=swap');
+            }
+        }
+        
+        * {
+            transition: 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+            text-align: center;
+            vertical-align: center;
+            align-items: center;
+            justify-content: center;
+            font-family: "Readex Pro", "思源黑体";
+            color: #fff;
+        }
+        
+        body {
+            background-color: rgb(26, 26, 26);
+            /* user-select: none; */
+        }
+    </style>
+    <style>
+        #btn {
+            position: fixed;
+            right: 50px;
+            top: 0px;
+            background-color: black;
+            width: 100px;
+            height: 105px;
+            color: #fff;
+            cursor: pointer;
+        }
+        
+        #btn div {
+            position: fixed;
+            top: 50px;
+            right: 60px;
+            width: 40px;
+            height: 3px;
+            transform: translateX(-50%);
+            font-size: 80px;
+            /* user-select: none; */
+            background-color: #fff;
+        }
+        
+        #block {
+            position: fixed;
+            right: 50px;
+            top: 0px;
+            background-color: black;
+            width: 100px;
+            height: 18px;
+            z-index: -1;
+        }
+        
+        #btn p {
+            z-index: -2;
+            position: fixed;
+            right: 50px;
+            top: 0px;
+            transform: translateX(-50%);
+        }
+        
+        body {
+            overflow-x: hidden;
+        }
+        
+        .null {
+            transform: rotateY(0deg);
+        }
+        
+        #navi {
+            width: 92%;
+            background-color: rgba(66, 57, 78, 0.308);
+            backdrop-filter: blur(32px);
+            position: fixed;
+            top: -10px;
+            color: #fff;
+            transform: translateX(-50%)rotateX(-5deg);
+            left: 50%;
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            z-index: 999;
+        }
+        
+        .navibtn {
+            width: 100px;
+            padding: 2px;
+        }
+        
+        .title {
+            transform-style: preserve-3d;
+            transform: perspective(300px);
+            width: 200px;
+            overflow: hidden;
+            padding: 10px;
+            margin-right: 10px;
+        }
+        
+        .title h3 {
+            margin: 0;
+        }
+        
+        .title h3:hover {
+            transform: scale(1.1);
+        }
+        
+        .bg {
+            position: fixed;
+            z-index: -9999;
+            width: 110%;
+            transform: translateX(-50%);
+            left: 50%;
+            top: 0;
+            height: 1080px;
+            object-fit: cover;
+            filter: blur(10px);
+        }
+        
+        .null {
+            transform-style: preserve-3d;
+            transform: perspective(700px);
+            width: 100%;
+            height: 10%;
+            position: fixed;
+        }
+        
+        #menu {
+            position: fixed;
+            top: 0px;
+            right: 150px;
+            width: 200px;
+            height: 200px;
+            background-color: rgba(49, 33, 33, 0.467);
+            display: flex;
+            transform: translateY(-100%);
+            backdrop-filter: blur(5px);
+            z-index: 50;
+            flex-direction: column;
+        }
+        
+        .btnbtn {
+            width: 100px;
+            height: 50px;
+            cursor: pointer;
+            opacity: 0.85;
+        }
+        
+        .btnbtn:hover {
+            transform: scale(1.07);
+            opacity: 1;
+        }
+        
+        .btnbtn:active {
+            transform: scale(0.9);
+            opacity: 0.5;
+        }
+        
+        .a {
+            padding-top: 100px;
+            width: 90%;
+            transform: translateX(-50%);
+            position: absolute;
+            left: 50%;
+            z-index: -50;
+            word-wrap: break-word
+        }
+        
+        .a h5 {
+            font-size: 16px;
+        }
+        
+        svg {
+            width: 26px;
+            margin: 14px;
+            height: 26px;
+        }
+        
+        .undr {
+            border-bottom: 3px solid;
+            margin-bottom: 5px;
+        }
+        
+        #indColor {
+            color: #fff5;
+        }
+        
+        .icologo {
+            height: 40px;
+            width: auto;
+            margin: 10px;
+        }
+        
+        .logo {
+            width: 800px;
+            height: 400px;
+            object-fit: cover;
+            margin-top: 75px;
+        }
+        
+        .vidbg {
+            position: fixed;
+            z-index: -9999;
+            width: 110%;
+            height: 100%;
+            object-fit: cover;
+            left: -5%;
+            filter: blur(4px)grayscale(0.1);
+        }
+        
+        #t {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: 9000;
+            top: 0;
+            left: 0%;
+            /* user-select: none; */
+            pointer-events: none;
+        }
+        
+        .ind {
+            font-size: 15px;
+            margin-bottom: 200px;
+        }
+        
+        .box {
+            display: flex;
+            align-items: center;
+            margin: 20px;
+            background-color: rgba(35, 33, 41, 0.467);
+            justify-content: flex-start;
+            padding: 10px 20px;
+            height: 100px;
+            backdrop-filter: blur(32px);
+            border-radius: 23px;
+        }
+        
+        .box:hover {
+            transform: scale(1.02);
+            height: 150PX;
+        }
+        
+        .h255 {
+            width: 83%;
+            transform: translateX(10%);
+        }
+        
+        .songinfo {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: left;
+        }
+        
+        h2 {
+            margin: 2px 0;
+        }
+        
+        h3 {
+            margin: 2px 0;
+        }
+        
+        .songinfo h3 {
+            font-size: 15px;
+            font-weight: 400;
+        }
+        
+        .cover {
+            height: 84%;
+            width: auto;
+            margin-right: 20px;
+            filter: drop-shadow(0, 0, 4px, #fff8);
+            border-radius: 10px;
+        }
+        
+        .player {
+            width: 500px;
+            display: flex;
+            height: 80px;
+        }
+        
+        #sname {
+            width: 220px;
+        }
+        
+        .snframe {
+            width: 220px;
+            overflow: hidden;
+        }
+        
+        button {
+            border: none;
+            outline: none;
+            background-color: #000c;
+            padding: 5px;
+            width: 40px;
+            height: 40px;
+            color: #f10;
+            font-weight: 900;
+            cursor: pointer;
+        }
+        
+        input[type=range] {
+            -webkit-appearance: none;
+            width: 80px;
+            margin: 10px;
+            background-color: #fff7;
+        }
+        
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+        }
+        
+        input[type=range]::-webkit-slider-runnable-track {
+            height: 8px;
+        }
+        
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 8px;
+            width: 8px;
+            /*使滑块超出轨道部分的偏移量相等*/
+            background: #ffffff;
+            /*外观设置为圆形*/
+        }
+        
+        #progress {
+            width: 120px;
+        }
+        
+        #btm {
+            height: 100px;
+        }
+    </style>
+</head>
+<script>
+    var count = 1;
+    var isFlex = true;
+    var scrollTop = document.documentElement.scrollTop;
+
+
+    function detectOS() {
+        navigator.userAgent;
+        return navigator.platform
+    }
+    if (detectOS().match(/Win|Linux|MAC/i)) {} else {
+        alert("请使用PC访问");
+    }
+
+    function btnOnClick() {
+        count++;
+        if (count % 2 == 0) {
+            document.getElementById("btn").style = "position: fixed;right: 50px;top: 0px;background-color: #f20;width: 100px;height: 130px; color: #fff0;cursor: pointer;"
+            document.getElementById("block").style = "position: fixed;right: 50px;top: 0px;background-color: #f20;width: 100px;height: 18px;"
+            document.getElementById("menubar1").style = "transform: translateX(-50%)rotate(-45deg);"
+            document.getElementById("menubar2").style = "transform: translateX(-50%)rotate(45deg);"
+            document.getElementById("pid").style = "z-index:-2;top:-19px;"
+            document.getElementById("menu").style = "position: fixed;transform: translateY(0%); right: 150px; width: 200px; height: 200px;background-color: rgba(49, 33, 33, 0.467);backdrop-filter:blur(5px);display: flex;"
+        } else {
+            document.getElementById("btn").style = "position: fixed;right: 50px;top: 0px;background-color: #000;width: 100px;height: 105px; color: #ffff;cursor: pointer;"
+            document.getElementById("block").style = "position: fixed;right: 50px;top: 0px;background-color: #000;width: 100px;height: 18px;"
+            document.getElementById("menubar1").style = "transform: translateX(-50%)rotate(0deg);"
+            document.getElementById("menubar2").style = "transform: translateX(-50%)rotate(0deg);"
+            document.getElementById("pid").style = "z-index:-2;top:0px;"
+            document.getElementById("menu").style = "position: fixed;transform: translateY(-100%); right: 150px; width: 200px; height: 200px;background-color: rgba(49, 33, 33, 0.8);backdrop-filter:blur(5px);display: flex;"
+        }
+    }
+
+    function $(id) {
+        return document.getElementById(id);
+    }
+
+    // function flxOnClick() {
+    //     if (isFlex == true) {
+    //         document.getElementById("null1").style = "width:50%;transform:translateX(50%);";
+    //         document.getElementById("indColor").style = "color: #ffff;"
+    //         isFlex = false;
+    //     } else {
+    //         document.getElementById("null1").style = "width:100%;";
+    //         document.getElementById("indColor").style = "color:#fff5;"
+    //         isFlex = true;
+    //     }
+    // }
+    var isInvert = 0;
+
+    function invOnClick() {
+        isInvert++;
+        if (isInvert % 2 == 0) {
+            document.getElementById("t").style = "position: fixed;width: 100%;height: 100%;z-index: 9000;top: 0;left: 0%;backdrop-filter: grayscale(0);pointer-events: none;";
+        } else
+            document.getElementById("t").style = "position: fixed;width: 100%;height: 100%;z-index: 9000;top: 0;left: 0%;backdrop-filter: grayscale(1);pointer-events: none;";
+    }
+
+    var isPlaying = false;
+
+
+    function play(name) {
+        var filename = "./" + name + ".mp3";
+        var player = document.getElementById("player");
+        var buttonstat = document.getElementById("btns");
+        player.src = filename;
+        isPlaying = true;
+        buttonstat.textContent = "| |"
+        player.play();
+    }
+
+    function playpause() {
+        var player = document.getElementById("player");
+        var buttonstat = document.getElementById("btns");
+        if (isPlaying == true) {
+            player.pause();
+            isPlaying = false;
+            buttonstat.textContent = "▶"
+        } else {
+            player.play();
+            isPlaying = true;
+            buttonstat.textContent = "| |"
+        }
+    }
+
+    setInterval(function() {
+        var player = document.getElementById("player");
+        var buttonstat = document.getElementById("btns");
+        if (player.ended == true) {
+            isPlaying = false;
+            buttonstat.textContent = "▶"
+        }
+    }, 1000)
+
+    function volume() {
+        var player = document.getElementById("player");
+        setInterval(function() {
+            var value = (document.getElementById("vol").value / 100);
+            player.volume = value;
+        }, 10);
+
+    }
+
+    function timeCeil(time) {
+        var timeQ = Math.floor(time);
+        return timeQ;
+    }
+
+    function c(n) {
+        var min = (n - n % 60) / 60;
+        var sec = n % 60;
+        var mind = "00";
+        var secd = "00";
+        if (min < 10) {
+            mind = "0" + min;
+        } else {
+            mind = min;
+        }
+        if (sec < 10) {
+            secd = "0" + sec;
+        } else {
+            secd = sec;
+        }
+
+        return mind + ":" + secd;
+    }
+    setInterval(function() {
+        var player = document.getElementById("player");
+        var prog = document.getElementById("progress");
+        var now = c(timeCeil(player.currentTime));
+        if (player.readyState == 0) {
+            var duration = "00:00";
+        } else {
+            var duration = c(timeCeil(player.duration));
+        }
+        var display = now + " / " + duration;
+        // if (player.error) {
+        prog.innerHTML = display;
+        // } else {
+        //     prog.innerHTML = "00:00 / 00:00";
+        // }
+    }, 200)
+
+    function changename(s) {
+        var titleframe = document.getElementById("sname");
+        sname.innerHTML = s;
+    }
+</script>
+<navi>
+    <div class="null">
+        <div id="navi">
+            <div class="navibtn">
+                <img class="icologo" src="./icosmall.png">
+            </div>
+            <div class="title">
+                <marquee direction="left" behavior="alternate" scrollamount="20" scrolldelay="1000">
+                    <h3> ビートレス・ソール | BEATLESS SOUL イベントページ </h3>
+                </marquee>
+            </div>
+            <div id="menu">
+                <!-- <div class="btnbtn" onclick="flxOnClick();">
+                    <h4 id="indColor">HALF SIZE</h4>
+                </div> -->
+                <div class="btnbtn" onclick="invOnClick();">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14" height="14" width="14"><g><circle cx="8.5" cy="4" r="1" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round"></circle><circle cx="4.5" cy="9.5" r="0.5" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round"></circle><circle cx="4.5" cy="5.5" r="1" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round"></circle><path d="M9.52,12.28a1,1,0,0,0-.65-.88A2,2,0,0,1,9.5,7.5h1.87a2,2,0,0,0,1.89-2.67A6.5,6.5,0,1,0,7.13,13.5a6.3,6.3,0,0,0,1.74-.24A.9.9,0,0,0,9.52,12.28Z" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>
+                </div>
+            </div>
+
+            <!-- 播放器 -->
+            <div class="player">
+                <div class="snframe">
+                    <h4 id="sname">No Audio</h4>
+                </div>
+                <button id="btns" onclick="playpause();">▶</button>
+                <input type="range" id="vol" value=100 minlength="0" maxlength="100" onchange="volume();">
+                <p id="progress">00:00 / 00:00</p>
+            </div>
+
+
+            <div id="btn" onclick="btnOnClick();">
+                <p id="pid"> </p>
+                <span id="block"></span>
+                <div id="menubar1"></div>
+                <div id="menubar2"></div>
+            </div>
+        </div>
+    </div>
+</navi>
+
+<body>
+    <div id="a0">
+        <video src="./bg.mp4" class="vidbg" autoplay loop muted></video>
+    </div>
+    <anchor id="top"></anchor>
+    <img src="./icoshade.png" class="logo">
+    <div class="a">
+        <h3 class="ind">SLIDE UP FOR EVENT CONTENTS</h3>
+        <div class="h255">
+            <h1>課題曲リスト</h1>
+            <!-- SONGLIST -->
+            <div class="box" id="avid" onclick="play('avid');changename('Avid - 澤野弘之(nZk) / 瑞葵(mizuki)');">
+                <img class="cover" src="http://p2.music.126.net/Pdul4HmgspmsiPUq9oKkfQ==/109951166004106688.jpg?param=177y177">
+                <div class="songinfo">
+                    <h2 class="titles">AVID</h2>
+                    <h3 class="artists">澤野弘之(nZk) / 瑞葵(mizuki)</h3>
+                </div>
+            </div>
+            <div class="box" id="shukufuku" itemid="0" onclick="play('shukufuku');changename('祝福 - YOASIBI');">
+                <img class="cover" src="http://p1.music.126.net/PhuYCfPgOIObvWsLy5Aznw==/109951167902770123.jpg?param=177y177">
+                <div class="songinfo">
+                    <h2 class="titles">祝福</h2>
+                    <h3 class="artists">YOASOBI</h3>
+                </div>
+            </div>
+            <div class="box" id="2" itemid="0" onclick="play('fshm');changename('凤声鹤鸣 - 10min Studio');">
+                <img class="cover" src="http://p1.music.126.net/VlMt86KwmTHpuyW1OrcZ2g==/109951167129499903.jpg?param=177y177">
+                <div class="songinfo">
+                    <h2 class="titles">凤声鹤鸣</h2>
+                    <h3 class="artists">10min Studio / 雪人</h3>
+                </div>
+            </div>
+        </div>
+        <div id="btm"> </div>
+    </div>
+    <audio id="player" src=""></audio>
+    <div id="t">
+    </div>
+</body>

@@ -1,0 +1,151 @@
+@font-face {
+  font-family: "bilibili-helper-2-iconfont"; /* Project id 1690169 */
+  src: url('//at.alicdn.com/t/font_1690169_33gsbwp395l.woff2?t=1630402736730') format('woff2'),
+       url('//at.alicdn.com/t/font_1690169_33gsbwp395l.woff?t=1630402736730') format('woff'),
+       url('//at.alicdn.com/t/font_1690169_33gsbwp395l.ttf?t=1630402736730') format('truetype');
+}
+
+.bilibili-helper-2-iconfont {
+  font-family: "bilibili-helper-2-iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.bilibili-helper-2-icon-cat-tm:before {
+  content: "\e68c";
+}
+
+.bilibili-helper-2-icon-cat-paw:before {
+  content: "\e687";
+}
+
+.bilibili-helper-2-icon-announcement:before {
+  content: "\e686";
+}
+
+.bilibili-helper-2-icon-patreon:before {
+  content: "\e684";
+}
+
+.bilibili-helper-2-icon-afdian:before {
+  content: "\e685";
+}
+
+.bilibili-helper-2-icon-account:before {
+  content: "\e683";
+}
+
+.bilibili-helper-2-icon-love-hollow:before {
+  content: "\e681";
+}
+
+.bilibili-helper-2-icon-love:before {
+  content: "\e682";
+}
+
+.bilibili-helper-2-icon-bilibilihelper:before {
+  content: "\e67d";
+}
+
+.bilibili-helper-2-icon-bilibili:before {
+  content: "\e67b";
+}
+
+.bilibili-helper-2-icon-delete1:before {
+  content: "\e679";
+}
+
+.bilibili-helper-2-icon-bottom-arrow:before {
+  content: "\e677";
+}
+
+.bilibili-helper-2-icon-top-arrow:before {
+  content: "\e678";
+}
+
+.bilibili-helper-2-icon-reduce:before {
+  content: "\e676";
+}
+
+.bilibili-helper-2-icon-edit:before {
+  content: "\e603";
+}
+
+.bilibili-helper-2-icon-add:before {
+  content: "\e669";
+}
+
+.bilibili-helper-2-icon-minus:before {
+  content: "\e67a";
+}
+
+.bilibili-helper-2-icon-ban:before {
+  content: "\e675";
+}
+
+.bilibili-helper-2-icon-unlock:before {
+  content: "\e672";
+}
+
+.bilibili-helper-2-icon-moon:before {
+  content: "\e671";
+}
+
+.bilibili-helper-2-icon-sun:before {
+  content: "\e670";
+}
+
+.bilibili-helper-2-icon-lock:before {
+  content: "\e66f";
+}
+
+.bilibili-helper-2-icon-cat:before {
+  content: "\e66d";
+}
+
+.bilibili-helper-2-icon-play-later:before {
+  content: "\e66c";
+}
+
+.bilibili-helper-2-icon-close:before {
+  content: "\e66b";
+}
+
+.bilibili-helper-2-icon-search:before {
+  content: "\e66a";
+}
+
+.bilibili-helper-2-icon-tag:before {
+  content: "\e668";
+}
+
+.bilibili-helper-2-icon-bell:before {
+  content: "\e667";
+}
+
+.bilibili-helper-2-icon-delete:before {
+  content: "\e666";
+}
+
+.bilibili-helper-2-icon-email:before {
+  content: "\e665";
+}
+
+.bilibili-helper-2-icon-option:before {
+  content: "\e664";
+}
+
+.bilibili-helper-2-icon-plus:before {
+  content: "\e663";
+}
+
+.bilibili-helper-2-icon-right-arrow:before {
+  content: "\e661";
+}
+
+.bilibili-helper-2-icon-left-arrow:before {
+  content: "\e662";
+}
+
