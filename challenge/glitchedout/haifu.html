@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="Unicode">
+    <title>"GLITCHED_OUT! サンプル配布ページ"</title>
+</head>
+<style>
+    * {
+        font-family: 'NEXT ART', 'Advantage';
+        color: rgb(0, 255, 191);
+        transition: 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+    
+    strong {
+        font-family: 'ldr manufacture';
+        color: rgb(32, 37, 37);
+        background-color: rgb(0, 255, 191);
+        font-size: x-small;
+        padding: 3px;
+        margin-right: 5px;
+    }
+    
+    .body {
+        overflow: hidden;
+        background-color: black;
+        padding: 0%;
+        margin: 0%;
+    }
+    
+    .camera {
+        perspective: 500px;
+        transform-style: preserve-3d;
+        width: 100%;
+        height: 720px;
+        overflow: hidden;
+        background-color: rgb(32, 37, 37);
+        position: fixed;
+        transform: translateY(-50%)translateX(-50%);
+        top: 50%;
+        left: 50%;
+    }
+    
+    .content {
+        position: fixed;
+        left: 50%;
+        transform: rotateX(5deg) translateX(-50%);
+        width: 90%;
+        top: -22px;
+        height: 720px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .content::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .scroll {
+        height: 720px;
+        overflow: scroll;
+        width: 90%;
+    }
+    
+    .scroll::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .wid80 {
+        width: 90%;
+        margin: 0;
+        padding: 0%;
+        transform: translateX(10%);
+    }
+    
+    #segment {
+        margin: 30px 0;
+        padding: 10px 0;
+    }
+    
+    audio::-webkit-media-controls-current-time-display {
+        font-family: 'Cursed Timer ULIL';
+        transform: translateY(2px);
+    }
+    
+    audio::-webkit-media-controls-time-remaining-display {
+        font-family: 'Cursed Timer ULIL';
+        transform: translateY(2px);
+    }
+    
+    audio::-webkit-media-controls-panel {
+        background-color: rgb(0, 255, 191);
+    }
+    
+    audio::-webkit-media-controls-timeline {
+        filter: contrast(0.4)
+    }
+    
+    audio {
+        width: 400px;
+    }
+    
+    .playbtn {
+        width: 100px;
+    }
+    
+    .example {
+        width: 280px;
+    }
+    
+    .playbtn::-webkit-media-controls-timeline {
+        display: none;
+    }
+    
+    .note {
+        text-align: center;
+    }
+    
+    artist {
+        font-family: 'Just Sans';
+        color: rgb(251, 255, 0);
+        background-color: rgb(4, 0, 255);
+        font-size: medium;
+        padding: 3px;
+        margin: 0 5px;
+    }
+    
+    a {
+        background-color: rgb(32, 37, 37);
+        position: absolute;
+        margin-left: 50px;
+        border: solid rgb(0, 170, 128);
+        color: rgb(0, 170, 128);
+        padding: 10px;
+        cursor: pointer;
+        text-decoration: none;
+    }
+    
+    a:hover {
+        color: rgb(0, 255, 191);
+        border: solid rgb(0, 255, 191);
+    }
+    
+    .vert {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 10px;
+        margin-right: 20px;
+    }
+    
+    .flat {
+        margin: 0;
+    }
+    
+    .preset {
+        display: flex;
+    }
+</style>
+
+<body bgcolor="#000">
+    <h5 class="note">USE RESOLUTIONS ABOVE 1920*1080 FOR BEST EXPERIENCE</h5>
+    <div class="camera">
+        <div class="content">
+            <div class="scroll">
+                <div class="wid80">
+                    <div id="top">
+                        <img alt="GLITCHED_OUT!" src="./logo.png">
+                        <h1>SAMPLE & MIDI FILE & PRESET DISTRIBUTION</h1>
+                    </div>
+                    <div id="samples">
+                        <div id="segment">
+                            <h2>DRUM LOOP SAMPLE
+                                <artist>Produced by Yuuki Izumi</artist>
+                            </h2>
+                            <h3>GLITCHED_OUT DRUM LOOP #1</h3>
+                            <h4>4/4 110BPM Keyless</h4>
+                            <audio controls src="./YK_GlitchedOutDrumLoop_110BPM_01.wav"></audio>
+                            <a href="./YK_GlitchedOutDrumLoop_110BPM_01.wav?">DOWNLOAD</a>
+                        </div>
+                        <div id="segment">
+                            <h2>INSTRUMENTAL SAMPLE
+                                <artist>Produced by Yuuki Izumi</artist>
+                            </h2>
+                            <h3><strong>AMBIENTIAL</strong>DUDUK MELODY #1</h3>
+                            <h4>4/4 70BPM A#</h4>
+                            <audio controls src="./YK_Duduk_70BPM_Asharp.wav"></audio>
+                            <a href="./YK_Duduk_70BPM_Asharp.wav?">DOWNLOAD</a>
+                        </div>
+                        <div id="segment">
+                            <h2>SOUND EFFECTS
+                                <artist>Produced by AiSS</artist>
+                            </h2>
+                            <h3><strong>IMPACT</strong>AiSS SIGNATURE IMPACT</h3>
+                            <h4>[KEY] C</h4>
+                            <audio controls src="./AiSS_Signature_Impact_C.wav"></audio>
+                            <a href="./AiSS_Signature_Impact_C.wav?">DOWNLOAD</a>
+                        </div>
+                        <div id="segment">
+                            <h2>Preset</h2>
+                            <h3><strong>Lead</strong>Use It As A Bass</h3>
+                            <div class="preset">
+                                <div id="snote" class="vert">
+                                    <h5 class="flat">SOUND PREVIEW</h5>
+                                    <audio controls class="playbtn"></audio>
+                                </div>
+                                <div id="snote" class="vert">
+                                    <h5 class="flat">EXAMPLE</h5>
+                                    <audio controls class="example"></audio>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
