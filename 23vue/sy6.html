@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<style>
+    @font-face {
+        font-family: MiSans;
+        src: url('/fonts/MiSans VF.ttf');
+    }
+    
+    * {
+        background-image: ;
+        font-family: MiSans;
+    }
+    
+    #board {
+        background-color: #ffffff77;
+        position: absolute;
+        width: 500px;
+        height: 500px;
+        border-radius: 30px;
+        backdrop-filter: blur(12px);
+        /* filter: drop-shadow(0px 0px 3px #1e1e1e); */
+    }
+    
+    .round {
+        border-radius: 12px;
+        padding: 6px;
+    }
+</style>
+
+<body>
+    <div id="app">
+        <div class="g2" id="board"></div>
+    </div>
+</body>
+<script src="vue.js"></script>
+<script>
+    Vue.createApp({
+        data() {
+            return {
+                books: [{
+                    id: 1,
+                    title: '你好',
+                    author: '佚名',
+                    price: 62
+                }, {
+                    id: 2,
+                    title: '谢谢',
+                    author: '佚名',
+                    price: 45
+                }, {
+                    id: 3,
+                    title: '小笼包',
+                    author: '佚名',
+                    price: 34
+                }, {
+                    id: 4,
+                    title: '再见',
+                    author: '佚名',
+                    price: 72
+                }]
+            }
+        },
+        methods: {
+            delItem(index) {
+                this.books.splice(index, 1);
+            }
+        }
+    }).mount('#app');
+</script>
+
+</html>
