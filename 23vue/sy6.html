@@ -13,12 +13,13 @@
 <style>
     @font-face {
         font-family: MiSans;
-        src: url('/fonts/MiSans VF.ttf');
+        src: url('https://yuukiizumi.github.io/fonts/MiSans%20VF.ttf');
     }
     
     * {
         background-image: ;
         font-family: MiSans;
+        font-size: 15px;
     }
     
     #board {
@@ -39,43 +40,26 @@
 
 <body>
     <div id="app">
-        <div class="g2" id="board"></div>
+        <div class="g2" id="board">Font字体
+            <Switch :defaultChecked="true" v-model="checked" checkedInfo="开" uncheckedInfo="关" :disabled="false" />
+        </div>
     </div>
 </body>
 <script src="vue.js"></script>
 <script>
-    Vue.createApp({
+    import Switch from './Switch'
+    export default {
+        name: 'Index',
+        components: {
+            Switch
+        },
         data() {
             return {
-                books: [{
-                    id: 1,
-                    title: '你好',
-                    author: '佚名',
-                    price: 62
-                }, {
-                    id: 2,
-                    title: '谢谢',
-                    author: '佚名',
-                    price: 45
-                }, {
-                    id: 3,
-                    title: '小笼包',
-                    author: '佚名',
-                    price: 34
-                }, {
-                    id: 4,
-                    title: '再见',
-                    author: '佚名',
-                    price: 72
-                }]
-            }
-        },
-        methods: {
-            delItem(index) {
-                this.books.splice(index, 1);
+                checked: true
             }
         }
-    }).mount('#app');
+    }
+    Vue.createApp().mount('#app');
 </script>
 
 </html>
