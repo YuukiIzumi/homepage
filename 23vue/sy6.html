@@ -1,6 +1,4 @@
 <!DOCTYPE html>
-<html>
-
 
 <head>
     <meta charset="UTF-8">
@@ -9,57 +7,122 @@
     <title>Document</title>
     <script src="https://unpkg.com/vue@next"></script>
 </head>
-
 <style>
-    @font-face {
-        font-family: MiSans;
-        src: url('https://yuukiizumi.github.io/fonts/MiSans%20VF.ttf');
-    }
-    
     * {
-        background-image: ;
-        font-family: MiSans;
-        font-size: 15px;
+        font-family: 'MiSans VF';
     }
     
-    #board {
-        background-color: #ffffff77;
-        position: absolute;
-        width: 500px;
-        height: 500px;
-        border-radius: 30px;
-        backdrop-filter: blur(12px);
-        /* filter: drop-shadow(0px 0px 3px #1e1e1e); */
-    }
-    
-    .round {
-        border-radius: 12px;
-        padding: 6px;
-    }
-</style>
-
-<body>
-    <div id="app">
-        <div class="g2" id="board">Font字体
-            <Switch :defaultChecked="true" v-model="checked" checkedInfo="开" uncheckedInfo="关" :disabled="false" />
-        </div>
-    </div>
-</body>
-<script src="vue.js"></script>
-<script>
-    import Switch from './Switch'
-    export default {
-        name: 'Index',
-        components: {
-            Switch
-        },
-        data() {
-            return {
-                checked: true
+    .d-switch {
+        position: relative;
+        height: 18px;
+        transition: background 0.2s;
+        width: 40px;
+        background: rgb(218, 238, 255);
+        border-radius: 10px;
+        display: inline-flex;
+        align-items: center;
+        vertical-align: middle;
+        filter: drop-shadow(0px, 2px, 4px, #1119);
+        .d-switch__input {
+            position: relative;
+            z-index: 1;
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+        }
+        .d-switch_action {
+            position: absolute;
+            transition: 0.2s;
+            left: 2px;
+            top: 2px;
+            z-index: 0;
+            height: 14px;
+            width: 14px;
+            background: #fff1;
+            border-radius: 50%;
+        }
+        &.is-checked {
+            background: #ffb30f;
+            filter: drop-shadow(0px, 2px, 4px, #1119);
+            .d-switch_action {
+                left: 100%;
+                background: #fff1;
+                margin-left: -18px;
             }
         }
     }
-    Vue.createApp().mount('#app');
-</script>
+</style>
+<div id="app">
+    开关[Switch]
+    <my-switch v-model="value1">
+</div>
+<script>
+    const App = {
+        data() {
+            return {
+                value1: true
+            };
+        },
+        methods: {}
+    };
 
-</html>
+    const app = Vue.createApp(App);
+
+    app.component("my-switch", {
+        props: {
+            modelValue: {
+                type: [Number, String, Boolean]
+            },
+            width: {
+                //switch 的宽度（像素）
+                type: String,
+                default: "40px"
+            },
+            trueValue: {
+                //switch 打开时的值
+                type: [Number, String, Boolean],
+                default: true
+            },
+            falseValue: {
+                //	switch 关闭时的值
+                type: [Number, String, Boolean],
+                default: true
+            },
+            activeColor: {
+                //switch 打开时的背景色
+                type: [String],
+                default: "#409EFF"
+            }
+        },
+        computed: {
+            checked() {
+                return this.modelValue === this.trueValue;
+            }
+        },
+        methods: {
+            handleInput() {
+                console.log(this.$refs.input.checked);
+                const val = this.$refs.input.checked;
+                this.$emit("update:modelValue", val);
+                this.$emit("change", val);
+            }
+        },
+        template: `
+     <div class="d-switch" :class="{ 'is-checked': checked }">
+        <input
+            class="d-switch__input"
+            ref="input"
+            type="checkbox"
+            :checked="checked"
+            @change="handleInput"
+            :true-value="trueValue"
+            :false-value="falseValue"
+        />
+        <span class="d-switch_action"></span>
+    </div>
+  `
+    });
+
+    app.mount("#app");
+</script>
