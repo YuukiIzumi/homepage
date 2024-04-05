@@ -5,17 +5,39 @@
     <title>DLS AUDITION</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
+        var scrH, scrW, itemH, itemW, scale;
+        var movePx = 1540;
         var px = 0;
         var AlbumID = 1;
+
+
 
         function $(id) {
             return document.getElementById(id);
         }
 
+        function init() {
+            scrH = window.innerHeight;
+            scrW = window.innerWidth;
+            itemH = Math.floor(scrH * 0.75);
+            itemW = Math.floor(scrW * 0.75);
+            scale = scrW / 1920;
+            document.getElementsByClassName("item").style = "width:" + itemW + "px !important;height:" + itemH + "px !important;margin: 0 50px;display: flex;flex-direction: column-reverse;overflow: hidden;z-index: 10;";
+        }
+
+        setInterval(function() {
+            $("data").innerHTML = scale + "<br>(" + scrH + "," + scrW + ")<br>[" + itemH + "," + itemW + "]<br>" + movePx + " " + px;
+            scrH = window.innerHeight;
+            scrW = window.innerWidth;
+            itemH = Math.floor(scrH * 0.75);
+            itemW = Math.floor(scrW * 0.75);
+            scale = scrW / 1920;
+            document.body.style.zoom = scale;
+        }, 10);
         //移动列表
         function moveNext() {
             if (AlbumID <= 3) {
-                px = px - 1540;
+                px = px - movePx;
                 AlbumID++;
                 $("list").style = "transform: translateY(-50%) translateX(" + px + "px);";
             }
@@ -27,7 +49,7 @@
 
         function movePrev() {
             if (AlbumID >= 2) {
-                px = px + 1540;
+                px = px + movePx;
                 AlbumID--;
                 $("list").style = "transform: translateY(-50%) translateX(" + px + "px);";
             }
@@ -219,8 +241,8 @@
     .h-list li {}
     
     .item {
-        width: 1440px !important;
-        height: 810px !important;
+        width: 1440px;
+        height: 810px;
         margin: 0 50px;
         display: flex;
         flex-direction: column-reverse;
@@ -315,6 +337,14 @@
         font-weight: 500;
     }
     
+    h5 {
+        max-width: 800px;
+        width: max-content;
+        margin: 5px 0px;
+        font-size: 16px;
+        font-weight: 500;
+    }
+    
     h2 {
         width: max-content;
         font-size: 24px;
@@ -400,10 +430,12 @@
     .data {
         color: #fff;
         font-family: 'Sarasa Term SC';
-        font-size: 24px;
+        font-size: 16px;
         position: fixed;
         top: 10px;
         left: 10px;
+        z-index: 1001;
+        display: none;
     }
     
     #splash {
@@ -427,12 +459,21 @@
         font-size: 60px;
         font-weight: 300;
     }
+    
+    .wbg {
+        background-color: #fff;
+        padding: 8px 8px 4px 8px;
+        font-size: 20px;
+        font-weight: 800;
+        color: #000;
+    }
 </style>
 
-<body onload="splash()" onloadeddata="">
+<body onload="splash(); init();" onloadeddata="">
+    <span id="data" class="data">0</span>
     <div id="splash">
         <h4 id="glitchText" class="big"></h4>
-        <h3>ver 1.1</h3>
+        <h3>ver 1.3</h3>
     </div>
     <div>
         <video class="vbg" id="vbg" src="./bg.mp4" autoplay muted loop></video>
@@ -453,7 +494,11 @@
                         <div class="info">
                             <h4>DON'T LΣT 3RD COMPILATION</h4>
                             <h1>EXOGE</h1>
-                            <h3>AA</h3>
+                            <h3 class="wbg">CD 版 / 数字·实体套组</h3>
+                            <h3>11 Tracks, 1 CD</h3>
+                            <h3>以全新的世界观谱写的，“識”的故事。</h3>
+                            <!-- <h5>有人说：「这个世界已经没有了过去的繁华和美好，只有残酷和荒凉。」</h5>
+                            <h5>有人说：「她并非超凡脱俗的存在，但她拥有着坚定的意志和智慧，以及对这个世界的深刻理解。」</h5> -->
                         </div>
                         <div class="info inv">
                             <h3><b>含特典</b></h3>
@@ -470,9 +515,9 @@
                         <div class="info ">
                             <h4>DON'T LΣT 2ND COMPILATION</h4>
                             <h1>テゼリア幻想記 Part. II ~大地のレゾナンス~</h1>
-                            <h3>CD 版 / 数字·实体套组</h3>
+                            <h3 class="wbg ">CD 版</h3>
                             <h3>8 Tracks, 1 CD</h3>
-                            <h3>AA</h3>
+                            <h3>”这片大地看见一切，并忠实地记录下一切。“</h3>
                         </div>
                         <div class="info inv ">
                             <h3><b>含特典</b></h3>
@@ -488,7 +533,7 @@
                         <div class="info">
                             <h4>DON'T LΣT 1ST COMPILATION</h4>
                             <h1>テゼリア幻想記 ~Tysella il Phantasia~</h1>
-                            <h3>数字版 | 7 Tracks</h3>
+                            <h3 class="wbg">数字版</h3>
                             <h3>DLS 的首张日幻专辑，内含 7 首乐曲。</h3>
                         </div>
                         <div class="pricetag">
@@ -502,6 +547,7 @@
                         <div class="info ">
                             <h4>SANGMI 1ST SOLO ALBUM</h4>
                             <h1>Cyber Miracle</h1>
+                            <h3 class="wbg ">CD 版</h3>
                             <h3>18 Tracks, 1 CD</h3>
                             <h3>Sangmi的首张个人专辑。</h3>
                         </div>
