@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>DLS AUDITION</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        var px = 0;
+        var AlbumID = 1;
+
+        function $(id) {
+            return document.getElementById(id);
+        }
+
+        //移动列表
+        function moveNext() {
+            if (AlbumID <= 3) {
+                px = px - 1540;
+                AlbumID++;
+                $("list").style = "transform: translateY(-50%) translateX(" + px + "px);";
+            }
+
+            if (AlbumID > 4) {
+                AlbumID = 3;
+            }
+        }
+
+        function movePrev() {
+            if (AlbumID >= 2) {
+                px = px + 1540;
+                AlbumID--;
+                $("list").style = "transform: translateY(-50%) translateX(" + px + "px);";
+            }
+
+            if (AlbumID < 1) {
+                AlbumID = 2;
+            }
+        }
+
+
+        //设置属性
+        function setPointer(id, status) {
+            $(id).style.pointerEvents = status;
+        }
+
+        function setAlpha(id, alpha) {
+            $(id).style.opacity = alpha;
+        }
+
+        function setT(id, status) {
+            switch (status) {
+                case 1:
+                    $(id).style.transition = "1s cubic-bezier(0.165, 0.84, 0.44, 1)"
+                case 0:
+                    $(id).style.transition = "0.3s cubic-bezier(0.165, 0.84, 0.44, 1)"
+            }
+        }
+
+        function setBlur(id, px) {
+            $(id).style.filter = "blur(" + px + "px)";
+        }
+
+        function clickAction() { //点击屏幕后的动作
+            setAlpha("wrap", 1);
+            setPointer("wrap", "auto");
+            setBlur("abg", 24);
+        }
+
+        function hideAction() {
+            setAlpha("wrap", 0);
+            setPointer("wrap", "none");
+            setBlur("abg", 0);
+        }
+
+        var counter = 5000;
+        var isTriggered = false;
+
+        var lastClickTime = Date.now();
+
+        function checkNoClick() {
+            var currentTime = Date.now();
+            if (currentTime - lastClickTime > counter) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        // setInterval(checkNoClick, 1000);
+
+        document.addEventListener("click", function() {
+            lastClickTime = Date.now();
+            clickAction();
+        });
+
+        setInterval(function() {
+            if (!checkNoClick()) {
+                if (isTriggered) {
+                    hideAction();
+                    isTriggered = false;
+                }
+            } else {
+                hideAction();
+            }
+        }, 100)
+
+        function playAlbum(path) {
+            console.log("auditionVideoPlaying " + path)
+            isTriggered = true;
+            $("abg").src = path;
+            $("abg").play();
+            setAlpha("abg", 1);
+            setPointer("abg", "none");
+            hideAction();
+            setAlpha("edBtn", 1);
+            setPointer("edBtn", "auto");
+            setBlur("abg", 0);
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            $("abg").addEventListener("ended", function() {
+                console.log("auditionVideoEnded");
+                setAlpha("abg", 0);
+                setAlpha("edBtn", 0);
+                setPointer("edBtn", "none");
+                clickAction();
+            });
+        });
+
+        function stopPlay() {
+            $("abg").pause();
+            setAlpha("abg", 0);
+            setAlpha("edBtn", 0);
+            setPointer("edBtn", "none");
+        }
+
+        function splash() {
+            setTimeout(function() {
+                setAlpha("splash", 0);
+                setPointer("splash", "none");
+            }, 2000);
+        }
+
+        setInterval(glitchText, 20);
+
+        function glitchText() {
+            var text = "DLS_AUDITION_SYSTEM";
+            var glitchedText = "";
+            for (var i = 0; i < text.length; i++) {
+                glitchedText += Math.random() < 0.1 ? String.fromCharCode(Math.floor(Math.random() * (126 - 32)) + 32) : text[i];
+            }
+            document.getElementById('glitchText').innerHTML = glitchedText;
+            setTimeout(function() {
+                document.getElementById('glitchText').textContent = text;
+            }, 80);
+        }
+    </script>
+</head>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100;200;300;400;500;600;700;800;900&display=swap');
+    @font-face {
+        font-family: "LINESeedJP_TTF";
+        font-weight: 500;
+        src: url("./fonts/LINESeedSans_Rg.ttf");
+    }
+    
+    @font-face {
+        font-family: "LINESeedJP_TTF";
+        font-weight: 300;
+        src: url("./fonts/LINESeedSans_Th.ttf");
+    }
+    
+    @font-face {
+        font-family: "LINESeedJP_TTF";
+        font-weight: 800;
+        src: url("./fonts/LINESeedSans_Bd.ttf");
+    }
+    
+    @font-face {
+        font-family: "LINESeedJP_TTF";
+        font-weight: 900;
+        src: url("./fonts/LINESeedSans_XBd.ttf");
+    }
+    
+    * {
+        font-family: "LINESeedJP_TTF", "Noto Sans SC";
+        transition: 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+        line-height: 110%;
+        user-select: none;
+        text-rendering: geometricPrecision;
+        -webkit-font-smoothing: subpixel-antialiased;
+        font-smooth: always;
+    }
+    
+    body {
+        overflow-Y: hidden;
+        background-color: black;
+    }
+    /* .wrap {
+        backdrop-filter: blur(24px);
+    } */
+    
+    .h-list {
+        position: fixed;
+        top: 50%;
+        left: 150px;
+        transform: translateY(-50%);
+    }
+    
+    .h-list ul {
+        display: flex;
+        text-decoration: none;
+        list-style-type: none;
+        width: 3600px;
+        height: 810px;
+    }
+    
+    .h-list li {}
+    
+    .item {
+        width: 1440px !important;
+        height: 810px !important;
+        margin: 0 50px;
+        display: flex;
+        flex-direction: column-reverse;
+        overflow: hidden;
+        z-index: 10;
+    }
+    
+    .vbg {
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translateX(-50%)translateY(-50%);
+        width: 100%;
+        height: 100%;
+        z-index: -999;
+        object-fit: cover;
+    }
+    
+    a {
+        background-color: black;
+        padding: 16px;
+        font-size: 48px;
+        color: aliceblue;
+        text-decoration: none;
+    }
+    
+    button {
+        background-color: black;
+        padding: 16px;
+        font-size: 48px;
+        color: aliceblue;
+        text-decoration: none;
+        border: none;
+        border: solid #fff;
+    }
+    
+    button:active {
+        filter: invert(1);
+    }
+    
+    .sqr {
+        width: 144px;
+        height: 144px;
+        text-align: center;
+        align-items: center;
+        position: fixed;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 999;
+    }
+    
+    .edbtn {
+        width: 120px;
+        height: 120px;
+        text-align: center;
+        align-items: center;
+        position: fixed;
+        left: 30px;
+        bottom: 30px;
+        z-index: 999;
+        opacity: 0;
+        pointer-events: none;
+    }
+    
+    #nxtBtn {
+        right: 32px;
+    }
+    
+    #prvBtn {
+        left: 32px;
+    }
+    
+    h1 {
+        width: max-content;
+        font-size: 54px;
+        margin: 0 0;
+        padding: 0;
+        margin-left: -3px;
+    }
+    
+    h4 {
+        width: max-content;
+        margin: 0;
+        margin-bottom: 8px;
+        font-size: 18px;
+    }
+    
+    h3 {
+        width: max-content;
+        font-size: 28px;
+        margin: 8px 0;
+        font-weight: 500;
+    }
+    
+    h2 {
+        width: max-content;
+        font-size: 24px;
+        margin: 8px 0;
+        font-weight: 500;
+    }
+    
+    .info {
+        margin: 24px;
+        padding: 16px 32px 16px 16px;
+        width: min-content;
+        color: #fff;
+        background-color: black;
+    }
+    
+    .cover {
+        z-index: -10;
+        width: 1440px;
+        height: 810px;
+        object-fit: cover;
+        position: absolute;
+    }
+    
+    .inv {
+        background-color: rgb(255, 60, 0);
+        padding: 16px;
+        margin: 24px;
+        margin-bottom: 0;
+    }
+    
+    .center {
+        position: fixed;
+        bottom: ;
+        margin: 0;
+        padding: 14px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    #abg {
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translateX(-50%)translateY(-50%);
+        width: 100%;
+        height: 100%;
+        z-index: -899;
+        opacity: 0;
+        pointer-events: none;
+        object-fit: cover;
+        filter: blur(0px);
+    }
+    
+    .price {
+        padding: 10px;
+        font-size: 40px;
+        margin: 24px 0px 24px 24px;
+        font-weight: 500;
+        background-color: black;
+        color: #fff;
+        width: max-content;
+    }
+    
+    .pricetag {
+        position: absolute;
+        top: 10px;
+        display: flex;
+    }
+    
+    .logoframe {
+        position: absolute;
+        top: 510px;
+        left: 950px;
+        margin: 24px;
+        width: 400px;
+        height: auto;
+        padding: 16px;
+        filter: drop-shadow(0 0 8px #000);
+        /* background-color: black; */
+        display: none;
+    }
+    
+    .data {
+        color: #fff;
+        font-family: 'Sarasa Term SC';
+        font-size: 24px;
+        position: fixed;
+        top: 10px;
+        left: 10px;
+    }
+    
+    #splash {
+        background-color: #000;
+        width: 100%;
+        height: 100%;
+        z-index: 1000;
+        position: fixed;
+        top: 0;
+        left: 0;
+        transition: 1.1s cubic-bezier(0.165, 0.84, 0.44, 1);
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .big {
+        font-size: 60px;
+        font-weight: 300;
+    }
+</style>
+
+<body onload="splash()" onloadeddata="">
+    <div id="splash">
+        <h4 id="glitchText" class="big"></h4>
+        <h3>ver 1.1</h3>
+    </div>
+    <div>
+        <video class="vbg" id="vbg" src="./bg.mp4" autoplay muted loop></video>
+    </div>
+    <div>
+        <video id="abg" src="" autoplay></video>
+    </div>
+    <div class="end">'
+        <button onclick="stopPlay()" class="edbtn" id="edBtn">×</button>
+    </div>
+    <div class="wrap" id="wrap">
+        <button onclick="moveNext()" class="sqr" id="nxtBtn">＞</button>
+        <button onclick="movePrev()" class="sqr" id="prvBtn">＜</button>
+        <div class="h-list" id="list">
+            <ul>
+                <li>
+                    <div class="item" onclick="playAlbum('./vid01.mp4')">
+                        <div class="info">
+                            <h4>DON'T LΣT 3RD COMPILATION</h4>
+                            <h1>EXOGE</h1>
+                            <h3>AA</h3>
+                        </div>
+                        <div class="info inv">
+                            <h3><b>含特典</b></h3>
+                        </div>
+                        <div class="pricetag">
+                            <span class="price"><h2>CD</h2>49 CNY</span>
+                            <span class="price"><h2>数字·实体套组</h2>69 CNY</span>
+                        </div>
+                        <img class="cover" src="./cd01.png">
+                    </div>
+                </li>
+                <li>
+                    <div class="item" onclick="playAlbum('./vid02.mp4')" ">
+                        <div class="info ">
+                            <h4>DON'T LΣT 2ND COMPILATION</h4>
+                            <h1>テゼリア幻想記 Part. II ~大地のレゾナンス~</h1>
+                            <h3>CD 版 / 数字·实体套组</h3>
+                            <h3>8 Tracks, 1 CD</h3>
+                            <h3>AA</h3>
+                        </div>
+                        <div class="info inv ">
+                            <h3><b>含特典</b></h3>
+                        </div>
+                        <div class="pricetag ">
+                            <span class="price "><h2>CD</h2>39 CNY</span>
+                        </div>
+                        <img class="cover " src="./cd02.png ">
+                    </div>
+                </li>
+                <li>
+                    <div class="item " onclick="playAlbum( './vid03.mp4') "">
+                        <div class="info">
+                            <h4>DON'T LΣT 1ST COMPILATION</h4>
+                            <h1>テゼリア幻想記 ~Tysella il Phantasia~</h1>
+                            <h3>数字版 | 7 Tracks</h3>
+                            <h3>DLS 的首张日幻专辑，内含 7 首乐曲。</h3>
+                        </div>
+                        <div class="pricetag">
+                            <span class="price"><h2>下载卡</h2>限量赠送 50 份</span>
+                        </div>
+                        <img class="cover" src="./cd03.png">
+                    </div>
+                </li>
+                <li>
+                    <div class="item" onclick="playAlbum('./vid04.mp4')" ">
+                        <div class="info ">
+                            <h4>SANGMI 1ST SOLO ALBUM</h4>
+                            <h1>Cyber Miracle</h1>
+                            <h3>18 Tracks, 1 CD</h3>
+                            <h3>Sangmi的首张个人专辑。</h3>
+                        </div>
+                        <div class="info inv ">
+                            <h3><b>含特典</b></h3>
+                        </div>
+                        
+                        <div class="pricetag ">
+                            <img class="logoframe " src="./windingleam_gold.png ">
+                            <span class="price "><h2>CD</h2>59 CNY</span>
+                        </div>
+                        <img class="cover " src="./cd04.png ">
+                    </div>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+    <div class="info center ">
+        <h3>点击任意位置显示商品列表 | 点击封面试听</h3>
+    </div>
+</body>
