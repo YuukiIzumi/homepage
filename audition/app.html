@@ -11,14 +11,14 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="DLS Audition">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <title>DLS AUDITION v1.32o</title>
+    <title>DLS AUDITION v1.6 ONLINE</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         var scrH, scrW, itemH, itemW, scale;
         var movePx = 1540;
         var px = 0;
         var AlbumID = 1;
-
+        var AlbumCount = 6;
 
 
         function $(id) {
@@ -45,14 +45,14 @@
         }, 10);
         //移动列表
         function moveNext() {
-            if (AlbumID <= 3) {
+            if (AlbumID <= AlbumCount - 1) {
                 px = px - movePx;
                 AlbumID++;
                 $("list").style = "transform: translateY(-50%) translateX(" + px + "px);";
             }
 
-            if (AlbumID > 4) {
-                AlbumID = 3;
+            if (AlbumID > AlbumCount) {
+                AlbumID = AlbumCount - 1;
             }
         }
 
@@ -103,7 +103,7 @@
             setBlur("abg", 0);
         }
 
-        var counter = 5000;
+        var counter = 7000;
         var isTriggered = false;
 
         var lastClickTime = Date.now();
@@ -135,17 +135,27 @@
             }
         }, 100)
 
+        var lastPlay = "null";
+
         function playAlbum(path) {
-            console.log("auditionVideoPlaying " + path)
-            isTriggered = true;
-            $("abg").src = path;
-            $("abg").play();
-            setAlpha("abg", 1);
-            setPointer("abg", "none");
-            hideAction();
-            setAlpha("edBtn", 1);
-            setPointer("edBtn", "auto");
-            setBlur("abg", 0);
+            console.log("lastPathIs " + lastPlay + ";auditionVideoPlaying " + path)
+            if (path == lastPlay) {
+                lastPlay = path;
+                console.log("same path");
+                isTriggered = true;
+                hideAction();
+            } else {
+                lastPlay = path;
+                isTriggered = true;
+                $("abg").src = path;
+                $("abg").play();
+                setAlpha("abg", 1);
+                setPointer("abg", "none");
+                hideAction();
+                setAlpha("edBtn", 1);
+                setPointer("edBtn", "auto");
+                setBlur("abg", 0);
+            }
         }
 
         document.addEventListener("DOMContentLoaded", function() {
@@ -163,6 +173,7 @@
             setAlpha("abg", 0);
             setAlpha("edBtn", 0);
             setPointer("edBtn", "none");
+            lastPlay = "null";
         }
 
         function splash() {
@@ -184,6 +195,10 @@
             setTimeout(function() {
                 document.getElementById('glitchText').textContent = text;
             }, 80);
+        }
+
+        function launchFullscreen() {
+            document.documentElement.requestFullscreen();
         }
     </script>
 </head>
@@ -247,8 +262,6 @@
         height: 810px;
     }
     
-    .h-list li {}
-    
     .item {
         width: 1440px;
         height: 810px;
@@ -261,6 +274,10 @@
     
     .item:hover {
         transform: scale(1.02);
+    }
+    
+    .item:active {
+        transform: scale(1.01);
     }
     
     .vbg {
@@ -313,6 +330,12 @@
         border-color: rgb(255, 60, 0);
     }
     
+    .sqr:active {
+        width: 154px;
+        height: 154px;
+        border: solid #fff;
+    }
+    
     .edbtn {
         width: 120px;
         height: 120px;
@@ -330,6 +353,12 @@
         width: 136px;
         height: 136px;
         border-color: rgb(255, 60, 0);
+    }
+    
+    .edbtn:active {
+        width: 130px;
+        height: 130px;
+        border: solid #fff;
     }
     
     #nxtBtn {
@@ -402,7 +431,6 @@
     
     .center {
         position: fixed;
-        bottom: ;
         margin: 0;
         padding: 14px;
         left: 50%;
@@ -433,21 +461,15 @@
         width: max-content;
     }
     
-    .price:hover {
-        transform: scale(1.1);
-        background-color: #fff;
-        color: rgb(255, 60, 0);
-    }
-    
     .pricetag {
         position: absolute;
-        top: 10px;
+        transform: translateY(-425%);
         display: flex;
     }
     
     .logoframe {
-        position: absolute;
-        top: 510px;
+        /* position: absolute; */
+        top: 410px;
         left: 950px;
         margin: 24px;
         width: 400px;
@@ -455,7 +477,6 @@
         padding: 16px;
         filter: drop-shadow(0 0 8px #000);
         /* background-color: black; */
-        display: none;
     }
     
     .data {
@@ -498,22 +519,28 @@
         font-weight: 800;
         color: #000;
     }
+    
+    .sss {
+        background-color: #eee;
+        color: #1b1b1b;
+    }
 </style>
 
 <body onload="splash(); init();" onloadeddata="">
     <span id="data" class="data">0</span>
     <div id="splash">
         <h4 id="glitchText" class="big"></h4>
-        <h3>ver 1.32o</h3>
+        <h3>ver 1.6</h3>
         <h1>🌍</h1>
         <h3>ONLINE & MOBILE READY</h3>
         <h3><br><br>请横屏全屏使用。<br><br>如遇视频无法加载或加载不流畅，请检查网络连接。</h3>
+        <button onclick="launchFullscreen();">⤧</button>
     </div>
     <div>
-        <video class="vbg" id="vbg" src="./bg.mp4" autoplay muted loop></video>
+        <video class="vbg" id="vbg" src="./bg.mp4" autoplay muted loop></vid/video>
     </div>
     <div>
-        <video id="abg" src="" autoplay></video>
+        <video id="abg" src="" autoplay></vid/video>
     </div>
     <div class="end">'
         <button onclick="stopPlay()" class="edbtn" id="edBtn">×</button>
@@ -524,7 +551,7 @@
         <div class="h-list" id="list">
             <ul>
                 <li>
-                    <div class="item" onclick="playAlbum('./vid01.mp4')">
+                    <div class="item" onclick="playAlbum('./vid/vid01.mp4')">
                         <div class="info">
                             <h4>DON'T LΣT 3RD COMPILATION</h4>
                             <h1>EXOGE</h1>
@@ -541,17 +568,17 @@
                             <span class="price"><h2>CD</h2>49 CNY</span>
                             <span class="price"><h2>数字·实体套组</h2>69 CNY</span>
                         </div>
-                        <img class="cover" src="./cd01.png">
+                        <img class="cover" src="./cover/cd01.png">
                     </div>
                 </li>
                 <li>
-                    <div class="item" onclick="playAlbum('./vid02.mp4')" ">
+                    <div class="item" onclick="playAlbum('./vid/vid02.mp4')" ">
                         <div class="info ">
                             <h4>DON'T LΣT 2ND COMPILATION</h4>
                             <h1>テゼリア幻想記 Part. II ~大地のレゾナンス~</h1>
                             <h3 class="wbg ">CD 版</h3>
                             <h3>8 Tracks, 1 CD</h3>
-                            <h3>”这片大地看见一切，并忠实地记录下一切。“</h3>
+                            <h3>“这片大地看见一切，并忠实地记录下一切。”</h3>
                         </div>
                         <div class="info inv ">
                             <h3><b>含特典</b></h3>
@@ -559,11 +586,11 @@
                         <div class="pricetag ">
                             <span class="price "><h2>CD</h2>39 CNY</span>
                         </div>
-                        <img class="cover " src="./cd02.png ">
+                        <img class="cover " src="./cover/cd02.png ">
                     </div>
                 </li>
                 <li>
-                    <div class="item " onclick="playAlbum( './vid03.mp4') "">
+                    <div class="item " onclick="playAlbum( './vid/vid03.mp4') "">
                         <div class="info">
                             <h4>DON'T LΣT 1ST COMPILATION</h4>
                             <h1>テゼリア幻想記 ~Tysella il Phantasia~</h1>
@@ -573,11 +600,11 @@
                         <div class="pricetag">
                             <span class="price"><h2>下载卡</h2>限量赠送 50 份</span>
                         </div>
-                        <img class="cover" src="./cd03.png">
+                        <img class="cover" src="./cover/cd03.png">
                     </div>
                 </li>
                 <li>
-                    <div class="item" onclick="playAlbum('./vid04.mp4')" ">
+                    <div class="item" onclick="playAlbum('./vid/vid04.mp4')" ">
                         <div class="info ">
                             <h4>SANGMI 1ST SOLO ALBUM</h4>
                             <h1>Cyber Miracle</h1>
@@ -590,10 +617,58 @@
                         </div>
                         
                         <div class="pricetag ">
-                            <img class="logoframe " src="./windingleam_gold.png ">
                             <span class="price "><h2>CD</h2>59 CNY</span>
                         </div>
-                        <img class="cover " src="./cd04.png ">
+                        <img class="cover " src="./cover/cd04.png ">
+                    </div>
+                </li>
+
+                <!-- SSS寄售区 -->
+                <li>
+                    <div class="item " onclick="playAlbum( './vid/sss01.mp4') " ">
+                        <div class="info ">
+                            <h4>Athánatos Miotas</h4>
+                            <h1>不朽的神话</h1>
+                            <h3>Prod. by 乙妮</h3>
+                            <h3 class="wbg ">CD 版</h3>
+                            <h3>7 Tracks, 1 CD</h3>
+                            <h3>乙妮一人作曲作词联合中日九位歌手<br>古希腊、凯尔特、北欧神话为背景的融合华丽编曲与演唱
+                            </h3>
+                        </div>
+                        <div class="info inv ">
+                            <h3><b>含特典（立牌、明信片、魔法书、挂画）</b></h3>
+                        </div>
+                        <div class="info inv sss">
+                            <h3><b>SSS音乐综合体·寄售商品</b></h3>
+                        </div>
+                        <div class="pricetag ">
+                            <span class="price "><h2>CD</h2>95 CNY</span>
+                        </div>
+                        <img class="cover " src="./sss/01.png ">
+                    </div>
+                </li>
+                <li>
+                    <div class="item" onclick="playAlbum('./vid/sss02.mp4')" ">
+                        <div class="info ">
+                            <!-- <h4>SANGMI 1ST SOLO ALBUM</h4> -->
+                            <h1>JAGAT</h1>
+                            <h3>Prod. by 乙妮</h3>
+                            <h3 class="wbg ">CD 版</h3>
+                            <h3>8 Tracks, 1 CD</h3>
+                            <h3>踏上世界音乐的道路，领略异国风情。<br>
+                                带你感受来自印度、保加利亚、中国、埃及、中东之声</h3>
+                        </div>
+                        <div class="info inv ">
+                            <h3><b>含特典（磨砂满天星明信片、色纸、镭射票）</b></h3>
+                        </div>
+                        <div class="info inv sss ">
+                            <h3><b>SSS音乐综合体·寄售商品</b></h3>
+                        </div>
+                        <!-- <img class="logoframe " src="./sss/yinilogo.png "> -->
+                        <div class="pricetag ">
+                            <span class="price "><h2>CD</h2>100 CNY</span>
+                        </div>
+                        <img class="cover " src="./sss/02.png ">
                     </div>
                 </li>
             </ul>
