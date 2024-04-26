@@ -11,7 +11,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="DLS Audition">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <title>DLS AUDITION v1.7 ONLINE</title>
+    <title>DLS AUDITION v2.0</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         var scrH, scrW, itemH, itemW, scale;
@@ -32,6 +32,7 @@
             itemW = Math.floor(scrW * 0.75);
             scale = scrW / 1920;
             document.getElementsByClassName("item").style = "width:" + itemW + "px !important;height:" + itemH + "px !important;margin: 0 50px;display: flex;flex-direction: column-reverse;overflow: hidden;z-index: 10;";
+            updateCat();
         }
 
         setInterval(function() {
@@ -54,6 +55,8 @@
             if (AlbumID > AlbumCount) {
                 AlbumID = AlbumCount - 1;
             }
+
+            updateCat();
         }
 
         function movePrev() {
@@ -66,6 +69,8 @@
             if (AlbumID < 1) {
                 AlbumID = 2;
             }
+
+            updateCat();
         }
 
 
@@ -95,12 +100,14 @@
             setAlpha("wrap", 1);
             setPointer("wrap", "auto");
             setBlur("abg", 24);
+            $("category-list").style.bottom = "3%";
         }
 
         function hideAction() {
             setAlpha("wrap", 0);
             setPointer("wrap", "none");
             setBlur("abg", 0);
+            $("category-list").style.bottom = "-10%";
         }
 
         var counter = 7000;
@@ -178,14 +185,14 @@
             setAlpha("abg", 0);
             setAlpha("edBtn", 0);
             setPointer("edBtn", "none");
-            clearStatus();
+            lastPlay = "null";
         }
 
         function splash() {
             setTimeout(function() {
                 setAlpha("splash", 0);
                 setPointer("splash", "none");
-            }, 2000);
+            }, 100);
         }
 
         setInterval(glitchText, 20);
@@ -204,6 +211,35 @@
 
         function launchFullscreen() {
             document.documentElement.requestFullscreen();
+        }
+
+        function cat(num, id) {
+            px = (num - 1) * movePx * -1;
+            AlbumID = num;
+            $("list").style = "transform: translateY(-50%) translateX(" + px + "px);";
+            updateCat();
+        }
+
+        // setInterval(updateCat, 100);
+
+        function updateCat() {
+            if (AlbumID <= 4) {
+                $("dls-cat").style.fontWeight = "800";
+                $("dls-cat").style.backgroundColor = "#000";
+                $("dls-cat").style.color = "#fff";
+                // console.log("当前处于DLS区域")
+                $("sss-cat").style.fontWeight = "500";
+                $("sss-cat").style.backgroundColor = "#0000";
+                $("sss-cat").style.color = "#000";
+            } else {
+                $("dls-cat").style.fontWeight = "500";
+                $("dls-cat").style.backgroundColor = "#0000";
+                $("dls-cat").style.color = "#000";
+                // console.log("当前处于SSS区域")
+                $("sss-cat").style.fontWeight = "800";
+                $("sss-cat").style.backgroundColor = "#000";
+                $("sss-cat").style.color = "#fff";
+            }
         }
     </script>
 </head>
@@ -529,16 +565,40 @@
         background-color: #eee;
         color: #1b1b1b;
     }
+    
+    .category-list {
+        position: fixed;
+        bottom: 3%;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 16px;
+        background-color: #eee;
+        font-family: Inter, 'LINESeedJP_TTF';
+        font-size: 2em;
+        z-index: 999;
+    }
+    
+    .category {
+        padding: 10px;
+        border: none;
+        border-bottom: #000 2px solid;
+        background-color: #fff0;
+        margin: 0 10px;
+        color: #1b1b1b;
+        font-family: Inter, 'LINESeedJP_TTF';
+    }
+    
+    .category:hover {
+        font-weight: bold;
+    }
 </style>
 
 <body onload="splash(); init();" onloadeddata="">
     <span id="data" class="data">0</span>
     <div id="splash">
         <h4 id="glitchText" class="big"></h4>
-        <h3>ver 1.7r1</h3>
-        <h1>🌍</h1>
-        <h3>ONLINE & MOBILE READY</h3>
-        <h3><br><br>请横屏全屏使用。<br><br>如遇视频无法加载或加载不流畅，请检查网络连接。</h3>
+        <h3>ver 2.0</h3>
+        <h3>MOBILE READY<br><br></h3>
         <button onclick="launchFullscreen();">⤧</button>
     </div>
     <div>
@@ -553,6 +613,10 @@
     <div class="wrap" id="wrap">
         <button onclick="moveNext()" class="sqr" id="nxtBtn">＞</button>
         <button onclick="movePrev()" class="sqr" id="prvBtn">＜</button>
+    <div class="category-list" id="category-list">
+        <button class="category" id="dls-cat" onclick="cat(1, 'dls-cat')">DON'T LΣT STU.</button>
+        <button class="category" id="sss-cat" onclick="cat(5, 'sss-cat')">SSS寄售区</button>
+    </div>
         <div class="h-list" id="list">
             <ul>
                 <li>
@@ -561,7 +625,7 @@
                             <h4>DON'T LΣT 3RD COMPILATION</h4>
                             <h1>EXOGE</h1>
                             <h3 class="wbg">CD 版 / 数字·实体套组</h3>
-                            <h3>11 Tracks, 1 CD</h3>
+                            <h3>12 Tracks, 1 CD</h3>
                             <h3>以全新的世界观谱写的，“識”的故事。</h3>
                             <!-- <h5>有人说：「这个世界已经没有了过去的繁华和美好，只有残酷和荒凉。」</h5>
                             <h5>有人说：「她并非超凡脱俗的存在，但她拥有着坚定的意志和智慧，以及对这个世界的深刻理解。」</h5> -->
@@ -570,8 +634,8 @@
                             <h3><b>含特典</b></h3>
                         </div>
                         <div class="pricetag">
-                            <span class="price"><h2>CD</h2>49 CNY</span>
-                            <span class="price"><h2>数字·实体套组</h2>69 CNY</span>
+                            <span class="price"><h2>CD</h2>待定</span>
+                            <span class="price"><h2>数字·实体套组</h2>待定</span>
                         </div>
                         <img class="cover" src="./cover/cd01.png">
                     </div>
@@ -582,14 +646,14 @@
                             <h4>DON'T LΣT 2ND COMPILATION</h4>
                             <h1>テゼリア幻想記 Part. II ~大地のレゾナンス~</h1>
                             <h3 class="wbg ">CD 版</h3>
-                            <h3>8 Tracks, 1 CD</h3>
+                            <h3>7 Tracks, 1 CD</h3>
                             <h3>“这片大地看见一切，并忠实地记录下一切。”</h3>
                         </div>
                         <div class="info inv ">
                             <h3><b>含特典</b></h3>
                         </div>
                         <div class="pricetag ">
-                            <span class="price "><h2>CD</h2>39 CNY</span>
+                            <span class="price "><h2>CD</h2>待定</span>
                         </div>
                         <img class="cover " src="./cover/cd02.png ">
                     </div>
