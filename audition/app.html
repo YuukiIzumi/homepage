@@ -11,7 +11,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="DLS Audition">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <title>DLS AUDITION v2.0</title>
+    <title>DLS AUDITION v2.2</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         var scrH, scrW, itemH, itemW, scale;
@@ -32,19 +32,67 @@
             itemW = Math.floor(scrW * 0.75);
             scale = scrW / 1920;
             document.getElementsByClassName("item").style = "width:" + itemW + "px !important;height:" + itemH + "px !important;margin: 0 50px;display: flex;flex-direction: column-reverse;overflow: hidden;z-index: 10;";
+            logBase();
             updateCat();
-            console.log(getQueryString('sale'));
             setSale(getQueryString('sale'));
+            setStock();
+            seeReach();
+        }
+        //输出技术信息
+        function logBase() {
+            console.log("初始屏幕参数：" + scrH + "x" + scrW);
+            console.log("物件大小：" + itemH + "x" + itemW);
+            console.log("缩放倍率：" + scale);
+
+        }
+
+        var stockInfo;
+
+        //设置库存信息
+        function setStock() {
+            var stockList = getQueryString('stock');
+            stockInfo = "";
+            for (var i = 0; i < AlbumCount; i++) {
+                if (stockList == null) {
+                    console.warn("获取stock参数失败，设置为默认值");
+                    var itemStock = 1;
+                } else {
+                    var itemStock = stockList[i];
+                }
+
+                var itemObject = $("item" + (i + 1));
+                var itemCover = $("cov" + (i + 1));
+                var itemInfo = $("info" + (i + 1));
+                console.log(itemStock);
+                if (itemStock == 0) {
+                    console.log("Item " + i + " is out of stock");
+                    itemObject.style.filter = "hue-rotate(-40deg)saturate(3)";
+                    itemObject.style.pointerEvents = "none";
+                    itemCover.src = "./cover/cd" + (i + 1) + "out.png";
+                    itemCover.style.zIndex = 99;
+                    itemCover.style.filter = "sepia(2)"
+                    itemInfo.style.opacity = 0;
+                    stockInfo = stockInfo + "[" + (i + 1) + " 售罄] ";
+                } else {
+                    console.log("Item " + i + " is in stock");
+                    itemObject.style.filter = "";
+                    itemObject.style.pointerEvents = "";
+                    itemCover.src = "./cover/cd" + (i + 1) + ".png";
+                    itemInfo.style.opacity = 1;
+                    stockInfo = stockInfo + "[" + (i + 1) + " 在库] ";
+                }
+            }
         }
 
 
+        //设置【乙妮专辑1的】促销信息
         function setSale(isSale) {
             if (isSale > 0) {
                 $("salePricetag1").innerHTML = "<h2>全实体套组（折扣限前两名）</h2><del><small>￥140</small></del>￥128";
-                console.log(isSale + " set");
+                console.info("已设定优惠价格");
             } else {
                 $("salePricetag1").innerHTML = "<h2>全实体套组</h2>￥140";
-                console.log(isSale + " set");
+                console.info("已设置原价");
             }
         }
 
@@ -57,6 +105,18 @@
             scale = scrW / 1920;
             document.body.style.zoom = scale;
         }, 10);
+
+        setInterval(function() {
+            console.clear();
+            logBase();
+            if (lastPlay == "null") {
+                console.log("%c当前未在播放", "color:'#ff0'");
+            } else {
+                console.log("当前正在播放：" + lastPlay);
+            }
+            console.log(stockInfo);
+
+        }, 2000);
         //移动列表
         function moveNext() {
             if (AlbumID <= AlbumCount - 1) {
@@ -68,8 +128,26 @@
             if (AlbumID > AlbumCount) {
                 AlbumID = AlbumCount - 1;
             }
-
+            seeReach();
             updateCat();
+        }
+
+        function seeReach() {
+            if (AlbumID <= 1) {
+                $("prvBtn").style.opacity = 0.5;
+                $("prvBtn").style.pointerEvents = "none";
+            } else {
+                $("prvBtn").style.opacity = 1;
+                $("prvBtn").style.pointerEvents = "";
+            }
+
+            if (AlbumID >= AlbumCount) {
+                $("nxtBtn").style.opacity = 0.5;
+                $("nxtBtn").style.pointerEvents = "none";
+            } else {
+                $("nxtBtn").style.opacity = 1;
+                $("nxtBtn").style.pointerEvents = "";
+            }
         }
 
         function movePrev() {
@@ -82,7 +160,7 @@
             if (AlbumID < 1) {
                 AlbumID = 2;
             }
-
+            seeReach();
             updateCat();
         }
 
@@ -156,13 +234,16 @@
         }, 100)
 
         var lastPlay = "null";
+        var pathNow;
 
         function playAlbum(path) {
             console.log("lastPathIs " + lastPlay + ";auditionVideoPlaying " + path)
             if (path == lastPlay) {
                 lastPlay = path;
+                pathNow = path;
                 console.log("same path");
                 isTriggered = true;
+                $("vbg").pause();
                 hideAction();
             } else {
                 lastPlay = path;
@@ -199,13 +280,14 @@
             setAlpha("edBtn", 0);
             setPointer("edBtn", "none");
             lastPlay = "null";
+            $("vbg").play();
         }
 
         function splash() {
             setTimeout(function() {
                 setAlpha("splash", 0);
                 setPointer("splash", "none");
-            }, 2000);
+            }, 100);
         }
 
         setInterval(glitchText, 20);
@@ -571,6 +653,11 @@
         justify-content: center;
     }
     
+    .flicker {
+        transition: 0s !important;
+        opacity: 1;
+    }
+    
     .big {
         font-size: 60px;
         font-weight: 300;
@@ -614,13 +701,22 @@
     .category:hover {
         font-weight: bold;
     }
+    
+    .oosText {
+        position: absolute;
+        top: 50%;
+        left: 20%;
+        transform: translateY(-50%);
+        color: #eee;
+        z-index: 9999;
+    }
 </style>
 
 <body onload="splash(); init();" onloadeddata="">
     <span id="data" class="data">0</span>
     <div id="splash">
         <h4 id="glitchText" class="big"></h4>
-        <h3>ver 2.0</h3>
+        <h3>ver 2.2</h3>
         <h3>MOBILE READY<br><br></h3>
         <button onclick="launchFullscreen();">⤧</button>
     </div>
@@ -643,7 +739,7 @@
         <div class="h-list" id="list">
             <ul>
                 <li>
-                    <div class="item" onclick="playAlbum('./vid/vid01.mp4')">
+                    <div id="item1" class="item" onclick="playAlbum('./vid/vid01.mp4')">
                         <div class="info">
                             <h4>DON'T LΣT 3RD COMPILATION</h4>
                             <h1>EXOGE</h1>
@@ -656,47 +752,33 @@
                         <div class="info inv">
                             <h3><b>含特典</b></h3>
                         </div>
-                        <div class="pricetag">
+                        <div class="pricetag" id="info1">
                             <span class="price"><h2>单 CD</h2>￥45</span>
                             <span class="price"><h2>数字·实体套组</h2>￥59</span>
                         </div>
-                        <img class="cover" src="./cover/cd01.png">
+                        <img class="cover" id="cov1" src="./cover/cd1.png">
                     </div>
                 </li>
                 <li>
-                    <div class="item" onclick="playAlbum('./vid/vid02.mp4')" ">
-                        <div class="info ">
+                    <div class="item" id="item2" onclick="playAlbum('./vid/vid02.mp4')" ">
+                        <div class="info">
                             <h4>DON'T LΣT 2ND COMPILATION</h4>
                             <h1>テゼリア幻想記 Part. II ~大地のレゾナンス~</h1>
                             <h3 class="wbg ">CD 版</h3>
                             <h3>7 Tracks, 1 CD</h3>
                             <h3>“这片大地看见一切，并忠实地记录下一切。”</h3>
                         </div>
-                        <div class="info inv ">
+                        <div class="info inv">
                             <h3><b>含特典</b></h3>
                         </div>
-                        <div class="pricetag ">
+                        <div class="pricetag" id="info2">
                             <span class="price "><h2>数字·实体套组</h2>￥39</span>
                         </div>
-                        <img class="cover " src="./cover/cd02.png ">
+                        <img class="cover"id="cov2" src="./cover/cd2.png">
                     </div>
                 </li>
-                <!-- <li>
-                    <div class="item " onclick="playAlbum( './vid/vid03.mp4') "">
-                        <div class="info">
-                            <h4>DON'T LΣT 1ST COMPILATION</h4>
-                            <h1>テゼリア幻想記 ~Tysella il Phantasia~</h1>
-                            <h3 class="wbg">数字版</h3>
-                            <h3>DLS 的首张日幻专辑，内含 7 首乐曲。</h3>
-                        </div>
-                        <div class="pricetag">
-                            <span class="price"><h2>下载卡</h2>活动取消</span>
-                        </div>
-                        <img class="cover" src="./cover/cd03.png">
-                    </div>
-                </li> -->
                 <li>
-                    <div class="item" onclick="playAlbum('./vid/vid04.mp4')" ">
+                    <div class="item" id="item3" onclick="playAlbum('./vid/vid04.mp4')" ">
                         <div class="info ">
                             <h4>SANGMI 1ST SOLO ALBUM</h4>
                             <h1>Cyber Miracle</h1>
@@ -708,16 +790,16 @@
                             <h3><b>含特典</b></h3>
                         </div>
                         
-                        <div class="pricetag ">
+                        <div class="pricetag "id="info3">
                             <span class="price "><h2>CD</h2>￥59</span>
                         </div>
-                        <img class="cover " src="./cover/cd04.png ">
+                        <img class="cover" id="cov3" src="./cover/cd3.png">
                     </div>
                 </li>
 
                 <!-- SSS寄售区 -->
                 <li>
-                    <div class="item " onclick="playAlbum( './vid/sss01.mp4') " ">
+                    <div class="item" id="item4" onclick="playAlbum( './vid/sss01.mp4') " ">
                         <div class="info ">
                             <h4>Athánatos Miotas</h4>
                             <h1>不朽的神话</h1>
@@ -733,15 +815,15 @@
                         <div class="info inv sss">
                             <h3><b>SSS音乐综合体·寄售商品</b></h3>
                         </div>
-                        <div class="pricetag ">
+                        <div class="pricetag "id="info4">
                             <span class="price "><h2>单CD</h2>￥95</span>
                             <span class="price " id="salePricetag1"><h2>全实体套组</h2>￥140</span>
                         </div>
-                        <img class="cover " src="./sss/01.png ">
+                        <img class="cover" id="cov4" src="./cover/cd4.png">
                     </div>
                 </li>
                 <li>
-                    <div class="item" onclick="playAlbum('./vid/sss02.mp4')" ">
+                    <div class="item" id="item5" onclick="playAlbum('./vid/sss02.mp4')" ">
                         <div class="info ">
                             <!-- <h4>SANGMI 1ST SOLO ALBUM</h4> -->
                             <h1>JAGAT</h1>
@@ -758,11 +840,11 @@
                             <h3><b>SSS音乐综合体·寄售商品</b></h3>
                         </div>
                         <!-- <img class="logoframe " src="./sss/yinilogo.png "> -->
-                        <div class="pricetag ">
+                        <div class="pricetag "id="info5">
                             <span class="price "><h2>单CD</h2>￥95</span>
                             <span class="price "><h2>全实体套组</h2>￥135</span>
                         </div>
-                        <img class="cover " src="./sss/02.png ">
+                        <img class="cover" id="cov5" src="./cover/cd5.png">
                     </div>
                 </li>
             </ul>
