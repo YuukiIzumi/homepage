@@ -564,6 +564,18 @@
         transform: scaleX(1.01)translateX(1%);
     }
     
+    .prior {
+        background-color: rgba(255, 235, 119, 0.15);
+    }
+    
+    .im {
+        font-weight: 700;
+    }
+    
+    .prior:hover {
+        background-color: rgba(255, 217, 0, 0.25);
+    }
+    
     .contLine h3 {
         font-size: 18px;
         width: 25%;
@@ -623,6 +635,35 @@
     .noevent {
         pointer-events: none;
     }
+    
+    p {
+        padding-left: 40px;
+    }
+    
+    tag {
+        padding: 4px 8px;
+        color: rgb(255, 217, 0);
+        font-weight: 600;
+        border: rgb(255, 217, 0) solid;
+        border-width: 2px;
+        border-radius: 1000px;
+        margin: 0 6px;
+        opacity: 0.8;
+    }
+    
+    tag:hover {
+        transform: scale(1.05);
+        opacity: 1;
+    }
+    
+    .taglist {
+        display: flex;
+        padding-left: 30px;
+    }
+    
+    .cat {
+        margin-bottom: 40px;
+    }
 </style>
 
 <body onload="splash(); init();" onloadeddata="" oncontextmenu="return false">
@@ -633,9 +674,10 @@
         <h3>页面中任何材料若未经适当授权，禁止任何个人与团体挪作他用。</h3>
         <h3>© 2024, Yuuki Izumi.</h3>
         <h3><br>本页面建议使用 PC/Mac 查看。</h3>
+        <h3><br>正在加载页面……</h3>
     </div>
     <div id="content" class="content">
-        <div id="info">
+        <div id="info" class="cat">
             <h1 class="ytext vtitle" id="vtitle">YUUKI IZUMI/PORTFOLIO</h1>
             <div class="infotable">
                 <div class="row">
@@ -673,11 +715,114 @@
             </div>
 
         </div>
-
+        <div id="cv">
+            <div class="cat" id="edu">
+                <h2 class="ntitle ytext " onclick="fold('edu')">educational history / 教育经历</h2>
+                <div class=" contLine ">
+                    <h3>2021.9至今</h3>
+                    <h3>广东药科大学
+                    </h3>
+                    <h3 class="wide ">数字媒体技术
+                        <y>（在读）</y>
+                    </h3>
+                </div>
+            </div>
+            <div class="cat " id="proj ">
+                <h2 class="ntitle ytext ">projects related / 参与项目</h2>
+                <div class="contLine prior">
+                    <h3 class="im">2022.9 至今</h3>
+                    <h3 class="im">大学生创业项目“众乐”</h3>
+                    <h3 class="wide im">平面设计</h3>
+                </div>
+                <div class="taglist">
+                    <tag>国家级大创案例库</tag>
+                    <tag>互联网+省奖</tag>
+                    <tag>wteam 创业同盟项目</tag>
+                    <tag>wteam 创业同盟媒体合作伙伴</tag>
+                </div>
+                <p>全国首个 AI 音乐创作论坛。于 2024 年被列入 wteam 创业同盟项目。</p>
+                <p>项目现已更名“吟游诗人协会”。</p>
+                <div class="contLine ">
+                    <h3>2020 至今</h3>
+                    <h3>南京鸽游网络有限公司</h3>
+                    <h3 class="wide ">游戏<a href="https://www.taptap.cn/app/165287">《Phigros》</a>部分美术设计</h3>
+                </div>
+                <div class="taglist">
+                    <tag>TapTap 热门榜高分游戏</tag>
+                    <tag>Google Play 高分游戏</tag>
+                </div>
+                <p>项目组早期成员之一。作为平面美工协助完成了游戏资产的制作。</p>
+                <p>负责了曲目《Get Back》《Speed Up!》《月下缭乱》等的封面设计。</p>
+                <p>App 目前全球下载量已达百万量级。</p>
+                <div class="contLine ">
+                    <h3>长期外包项目</h3>
+                    <h3>哔哩哔哩 <a href="https://space.bilibili.com/11742550 ">@哈米伦的弄笛者</a><sup>※</sup></h3>
+                    <h3 class="wide ">视频封面与视频美术素材（部分）</h3>
+                </div>
+                <p>※ 哈米伦的弄笛者：哔哩哔哩2023百大UP主。</p>
+                <br>
+                <div class="contLine ">
+                    <h3>2020 至今</h3>
+                    <h3>音游新春祭制作委员会</h3>
+                    <h3 class="wide "><a href="https://space.bilibili.com/2062697730">《音游新春祭》</a>总后期</h3>
+                </div>
+                <div class="contLine blurred">
+                    <h3>2023.7 至今</h3>
+                    <h3>未公开项目</h3>
+                    <h3 class="wide ">未公开项目</h3>
+                </div>
+                <div class="contLine ">
+                    <h3>2024.6 - 2024.7</h3>
+                    <h3>上海立舞文化传媒有限公司<br><a href="https://space.bilibili.com/1749080872">@音波狂潮X2萤光宇宙</a></h3>
+                    <h3 class="wide ">部分海外艺人VJ素材</h3>
+                </div>
+            </div>
+            <div class="cat" id="skills">
+                <h2 class="ntitle ytext " onclick="fold('edu')">skills / 技能树</h2>
+                <h4 class="">software / 软件技能</h4>
+                <div class=" contLine">
+                    <h3 class="full">目前常用
+                        <y>Blender-Ps-Ae</y> 工作流。</h3>
+                </div>
+                <div class=" contLine">
+                    <h3 class="full">能够
+                        <y>熟练使用 Adobe Photoshop / Illustrator</y> 进行平面设计。</h3>
+                </div>
+                <div class=" contLine">
+                    <h3 class="full">能够使用
+                        <y> Blender / Adobe After Effects</y> 制作 MG 动画。</h3>
+                </div>
+                <h4 class="">language / 语言技能</h4>
+                <div class=" contLine">
+                    <h3 class="full">
+                        <y title="成绩报告编号：221144095004786">CET-4（大学英语四级）通过（610）</y>，口语能力强，能够流畅进行英语交流。</h3>
+                </div>
+                <div class=" contLine">
+                    <h3 class="full">能够进行少量日常日语交流。</h3>
+                </div>
+                <h4 class="">add-ons / 插件</h4>
+                <div class=" contLine">
+                    <h3 class="full">从事业余编曲活动。
+                        <y>熟悉 Studio One / FL Studio 等 DAW</y>，能够进行一定程度上的作编曲。</h3>
+                </div>
+                <div class=" contLine">
+                    <h3 class="full">
+                        有基础的 HTML / CSS 知识储备。能够进行
+                        <y>简单的HTML与CSS编写</y>。</h3>
+                </div>
+                <h4 class="">personal abilities / 个人能力</h4>
+                <div class=" contLine">
+                    <h3 class="full">工作细致周到，认真负责。能够有规划的、有条理的处理工作问题。</h3>
+                </div>
+                <div class=" contLine">
+                    <h3 class="full">有良好的团队合作精神，乐于接纳新的知识技巧。</h3>
+                </div>
+            </div>
+        </div>
         <div id="piclist ">
-            <h3 class=" " id="ntitle">previous works / 封面类（半原创）</h3>
-            <h4 class="ytext ">本类型内插画非本人绘制。素材大部分来自哔哩哔哩 @哈米伦的弄笛者。</h4>
-            <h4 class="ytext ">本人负责该类封面的排版·后处理工作。</h4>
+            <h3 class="ytext " id="ntitle">previous works / 封面类（半原创）</h3>
+            <h4 class="">本类型内插画非本人绘制。素材大部分来自哔哩哔哩 @哈米伦的弄笛者。</h4>
+            <h4 class="">本人负责该类封面的排版·后处理工作。</h4>
             <h4><br>鼠标按住可查看大图</h4>
             <div class="flexframe ">
                 <div class="itemrow ">
@@ -700,8 +845,8 @@
             </div>
         </div>
         <div id="piclist ">
-            <h3 class=" " id="ntitle">previous works / 原创</h3>
-            <h4 class="ytext ">完全本人原创的作品。部分作品已被收录进游戏或其他集合中。</h4>
+            <h3 class="ytext ntitle" id="ntitle">previous works / 原创</h3>
+            <h4 class="">完全本人原创的作品。部分作品已被收录进游戏或其他集合中。</h4>
             <h4><br>鼠标按住可查看大图</h4>
             <div class="flexframe ">
                 <div class="itemrow ">
@@ -719,87 +864,6 @@
                 <div class="itemrow ">
                     <img class="item " src="./pic/origin/0007.png ">
                     <img class="item " src="./pic/origin/0008.png ">
-                </div>
-            </div>
-        </div>
-        <div id="cv">
-            <div class="cat" id="edu">
-                <h2 class="ntitle" onclick="fold('edu')">educational history / 教育经历</h2>
-                <div class=" contLine ">
-                    <h3>2021.9至今</h3>
-                    <h3>广东药科大学
-                        <y>（在读）</y>
-                    </h3>
-                    <h3 class="wide ">数字媒体技术</h3>
-                </div>
-            </div>
-            <div class="cat " id="proj ">
-                <h2 class="ntitle">projects related / 参与项目</h2>
-                <div class="contLine ">
-                    <h3>2020 至今</h3>
-                    <h3>南京鸽游网络有限公司</h3>
-                    <h3 class="wide ">游戏<a href="https://www.taptap.cn/app/165287">《Phigros》</a>部分美术设计</h3>
-                </div>
-                <div class="contLine ">
-                    <h3>2020 至今</h3>
-                    <h3>音游新春祭制作委员会</h3>
-                    <h3 class="wide "><a href="https://space.bilibili.com/2062697730">《音游新春祭》</a>总后期</h3>
-                </div>
-                <div class="contLine ">
-                    <h3>2022.9 至今</h3>
-                    <h3>大学生创业项目“众乐”</h3>
-                    <h3 class="wide ">UI设计</h3>
-                </div>
-                <div class="contLine blurred">
-                    <h3>2023.7 至今</h3>
-                    <h3>未公开项目</h3>
-                    <h3 class="wide ">未公开项目</h3>
-                </div>
-                <div class="contLine ">
-                    <h3>长期外包项目</h3>
-                    <h3>哔哩哔哩 <a href="https://space.bilibili.com/11742550 ">@哈米伦的弄笛者</a></h3>
-                    <h3 class="wide ">视频封面与视频美术素材（部分）</h3>
-                </div>
-                <div class="contLine ">
-                    <h3>2024.6 - 2024.7</h3>
-                    <h3>上海立舞文化传媒有限公司<br><a href="https://space.bilibili.com/1749080872">@音波狂潮X2萤光宇宙</a></h3>
-                    <h3 class="wide ">部分海外艺人VJ素材</h3>
-                </div>
-            </div>
-            <div class="cat" id="skills">
-                <h2 class="ntitle" onclick="fold('edu')">skills / 技能树</h2>
-                <h4 class="ytext">software / 软件技能</h4>
-                <div class=" contLine">
-                    <h3 class="full">目前常用
-                        <y>Blender-Ps-Ae</y> 工作流。</h3>
-                </div>
-                <div class=" contLine">
-                    <h3 class="full">能够
-                        <y>熟练使用 Adobe Photoshop / Illustrator</y> 进行平面设计。</h3>
-                </div>
-                <div class=" contLine">
-                    <h3 class="full">能够使用
-                        <y> Blender / Adobe After Effects</y> 制作 MG 动画。</h3>
-                </div>
-                <h4 class="ytext">language / 语言技能</h4>
-                <div class=" contLine">
-                    <h3 class="full">
-                        <y>CET-4（大学英语四级）通过</y>，能够进行英语交流。</h3>
-                </div>
-                <div class=" contLine">
-                    <h3 class="full">
-                        能够进行
-                        <y>少量日常</y>日语交流。</h3>
-                </div>
-                <h4 class="ytext">add-ons / 插件</h4>
-                <div class=" contLine">
-                    <h3 class="full">从事业余编曲活动。
-                        <y>熟悉 Studio One / FL Studio 等 DAW</y>，能够进行一定程度上的作编曲。</h3>
-                </div>
-                <div class=" contLine">
-                    <h3 class="full">
-                        有基础的 HTML / CSS 知识储备。能够进行
-                        <y>简单的HTML与CSS编写</y>。</h3>
                 </div>
             </div>
         </div>
