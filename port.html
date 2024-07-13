@@ -189,7 +189,7 @@
     .port {
         width: 95%;
         height: 400px;
-        transition: 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+        /* transition: 0.3s cubic-bezier(0.165, 0.84, 0.44, 1); */
     }
     
     .port:active {
@@ -199,6 +199,7 @@
     
     .item:hover {
         transform: scale(1.02);
+        z-index: 100;
         filter: drop-shadow(0 0 0px #000f);
     }
     
@@ -312,6 +313,10 @@
     
     .ytext {
         color: rgb(255, 217, 0);
+    }
+    
+    y {
+        color: rgb(255, 217, 0)
     }
     
     h4 {
@@ -554,6 +559,11 @@
         margin: 6px;
     }
     
+    .contLine:hover {
+        background-color: #fff2;
+        transform: scaleX(1.01)translateX(1%);
+    }
+    
     .contLine h3 {
         font-size: 18px;
         width: 25%;
@@ -563,8 +573,16 @@
         line-height: 1.4em;
     }
     
+    .contLine h4 {
+        font-size: 22px;
+    }
+    
     .contLine .wide {
         width: 50%;
+    }
+    
+    .contLine .full {
+        width: 100%;
     }
     
     a {
@@ -596,6 +614,15 @@
         font-weight: 800;
         color: #000;
     }
+    
+    .blurred {
+        filter: blur(16px);
+        opacity: 0.8;
+    }
+    
+    .noevent {
+        pointer-events: none;
+    }
 </style>
 
 <body onload="splash(); init();" onloadeddata="" oncontextmenu="return false">
@@ -612,7 +639,7 @@
             <h1 class="ytext vtitle" id="vtitle">YUUKI IZUMI/PORTFOLIO</h1>
             <div class="infotable">
                 <div class="row">
-                    <div class="inter-tight-item">
+                    <div class="inter-tight-item blurred">
                         <h5>姓名</h5>
                         <h4 class="inter-tight-item ytext">梁倬玮 / Vic Leung</h4>
                     </div>
@@ -620,7 +647,7 @@
                         <h5>艺名/圈名</h5>
                         <h4 class="inter-tight-item ytext">佑木いずみ</h4>
                     </div>
-                    <div class="inter-tight-item">
+                    <div class="inter-tight-item blurred">
                         <h5>联系电话</h5>
                         <h4 class="inter-tight-item ytext">+86 130 6646 4114</h4>
                     </div>
@@ -631,12 +658,16 @@
                 </div>
                 <div class="row">
                     <div class="inter-tight-item">
-                        <h5>职位</h5>
+                        <h5>职位方向</h5>
                         <h4 class="inter-tight-item ytext">平面设计 / 2D Graphic Designer</h4>
                     </div>
                     <div class="inter-tight-item">
                         <h5>意向地区</h5>
                         <h4 class="inter-tight-item ytext">珠三角地区</h4>
+                    </div>
+                    <div class="inter-tight-item">
+                        <h5>意向类型</h5>
+                        <h4 class="inter-tight-item ytext">实习</h4>
                     </div>
                 </div>
             </div>
@@ -644,7 +675,7 @@
         </div>
 
         <div id="piclist ">
-            <h3 class=" " id="ntitle ">previous works / 封面类（半原创）</h3>
+            <h3 class=" " id="ntitle">previous works / 封面类（半原创）</h3>
             <h4 class="ytext ">本类型内插画非本人绘制。素材大部分来自哔哩哔哩 @哈米伦的弄笛者。</h4>
             <h4 class="ytext ">本人负责该类封面的排版·后处理工作。</h4>
             <h4><br>鼠标按住可查看大图</h4>
@@ -669,12 +700,12 @@
             </div>
         </div>
         <div id="piclist ">
-            <h3 class=" " id="ntitle ">previous works / 原创</h3>
+            <h3 class=" " id="ntitle">previous works / 原创</h3>
             <h4 class="ytext ">完全本人原创的作品。部分作品已被收录进游戏或其他集合中。</h4>
             <h4><br>鼠标按住可查看大图</h4>
             <div class="flexframe ">
                 <div class="itemrow ">
-                    <img class="item " src="./pic/origin/0001.png ">
+                    <img class="item " src="./pic/origin/0001.png " title="收录于《Phigros》。">
                     <img class="item " src="./pic/origin/0002.png ">
                 </div>
                 <div class="itemrow ">
@@ -693,26 +724,33 @@
         </div>
         <div id="cv">
             <div class="cat" id="edu">
-                <h2 class="catTitle" onclick="fold('edu')">教育经历</h2>
+                <h2 class="ntitle" onclick="fold('edu')">educational history / 教育经历</h2>
                 <div class=" contLine ">
-                    <h3>2021.9 - 2025.7</h3>
-                    <h3>广东药科大学</h3>
+                    <h3>2021.9至今</h3>
+                    <h3>广东药科大学
+                        <y>（在读）</y>
+                    </h3>
                     <h3 class="wide ">数字媒体技术</h3>
                 </div>
             </div>
             <div class="cat " id="proj ">
-                <h2 class="catTitle">参与项目</h2>
+                <h2 class="ntitle">projects related / 参与项目</h2>
                 <div class="contLine ">
                     <h3>2020 至今</h3>
                     <h3>南京鸽游网络有限公司</h3>
-                    <h3 class="wide ">游戏《Phigros》部分美术设计</h3>
+                    <h3 class="wide ">游戏<a href="https://www.taptap.cn/app/165287">《Phigros》</a>部分美术设计</h3>
+                </div>
+                <div class="contLine ">
+                    <h3>2020 至今</h3>
+                    <h3>音游新春祭制作委员会</h3>
+                    <h3 class="wide "><a href="https://space.bilibili.com/2062697730">《音游新春祭》</a>总后期</h3>
                 </div>
                 <div class="contLine ">
                     <h3>2022.9 至今</h3>
                     <h3>大学生创业项目“众乐”</h3>
                     <h3 class="wide ">UI设计</h3>
                 </div>
-                <div class="contLine ">
+                <div class="contLine blurred">
                     <h3>2023.7 至今</h3>
                     <h3>未公开项目</h3>
                     <h3 class="wide ">未公开项目</h3>
@@ -726,6 +764,42 @@
                     <h3>2024.6 - 2024.7</h3>
                     <h3>上海立舞文化传媒有限公司<br><a href="https://space.bilibili.com/1749080872">@音波狂潮X2萤光宇宙</a></h3>
                     <h3 class="wide ">部分海外艺人VJ素材</h3>
+                </div>
+            </div>
+            <div class="cat" id="skills">
+                <h2 class="ntitle" onclick="fold('edu')">skills / 技能树</h2>
+                <h4 class="ytext">software / 软件技能</h4>
+                <div class=" contLine">
+                    <h3 class="full">目前常用
+                        <y>Blender-Ps-Ae</y> 工作流。</h3>
+                </div>
+                <div class=" contLine">
+                    <h3 class="full">能够
+                        <y>熟练使用 Adobe Photoshop / Illustrator</y> 进行平面设计。</h3>
+                </div>
+                <div class=" contLine">
+                    <h3 class="full">能够使用
+                        <y> Blender / Adobe After Effects</y> 制作 MG 动画。</h3>
+                </div>
+                <h4 class="ytext">language / 语言技能</h4>
+                <div class=" contLine">
+                    <h3 class="full">
+                        <y>CET-4（大学英语四级）通过</y>，能够进行英语交流。</h3>
+                </div>
+                <div class=" contLine">
+                    <h3 class="full">
+                        能够进行
+                        <y>少量日常</y>日语交流。</h3>
+                </div>
+                <h4 class="ytext">add-ons / 插件</h4>
+                <div class=" contLine">
+                    <h3 class="full">从事业余编曲活动。
+                        <y>熟悉 Studio One / FL Studio 等 DAW</y>，能够进行一定程度上的作编曲。</h3>
+                </div>
+                <div class=" contLine">
+                    <h3 class="full">
+                        有基础的 HTML / CSS 知识储备。能够进行
+                        <y>简单的HTML与CSS编写</y>。</h3>
                 </div>
             </div>
         </div>
