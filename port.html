@@ -107,6 +107,7 @@
         font-smooth: always;
         color: #eee;
         -webkit-user-drag: none;
+        scroll-behavior: smooth;
     }
     
     .inter-tight-item {
@@ -674,6 +675,52 @@
     .box h3 {
         width: auto;
     }
+    
+    .nav {
+        position: fixed;
+        right: 20px;
+        top: 20px;
+        background-color: #000;
+        padding: 16px;
+        display: flex;
+        width: 12em;
+        flex-direction: column;
+        border-top: rgb(255, 217, 0) solid;
+        overflow-y: hidden;
+    }
+    
+    .nav a {
+        font-size: 18px;
+        width: 8em;
+        padding: 4px;
+        border-radius: 0;
+        margin: 4px;
+        background-color: #000;
+        box-sizing: border-box;
+        border-bottom: rgb(255, 217, 0) solid 0px;
+    }
+    
+    .nav a:hover {
+        background-color: rgb(255, 217, 0);
+        color: #000;
+        border-bottom: rgb(255, 217, 0) solid 1.2em;
+        box-sizing: border-box;
+    }
+    
+    .nav h1 {
+        opacity: 0.2;
+        position: fixed;
+        right: 20px;
+        top: 20px;
+        width: 250px;
+        height: 250px;
+        margin: 0;
+        overflow: hidden;
+        text-align: left;
+        transform: rotate(90deg);
+        z-index: -333;
+        font-weight: 300;
+    }
 </style>
 
 <body onload="splash(); init();" onloadeddata="" oncontextmenu="return false">
@@ -685,6 +732,16 @@
         <h3>© 2024, Yuuki Izumi.</h3>
         <h3><br>本页面建议使用 PC/Mac 查看。</h3>
         <h3><br>正在加载页面……</h3>
+    </div>
+    <div id="nav" class="nav">
+        <h1>
+            <marquee width="100%" height="100%">NAVIGATION</marquee>
+        </h1>
+        <a href="#content">基本信息</a>
+        <a href="#edu">教育经历</a>
+        <a href="#skills">技能树</a>
+        <a href="#proj">参与项目</a>
+        <a href="#port">作品集</a>
     </div>
     <div id="content" class="content">
         <div id="info" class="cat">
@@ -787,7 +844,7 @@
                     <h3 class="full">有良好的团队合作精神，乐于接纳新的知识技巧。</h3>
                 </div>
             </div>
-            <div class="cat " id="proj ">
+            <div class="cat " id="proj">
                 <h2 class="ntitle ytext ">projects related / 参与项目</h2>
                 <div class="contLine prior">
                     <h3 class="im">2022.9 至今</h3>
@@ -838,7 +895,8 @@
                 </div>
             </div>
         </div>
-        <div id="piclist ">
+        <div id="port"></div>
+        <div id="piclist">
             <h3 class="ytext " id="ntitle">previous works / 封面类（半原创）</h3>
             <h4 class="">本类型内插画非本人绘制。素材大部分来自哔哩哔哩 @哈米伦的弄笛者。</h4>
             <h4 class="">本人负责该类封面的排版·后处理工作。</h4>
@@ -863,7 +921,7 @@
                 </div>
             </div>
         </div>
-        <div id="piclist ">
+        <div id="piclist">
             <h3 class="ytext ntitle" id="ntitle">previous works / 原创</h3>
             <h4 class="">完全本人原创的作品。部分作品已被收录进游戏或其他集合中。</h4>
             <h4><br>鼠标按住可查看大图</h4>
