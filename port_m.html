@@ -45,11 +45,16 @@
         $(id).style.filter = "blur(" + px + "px)";
     }
 
-    function splash() {
-        setTimeout(function() {
+    function splash(conf) {
+        if (conf = 0) {
+            setTimeout(function() {
+                setAlpha("splash", 0);
+                setPointer("splash", "none");
+            }, 2000);
+        } else {
             setAlpha("splash", 0);
             setPointer("splash", "none");
-        }, 2000);
+        }
     }
 
     setInterval(glitchText, 20);
@@ -558,7 +563,7 @@
         background-color: #fff1;
         padding: 12px;
         border-radius: 8px;
-        width: 70%;
+        width: 95%;
         display: flex;
         flex-direction: column;
         align-items: left;
@@ -644,6 +649,7 @@
     
     p {
         padding-left: 40px;
+        font-size: 0.8em;
     }
     
     tag {
@@ -736,7 +742,7 @@
     }
 </style>
 
-<body onload="splash(); init();" onloadeddata="" oncontextmenu="return false">
+<body onload="splash(1); init();" oncontextmenu="return false">
     <div id="splash">
         <svg id="warn" t="1720613232324" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="31531" width="500" height="500"><path d="M640 170.666667H213.333333v682.666666h597.333334V341.333333h-170.666667V170.666667zM128 127.658667C128 104.277333 147.072 85.333333 170.581333 85.333333H682.666667l213.333333 213.333334v596.992A42.666667 42.666667 0 0 1 853.632 938.666667H170.368A42.666667 42.666667 0 0 1 128 896.341333V127.658667zM469.333333 640h85.333334v85.333333h-85.333334v-85.333333z m0-341.333333h85.333334v256h-85.333334V298.666667z" p-id="31532" fill="#ffffff"></path></svg>
         <h4 id="glitchText" class="spltitle"></h4>
@@ -763,8 +769,7 @@
                 <div class="row">
                     <div class="inter-tight-item">
                         <h5>姓名</h5>
-                        <h4 class="inter-tight-item ytext">
-                            <blr class="ytext">梁倬玮</blr> / Vic Leung</h4>
+                        <h4 class="inter-tight-item ytext">梁倬玮 / Vic Leung</h4>
                     </div>
                     <div class="inter-tight-item">
                         <h5>艺名</h5>
@@ -772,7 +777,7 @@
                     </div>
                     <div class="inter-tight-item">
                         <h5>联系电话</h5>
-                        <h4 class="inter-tight-item ytext blurred">+86 130 6646 4114</h4>
+                        <h4 class="inter-tight-item ytext">+86 130 6646 4114</h4>
                     </div>
                     <div class="inter-tight-item">
                         <h5>电邮</h5>
@@ -807,12 +812,12 @@
                     </h3>
                 </div>
                 <h4 class="">专业背景</h4>
-                <div class=" contLine box">
+                <div class=" contLine">
                     <h3>专业注重适应数字媒体产业发展需求。</h3>
                     <h3>在读期间主要修读程序设计基础三维建模、影视包装与制作、商业摄影等课程。</h3>
                 </div>
                 <h4 class="">方向</h4>
-                <div class=" contLine box">
+                <div class=" contLine">
                     <h3>平面设计与动态图形设计及其应用（2021-2024）</h3>
                 </div>
             </div>
