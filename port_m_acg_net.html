@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<title>PORTFOLIO</title>
+
+<head>
+
+</head>
+<script>
+    var scrH, scrW, itemH, itemW, scale;
+
+
+    function setPointer(id, status) {
+        $(id).style.pointerEvents = status;
+    }
+
+
+    function $(id) {
+        return document.getElementById(id);
+    }
+
+    function init() {
+        scrH = window.innerHeight;
+        scrW = window.innerWidth;
+        itemH = Math.floor(scrH * 0.75);
+        itemW = Math.floor(scrW * 0.75);
+        scale = scrW / 1080;
+    }
+
+
+
+
+    function setAlpha(id, alpha) {
+        $(id).style.opacity = alpha;
+    }
+
+    function setT(id, status) {
+        switch (status) {
+            case 1:
+                $(id).style.transition = "1s cubic-bezier(0.165, 0.84, 0.44, 1)"
+            case 0:
+                $(id).style.transition = "0.3s cubic-bezier(0.165, 0.84, 0.44, 1)"
+        }
+    }
+
+    function setBlur(id, px) {
+        $(id).style.filter = "blur(" + px + "px)";
+    }
+
+    function splash(conf) {
+        if (conf = 0) {
+            setTimeout(function() {
+                setAlpha("splash", 0);
+                setPointer("splash", "none");
+            }, 2000);
+        } else {
+            setAlpha("splash", 0);
+            setPointer("splash", "none");
+        }
+    }
+
+    setInterval(glitchText, 20);
+
+    function glitchText() {
+        var text = "阅前的注意事项";
+        var glitchedText = "";
+        for (var i = 0; i < text.length; i++) {
+            glitchedText += Math.random() < 0.1 ? String.fromCharCode(Math.floor(Math.random() * (126 - 32)) + 32) : text[i];
+        }
+        document.getElementById('glitchText').innerHTML = glitchedText;
+        setTimeout(function() {
+            document.getElementById('glitchText').textContent = text;
+        }, 80);
+    }
+
+    var wght, wdth, timr;
+    timr = 0;
+    setInterval(function() {
+        timr = timr + 0.04;
+    }, 100);
+
+    setInterval(varTitle, 100);
+
+    function getobj(name) {
+        return document.getElementsByClassName(name);
+    }
+
+    function varTitle() {
+        wght = Math.sin(timr) * 200 + 600;
+        wdth = Math.sin(timr / 4) * 25 + 100;
+        $("vtitle").style.fontWeight = wght;
+        $("vtitle").style.fontVariationSettings = '"wdth" ' + wdth;
+        $("vtitle").style.fontVariationSettings = '"wdth" ' + wdth;
+    }
+</script>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100..900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&display=swap');
+    * {
+        font-family: "Archivo", "Noto Sans SC";
+        font-variation-settings: "wdth" 125;
+        transition: 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+        line-height: 110%;
+        user-select: none;
+        text-rendering: geometricPrecision;
+        -webkit-font-smoothing: subpixel-antialiased;
+        font-smooth: always;
+        color: #eee;
+        -webkit-user-drag: none;
+        scroll-behavior: smooth;
+        word-wrap: break-word;
+        word-break: normal;
+    }
+    
+    .inter-tight-item {
+        font-family: "Inter Tight", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 350;
+        font-style: normal;
+        transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.5s;
+    }
+    
+    .inter-tight-item:hover {
+        font-family: "Inter Tight", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 700;
+        font-style: normal;
+    }
+    
+    .archivo-100 {
+        font-family: "Archivo", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 450;
+        font-style: normal;
+        font-variation-settings: "wdth" 100;
+    }
+    
+    small {
+        color: #fff7;
+    }
+    
+    body {
+        background-color: black;
+        overflow-y: auto;
+    }
+    
+    html::-webkit-scrollbar {
+        width: 10px;
+    }
+    
+    html::-webkit-scrollbar-track {
+        background-color: black;
+    }
+    
+    html::-webkit-scrollbar-thumb {
+        background: #4e4e4e;
+        border-radius: 0px;
+    }
+    /* .wrap {
+        backdrop-filter: blur(24px);
+    } */
+    
+    .h-list {
+        position: fixed;
+        top: 50%;
+        left: 150px;
+        transform: translateY(-50%);
+    }
+    
+    .h-list ul {
+        display: flex;
+        text-decoration: none;
+        list-style-type: none;
+        width: 3600px;
+        height: 810px;
+    }
+    
+    .itemrow {
+        display: flex;
+        flex-wrap: wrap;
+        width: 95%;
+    }
+    
+    .item {
+        /* width: 100%; */
+        flex: 0 0 calc((140% - 10px)/3);
+        /* max-height: 400px; */
+        max-width: 1000px;
+        height: auto;
+        margin: 10px;
+        object-fit: cover;
+        overflow: hidden;
+        z-index: 100;
+        border-radius: 12px;
+    }
+    
+    .port {
+        width: 95%;
+        height: 400px;
+        /* transition: 0.3s cubic-bezier(0.165, 0.84, 0.44, 1); */
+    }
+    
+    .item:hover {
+        transform: scale(1.02);
+        z-index: 100;
+        filter: drop-shadow(0 0 0px #000f);
+    }
+    
+    .item:active {
+        transform: scale(1.5)translateY(0%);
+        /* width: 150%; */
+        z-index: 200;
+        filter: drop-shadow(0 0 16px #000f);
+    }
+    
+    .port:active {
+        height: 800px;
+        width: 95%;
+        transform: scale(1.25)translateY(-15%);
+    }
+    
+    .vbg {
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translateX(-50%)translateY(-50%);
+        width: 100%;
+        height: 100%;
+        z-index: -999;
+        object-fit: cover;
+    }
+    
+    a {
+        background-color: black;
+        padding: 16px;
+        font-size: 48px;
+        color: aliceblue;
+        text-decoration: none;
+    }
+    
+    button {
+        background-color: black;
+        padding: 16px;
+        font-size: 48px;
+        color: aliceblue;
+        text-decoration: none;
+        border: none;
+        border: solid #fff;
+    }
+    
+    button:active {
+        filter: invert(1);
+    }
+    
+    .sqr {
+        width: 144px;
+        height: 144px;
+        text-align: center;
+        align-items: center;
+        position: fixed;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 999;
+    }
+    
+    .sqr:hover {
+        width: 160px;
+        height: 160px;
+        border-color: rgb(255, 60, 0);
+    }
+    
+    .sqr:active {
+        width: 154px;
+        height: 154px;
+        border: solid #fff;
+    }
+    
+    .edbtn {
+        width: 120px;
+        height: 120px;
+        text-align: center;
+        align-items: center;
+        position: fixed;
+        left: 30px;
+        bottom: 30px;
+        z-index: 999;
+        opacity: 0;
+        pointer-events: none;
+    }
+    
+    .edbtn:hover {
+        width: 136px;
+        height: 136px;
+        border-color: rgb(255, 60, 0);
+    }
+    
+    .edbtn:active {
+        width: 130px;
+        height: 130px;
+        border: solid #fff;
+    }
+    
+    #nxtBtn {
+        right: 32px;
+    }
+    
+    #prvBtn {
+        left: 32px;
+    }
+    
+    h1 {
+        width: max-content;
+        font-size: 54px;
+        margin: 0 0;
+        padding: 0;
+        margin-left: -3px;
+    }
+    
+    .infotitle {
+        font-size: 44px;
+    }
+    
+    .ytext {
+        color: rgb(255, 217, 0);
+    }
+    
+    y {
+        color: rgb(255, 217, 0)
+    }
+    
+    h4 {
+        margin: 0;
+        margin-bottom: 8px;
+        font-size: 22pt;
+    }
+    
+    h3 {
+        font-size: 28px;
+        margin: 8px 0;
+        font-weight: 500;
+    }
+    
+    h5 {
+        max-width: 800px;
+        width: max-content;
+        margin: 5px 0px;
+        font-size: 22pt;
+        font-weight: 500;
+    }
+    
+    h2 {
+        width: max-content;
+        font-size: 24px;
+        margin: 8px 0;
+        font-weight: 500;
+    }
+    
+    .info {
+        margin: 24px;
+        padding: 16px 32px 16px 16px;
+        width: min-content;
+        color: #fff;
+        background-color: black;
+    }
+    
+    .cover {
+        z-index: -10;
+        width: 1440px;
+        height: 810px;
+        object-fit: cover;
+        position: absolute;
+    }
+    
+    .inv {
+        background-color: rgb(255, 60, 0);
+        padding: 16px;
+        margin: 24px;
+        margin-bottom: 0;
+    }
+    
+    .center {
+        position: fixed;
+        margin: 0;
+        padding: 14px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    #abg {
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translateX(-50%)translateY(-50%);
+        width: 100%;
+        height: 100%;
+        z-index: -899;
+        opacity: 0;
+        pointer-events: none;
+        object-fit: cover;
+        filter: blur(0px);
+    }
+    
+    .price {
+        padding: 10px;
+        font-size: 40px;
+        margin: 24px 0px 24px 24px;
+        font-weight: 500;
+        background-color: black;
+        color: #fff;
+        width: max-content;
+    }
+    
+    .pricetag {
+        position: absolute;
+        transform: translateY(-425%);
+        display: flex;
+    }
+    
+    .logoframe {
+        /* position: absolute; */
+        top: 410px;
+        left: 950px;
+        margin: 24px;
+        width: 400px;
+        height: auto;
+        padding: 16px;
+        filter: drop-shadow(0 0 8px #000);
+        /* background-color: black; */
+    }
+    
+    .data {
+        color: #fff;
+        font-family: 'Sarasa Term SC';
+        font-size: 16px;
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        z-index: 1001;
+        display: none;
+    }
+    
+    #splash {
+        background-color: #000;
+        width: 100%;
+        height: 100%;
+        z-index: 1000;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%)translateY(-50%);
+        transition: 1.1s cubic-bezier(0.165, 0.84, 0.44, 1);
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        pointer-events: none;
+        opacity: 0;
+    }
+    
+    .flicker {
+        transition: 0s !important;
+        opacity: 1;
+    }
+    
+    .big {
+        font-size: 60px;
+        font-weight: 300;
+    }
+    
+    .wbg {
+        background-color: #fff;
+        padding: 8px 8px 4px 8px;
+        font-size: 20px;
+        font-weight: 800;
+        color: #000;
+    }
+    
+    .sss {
+        background-color: #eee;
+        color: #1b1b1b;
+    }
+    
+    .category-list {
+        position: fixed;
+        bottom: 3%;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 16px;
+        background-color: #eee;
+        font-family: Inter, 'LINESeedJP_TTF';
+        font-size: 2em;
+        z-index: 999;
+    }
+    
+    .category {
+        padding: 10px;
+        border: none;
+        border-bottom: #000 2px solid;
+        background-color: #fff0;
+        margin: 0 10px;
+        color: #1b1b1b;
+        font-family: Inter, 'LINESeedJP_TTF';
+    }
+    
+    .category:hover {
+        font-weight: bold;
+    }
+    
+    .oosText {
+        position: absolute;
+        top: 50%;
+        left: 20%;
+        transform: translateY(-50%);
+        color: #eee;
+        z-index: 9999;
+    }
+    
+    #warn {
+        width: 100px;
+        height: auto;
+        margin: 20px;
+    }
+    
+    .spltitle {
+        font-family: "Archivo", "Noto Sans SC";
+        font-variation-settings: "wdth" 125;
+        transition: 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+        line-height: 110%;
+        user-select: none;
+        text-rendering: geometricPrecision;
+        -webkit-font-smoothing: subpixel-antialiased;
+        font-smooth: always;
+        font-size: 4em;
+    }
+    
+    .content {
+        padding: 48px;
+    }
+    
+    .infotable .row {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    .infotable div {
+        margin-right: 24px;
+        flex: 0 0 calc((100% - 10px)/3);
+        height: auto;
+    }
+    
+    .vtitle {
+        font-variation-settings: "wdth" 112.5;
+    }
+    
+    .flexframe {
+        display: flex;
+        flex-wrap: wrap;
+        width: 90%;
+        justify-content: center;
+        align-items: flex-start;
+    }
+    
+    .contLine {
+        background-color: #fff1;
+        padding: 12px;
+        border-radius: 8px;
+        width: 95%;
+        display: flex;
+        flex-direction: column;
+        align-items: left;
+        margin: 6px;
+    }
+    
+    .contLine:hover {
+        background-color: #fff2;
+        transform: scaleX(1.01)translateX(1%);
+    }
+    
+    .prior {
+        background-color: rgba(255, 235, 119, 0.15);
+        border-left: rgb(255, 217, 0) solid 4px;
+    }
+    
+    .im {
+        font-weight: 700;
+        color: rgb(255, 217, 0);
+    }
+    
+    .prior:hover {
+        background-color: rgba(255, 217, 0, 0.25);
+    }
+    
+    .contLine h3 {
+        font-size: 26pt;
+        margin-right: 12px;
+        align-items: left;
+        text-align: left;
+        line-height: 1.4em;
+        width: auto;
+    }
+    
+    .contLine h4 {
+        font-size: 22px;
+    }
+    /* .contLine .wide {
+        width: 50%;
+    } */
+    
+    .contLine .full {
+        width: 100%;
+    }
+    
+    a {
+        background-color: #fff2;
+        color: rgb(255, 217, 0);
+        padding: 6px;
+        border-radius: 1000px;
+        font-weight: 500;
+        transform: scale(1);
+    }
+    
+    .contLine a {
+        font-size: 26pt;
+    }
+    
+    .contLine a:hover {
+        font-weight: 800;
+        transform: scale(1.1);
+        background-color: rgb(255, 217, 0);
+        color: #000;
+    }
+    
+    a:active {
+        transform: scale(1.02);
+    }
+    
+    .catTitle:hover {
+        background-color: rgb(255, 217, 0);
+        font-weight: 800;
+        color: #000;
+    }
+    
+    .blurred {
+        filter: blur(16px);
+        opacity: 0.8;
+    }
+    
+    .noevent {
+        pointer-events: none;
+    }
+    
+    p {
+        padding-left: 40px;
+        font-size: 0.8em;
+    }
+    
+    tag {
+        padding: 4px 8px;
+        color: rgb(255, 217, 0);
+        font-weight: 600;
+        border: rgb(255, 217, 0) solid;
+        border-width: 2px;
+        border-radius: 1000px;
+        margin: 0 6px;
+        opacity: 0.8;
+        font-size: 24pt;
+    }
+    
+    tag:hover {
+        transform: scale(1.05);
+        opacity: 1;
+    }
+    
+    .taglist {
+        display: flex;
+        flex-wrap: wrap;
+        padding-left: 30px;
+    }
+    
+    .cat {
+        margin-bottom: 40px;
+    }
+    
+    .box {
+        display: block;
+    }
+    /* .box h3 {
+        
+    } */
+    
+    .nav {
+        position: fixed;
+        left: 0px;
+        bottom: 0px;
+        background-color: #000;
+        padding: 16px;
+        display: flex;
+        width: 100%;
+        border-top: rgb(255, 217, 0) solid;
+        overflow-y: hidden;
+        z-index: 9999;
+    }
+    
+    .nav a {
+        font-size: 26pt;
+        width: auto;
+        height: 2.5em;
+        padding: 4px;
+        border-radius: 0;
+        margin: 4px;
+        background-color: #000;
+        box-sizing: border-box;
+        border-right: rgb(255, 217, 0) solid 0px;
+    }
+    
+    .nav a:hover {
+        background-color: rgb(255, 217, 0);
+        color: #000;
+        border-right: rgb(255, 217, 0) solid 2em;
+        box-sizing: border-box;
+    }
+    
+    .nav h1 {
+        opacity: 0.2;
+        position: fixed;
+        left: 0px;
+        bottom: 0px;
+        width: 3em;
+        height: 3em;
+        margin: 0;
+        overflow: hidden;
+        text-align: left;
+        transform: rotate(90deg)translateX(50%);
+        z-index: -333;
+        font-weight: 300;
+    }
+    
+    blr {
+        filter: blur(16px);
+    }
+    
+    #piclist h4 {
+        font-size: 16pt;
+    }
+</style>
+
+<body onload="splash(1); init();" oncontextmenu="return false">
+    <div id="splash">
+        <svg id="warn" t="1720613232324" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="31531" width="500" height="500"><path d="M640 170.666667H213.333333v682.666666h597.333334V341.333333h-170.666667V170.666667zM128 127.658667C128 104.277333 147.072 85.333333 170.581333 85.333333H682.666667l213.333333 213.333334v596.992A42.666667 42.666667 0 0 1 853.632 938.666667H170.368A42.666667 42.666667 0 0 1 128 896.341333V127.658667zM469.333333 640h85.333334v85.333333h-85.333334v-85.333333z m0-341.333333h85.333334v256h-85.333334V298.666667z" p-id="31532" fill="#ffffff"></path></svg>
+        <h4 id="glitchText" class="spltitle"></h4>
+        <h3>本网页所展示材料仅供用人单位于招聘时查看之用。</h3>
+        <h3>页面中任何材料若未经适当授权，禁止任何个人与团体挪作他用。 </h3>
+        <h3>© 2024, Yuuki Izumi.</h3>
+        <h3><br>本页面建议使用 PC/Mac 查看。</h3>
+        <h3><br>正在加载页面……</h3>
+    </div>
+    <div id="nav" class="nav">
+        <h1>
+            <marquee width="100%" height="100%">NAVIGATION</marquee>
+        </h1>
+        <a href="#content">基本信息</a>
+        <a href="#skills">技能树</a>
+        <a href="#proj">参与项目</a>
+        <a href="#port">作品集</a>
+    </div>
+    <div id="content" class="content">
+        <div class=" contLine">
+            <h3>本页面建议使用手机查看。</h3>
+        </div>
+        <div id="info" class="cat">
+            <h1 class="ytext vtitle" id="vtitle">YUUKI IZUMI<br>PORTFOLIO</h1>
+            <div class="infotable">
+                <div class="row">
+                    <div class="inter-tight-item">
+                        <h5>艺名</h5>
+                        <h4 class="inter-tight-item ytext">佑木いずみ / TNiK</h4>
+                    </div>
+                    <div class="inter-tight-item">
+                        <h5>电邮</h5>
+                        <h4 class="inter-tight-item ytext">tnik0f@outlook.com</h4>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div id="cv">
+            <div class="cat" id="skills">
+                <h2 class="ntitle ytext " onclick="fold('edu')">skills / 技能树</h2>
+                <h4 class="">software / 软件技能</h4>
+                <div class=" contLine">
+                    <h3 class="full">目前常用
+                        <y>Blender-Ps-Ae</y> 工作流。</h3>
+                </div>
+                <div class=" contLine">
+                    <h3 class="full">能够
+                        <y>熟练使用 Adobe Photoshop / Illustrator</y> 进行平面设计。</h3>
+                </div>
+                <div class=" contLine">
+                    <h3 class="full">能够使用
+                        <y> Blender / Adobe After Effects</y> 制作 MG 动画。</h3>
+                </div>
+                <h4 class="blurred">language / 语言技能</h4>
+                <div class=" contLine blurred">
+                    <h3 class="full">
+                        <y title="成绩报告编号：221144095004786">CET-4（大学英语四级）通过（610）</y>，口语能力强，能够流畅进行英语交流。</h3>
+                </div>
+                <div class=" contLine blurred">
+                    <h3 class="full">能够进行少量日常日语交流。</h3>
+                </div>
+                <h4 class="">add-ons / 插件</h4>
+                <div class=" contLine">
+                    <h3 class="full">从事业余编曲活动。
+                        <y>熟悉 Studio One / FL Studio 等 DAW</y>，能够进行一定程度上的作编曲。</h3>
+                </div>
+                <div class=" contLine blurred">
+                    <h3 class="full">
+                        有基础的 HTML / CSS 知识储备。能够进行
+                        <y>简单的HTML与CSS编写</y>。</h3>
+                </div>
+                <div class=" contLine">
+                    <h3 class="full">热爱二次元 / ACG 文化。
+                        <y>有较多该类游戏/项目的游玩/参与/同人（二创）项目履历</y>。</h3>
+                </div>
+                <h4 class="">personal abilities / 个人能力</h4>
+                <div class=" contLine">
+                    <h3 class="full">工作细致周到，认真负责。能够有规划的、有条理的处理工作问题。</h3>
+                </div>
+                <div class=" contLine">
+                    <h3 class="full">有良好的团队合作精神，乐于接纳新的知识技巧。</h3>
+                </div>
+            </div>
+            <div class="cat " id="proj">
+                <h2 class="ntitle ytext ">projects related / 参与项目</h2>
+                <div class="contLine prior">
+                    <h3 class="im">2022.9 至今</h3>
+                    <h3 class="im ntitle">大学生创业项目“众乐”</h3>
+                    <h3 class="wide im">平面设计</h3>
+                </div>
+                <div class="taglist">
+                    <tag>国家级大创案例库</tag>
+                    <tag>互联网+省奖</tag>
+                    <tag>wteam 创业同盟项目</tag>
+                    <tag>wteam 创业同盟媒体合作伙伴</tag>
+                </div>
+                <p>全国首个 AI 音乐创作论坛。于 2024 年被列入 wteam 创业同盟项目。</p>
+                <p>项目现已更名“吟游诗人协会”。</p>
+                <div class="contLine ">
+                    <h3>2020 至今</h3>
+                    <h3>南京鸽游网络有限公司</h3>
+                    <h3 class="wide ">游戏<a href="https://www.taptap.cn/app/165287">《Phigros》</a>部分美术设计</h3>
+                </div>
+                <div class="taglist">
+                    <tag>TapTap 热门榜高分游戏</tag>
+                    <tag>Google Play 高分游戏</tag>
+                </div>
+                <p>项目组早期成员之一。作为平面美工协助完成了游戏资产的制作。</p>
+                <p>负责了曲目《Get Back》《Speed Up!》《月下缭乱》等的封面设计。</p>
+                <p>App 目前全球下载量已达百万量级。</p>
+                <div class="contLine ">
+                    <h3>长期外包项目</h3>
+                    <h3>哔哩哔哩 <a href="https://space.bilibili.com/11742550 ">@哈米伦的弄笛者</a><sup>※</sup></h3>
+                    <h3 class="wide ">视频封面与视频美术素材（部分）</h3>
+                    <h3><a href="#port">在“作品集”类目中查看相关图片</a></h3>
+                </div>
+                <p>※ 哈米伦的弄笛者：哔哩哔哩2023百大UP主。</p>
+                <br>
+                <div class="contLine ">
+                    <h3>2020 至今</h3>
+                    <h3>音游新春祭制作委员会</h3>
+                    <h3 class="wide "><a href="https://space.bilibili.com/2062697730">《音游新春祭》</a>总后期</h3>
+                </div>
+                <div class="contLine blurred">
+                    <h3>2023.7 至今</h3>
+                    <h3>未公开项目</h3>
+                    <h3 class="wide ">未公开项目</h3>
+                </div>
+                <div class="contLine ">
+                    <h3>2024.6 - 2024.7</h3>
+                    <h3>上海立舞文化传媒有限公司<br><a href="https://space.bilibili.com/1749080872">@音波狂潮X2萤光宇宙</a></h3>
+                    <h3 class="wide ">部分海外艺人VJ素材</h3>
+                </div>
+            </div>
+        </div>
+        <div id="port"></div>
+        <div id="piclist">
+            <h3 class="ytext " id="ntitle">previous works / 封面类（半原创）</h3>
+            <h4 class="">本类型内插画非本人绘制。素材大部分来自哔哩哔哩 @哈米伦的弄笛者。</h4>
+            <h4 class="">本人负责该类封面的排版·后处理工作。</h4>
+            <h4><br>按住可查看大图</h4>
+            <div class="flexframe ">
+                <div class="itemrow ">
+                    <img class="item " src="./pic/0001.png ">
+                    <img class="item " src="./pic/0002.png ">
+                    <img class="item " src="./pic/0003.jpg ">
+                    <img class="item " src="./pic/0004.png ">
+                    <img class="item " src="./pic/0005.png ">
+                    <img class="item " src="./pic/0009.png ">
+                    <img class="item " src="./pic/0006.png ">
+                    <img class="item " src="./pic/0007.png ">
+                    <img class="item " src="./pic/0008.png ">
+                </div>
+            </div>
+        </div>
+        <div id="piclist">
+            <h3 class="ytext ntitle" id="ntitle">previous works / 原创</h3>
+            <h4 class="">完全本人原创的作品。部分作品已被收录进游戏或其他集合中。</h4>
+            <h4><br>按住可查看大图</h4>
+            <div class="flexframe ">
+                <div class="itemrow ">
+                    <img class="item " src="./pic/origin/0001.png " title="收录于《Phigros》。">
+                    <img class="item " src="./pic/origin/0002.png ">
+                    <img class="item port" src="./pic/origin/0003.png ">
+                    <img class="item " src="./pic/origin/0004.png ">
+                    <img class="item " src="./pic/origin/0005.png ">
+                    <img class="item " src="./pic/origin/0006.png ">
+                    <img class="item " src="./pic/origin/0007.png ">
+                    <img class="item " src="./pic/origin/0008.png ">
+                </div>
+            </div>
+        </div>
+        <div id="links">
+            <h3 class="ytext ntitle">
+                event pages / 长图(活动详情页)等
+            </h3>
+            <h4>以下为受托制作的长图或活动详情页。需要访问外部链接。</h4>
+            <div class="contLine ">
+                <h3>@琴南こどく</h3>
+                <h3>DizzyMart 品书</h3>
+                <h3 class="wide "><a href="https://www.bilibili.com/opus/926677183123947522">哔哩哔哩动态</a></h3>
+            </div>
+            <div class="contLine ">
+                <h3>@DLS_DONTLET</h3>
+                <h3>DizzyMart 摊宣</h3>
+                <h3 class="wide "><a href="https://www.bilibili.com/opus/924891146744758281">哔哩哔哩动态</a></h3>
+            </div>
+        </div>
+        <div>
+            <br>
+            <br>
+            <br>页面更新时间：2024.7.26
+        </div>
+    </div>
+</body>
