@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+
+<head>
+    <title>WISHLIST</title>
+    <meta charset="UTF-8">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100..900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&display=swap');
+        * {
+            font-family: "Archivo", "Noto Sans SC";
+            font-variation-settings: "wdth" 90;
+            transition: 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+            line-height: 110%;
+            user-select: none;
+            text-rendering: geometricPrecision;
+            -webkit-font-smoothing: subpixel-antialiased;
+            font-smooth: always;
+            -webkit-user-drag: none;
+            scroll-behavior: smooth;
+            font-weight: 500;
+            margin: 0;
+        }
+        
+        *:hover {
+            font-weight: 750;
+        }
+        
+        .cont {
+            padding: 40px;
+            border-radius: 16px;
+            backdrop-filter: blur(24px);
+            width: 60%;
+            position: absolute;
+            top: 32px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #eee;
+            filter: drop-shadow(0 0 16px #0002);
+        }
+        
+        thead {
+            background-color: #fff9;
+            padding: 12px;
+            color: #000;
+        }
+        
+        .bg {
+            position: fixed;
+            z-index: -9999;
+            margin: 0;
+            padding: 0;
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+        }
+        
+        .contline {
+            width: 100%;
+            /* border-radius: 10px; */
+            border-bottom: solid #eeea 2px;
+            padding: 6px;
+            display: flex;
+            align-items: center;
+            height: 90px;
+            margin-bottom: 6px;
+            overflow: hidden;
+        }
+        
+        .contline:hover {
+            background-color: #0003;
+        }
+        
+        sup {
+            font-size: 0.6em;
+        }
+        
+        a {
+            /* padding: 6px; */
+            text-decoration: none;
+            background-color: rgb(255, 255, 255);
+            color: rgb(255, 45, 45);
+            margin: 0 10px;
+            height: 70px;
+            width: 70px;
+            display: flex;
+            flex-direction: column-reverse;
+            font-size: 1.2em;
+            overflow: hidden;
+            padding: 0;
+            font-variation-settings: "wdth" 70;
+        }
+        
+        .links {
+            height: 60px;
+            position: absolute;
+            right: 40px;
+            display: flex;
+        }
+        
+        a:hover {
+            background-color: rgb(255, 46, 46);
+            color: #fff;
+            font-weight: 500;
+            width: 100px;
+        }
+        
+        h3 {
+            font-family: "Inter";
+            margin-top: 4px;
+            color: rgb(255, 253, 140);
+        }
+        
+        h5 {
+            margin: 8px 0;
+        }
+        
+        .prev {
+            margin: 6px;
+            border-radius: 4px;
+            width: 80px;
+            height: 80px;
+            margin-right: 18px;
+        }
+        
+        .ictitle {
+            /* background-color: #000; */
+            width: fit-content;
+            margin-bottom: 30px;
+            display: flex;
+            mix-blend-mode: overlay;
+        }
+        
+        h2 {
+            opacity: 0.5;
+        }
+        
+        small {
+            font-size: 0.4em;
+            font-variation-settings: "wdth" 70;
+            font-weight: 750;
+        }
+        
+        .list {
+            margin-bottom: 24px;
+        }
+        
+        .svg {
+            width: 2em;
+            height: auto;
+            margin-right: 6px;
+        }
+        
+        .get {
+            width: 80%;
+            filter: blur(0px)grayscale(0);
+            display: flex;
+            align-items: center;
+            height: 90px;
+        }
+        
+        .get:hover {
+            /* filter: blur(3px)grayscale(1); */
+        }
+        
+        .get a {
+            opacity: 0;
+        }
+        
+        .get .sp {
+            opacity: 0;
+            white-space: nowrap;
+            width: 0;
+        }
+        
+        .get:hover .sp {
+            opacity: 0.7;
+            width: 80px;
+        }
+    </style>
+</head>
+
+<body>
+    <img class="bg" src="./bg.jpg">
+    <div class="cont">
+        <div class="ictitle">
+            <div class="svg">
+                <svg id="a" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 151.87 151.6"><defs><style>.b,.c{fill:#fff;}.c{opacity:.5;}</style></defs><path class="b" d="M2.88,122.56l26.16,26.16c4.89,4.89,13.17,3.34,15.95-2.99l20.55-46.71c3.61-8.21-4.75-16.57-12.96-12.96L5.88,106.61c-6.33,2.79-7.88,11.06-2.99,15.95Z"/><path class="b" d="M148.99,29.04L122.83,2.88c-4.89-4.89-13.17-3.34-15.95,2.99l-20.55,46.71c-3.61,8.21,4.75,16.57,12.96,12.96l46.71-20.55c6.33-2.79,7.88-11.06,2.99-15.95Z"/><path class="c" d="M122.83,148.72l26.16-26.16c4.89-4.89,3.34-13.17-2.99-15.95l-46.71-20.55c-8.21-3.61-16.57,4.75-12.96,12.96l20.55,46.71c2.79,6.33,11.06,7.88,15.95,2.99Z"/><path class="c" d="M29.04,2.88L2.88,29.04c-4.89,4.89-3.34,13.17,2.99,15.95l46.71,20.55c8.21,3.61,16.57-4.75,12.96-12.96L44.99,5.88c-2.79-6.33-11.06-7.88-15.95-2.99Z"/></svg>
+            </div>
+            <h1>Wishlist
+                <sup>2024</sup>
+            </h1>
+
+        </div>
+
+        <div id="list" class="list">
+            <h2 id="3c" class="title">TYPE_A[3C]</h2>
+            <div class="contline">
+                <img class="prev" src="https://gw.alicdn.com/bao/uploaded/i2/2212355371454/O1CN01FEgUY11Mbyq1te4la_!!2212355371454.png">
+                <div class="info">
+                    <h4>TESTV x EGIOZR 随手拽数据短线</h4>
+                    <h5>USB-C to USB-C</h5>
+                    <h3>￥59</h3>
+                </div>
+                <div class="links">
+                    <a target="_blank" href="https://item.taobao.com/item.htm?spm=a1z10.1-c-s.w137644-24139748711.39.748d771dHoOaST&id=769989722520&skuId=5608248354591">LINK</a>
+                </div>
+            </div>
+            <div class="contline">
+                <img class="prev" src="http://img14.360buyimg.com/n5/s54x54_jfs/t1/50505/10/24676/49949/6697629dF3564f48a/7040a90badb9c3c2.jpg">
+                <div class="info">
+                    <h4>CUKTECH 酷态科电能块探索版</h4>
+                    <h5>移动电源</h5>
+                    <h3>￥99</h3>
+                </div>
+                <div class="links">
+                    <a target="_blank" href="https://item.jd.com/100095954505.html">LINK</a>
+                </div>
+            </div>
+            <div class="contline">
+                <div class="get">
+                    <h2 class="sp">已拥有</h2>
+                    <img class="prev" src="https://img10.360buyimg.com/n5/s54x54_jfs/t1/109851/15/46660/23294/6528a12eF1357495c/db6daa7b63e35d4c.jpg">
+                    <div class="info">
+                        <h4>CUKTECH 酷态科 10 号超级电能棒</h4>
+                        <h5>移动电源</h5>
+                        <h3>￥199</h3>
+                    </div>
+                    <div class="links">
+                        <a target="_blank" href="https://item.jd.com/100070524545.html">LINK</a>
+                    </div>
+                </div>
+            </div>
+            <div class="contline">
+                <img class="prev" src="https://img10.360buyimg.com/n5/s54x54_jfs/t1/240518/17/10018/42187/66500d2aFd294a988/e5d6970c44cee199.jpg">
+                <div class="info">
+                    <h4>品胜 桌面充电站</h4>
+                    <h5>供电设备</h5>
+                    <h3>￥303</h3>
+                </div>
+                <div class="links">
+                    <a target="_blank" href="https://item.jd.com/100109695530.html">LINK</a>
+                </div>
+            </div>
+            <div class="contline">
+                <img class="prev" src="https://img14.360buyimg.com/n5/s54x54_jfs/t1/87636/15/25664/72554/64979b35F79000db6/b4f1c77ff480a6da.jpg">
+                <div class="info">
+                    <h4>永诺 50mm 定焦镜头 f/1.8 SII</h4>
+                    <h5>镜头 · E卡口</h5>
+                    <h3>￥799</h3>
+                </div>
+                <div class="links">
+                    <a target="_blank" href="https://item.jd.com/100057073134.html">LINK</a>
+                </div>
+            </div>
+            <div class="contline">
+                <img class="prev" src="https://img10.360buyimg.com/n5/jfs/t1/124693/34/33238/48044/6479aeccF4202cd22/741908fabbfb7579.jpg">
+                <div class="info">
+                    <h4>AUTURIA MINIFUSE 1/2</h4>
+                    <h5>声卡·声音界面 · 白色</h5>
+                    <h3>￥849 / ￥1,699</h3>
+                </div>
+                <div class="links">
+                    <a target="_blank" href="https://item.jd.com/10055511119135.html">MINIFUSE 1</a>
+                    <a target="_blank" href="https://item.jd.com/10055511119139.html">MINIFUSE 2</a>
+                </div>
+            </div>
+        </div>
+        <div id="list" class="list">
+            <h2 id="daily" class="title">TYPE_B[DAILY]</h2>
+            <div class="contline">
+                <img class="prev" src="https://gw.alicdn.com/bao/uploaded/i3/2212355371454/O1CN01GQd7pU1MbynjI7n4j_!!2212355371454.jpg_60x60q50.jpg">
+                <div class="info">
+                    <h4>TESTV 擦镜湿傅 2 代</h4>
+                    <h5>数码清洁</h5>
+                    <h3>￥29.9</h3>
+                </div>
+                <div class="links">
+                    <a target="_blank" href="https://item.taobao.com/item.htm?spm=a21n57.1.item.9.6d954063Me7CHT&priceTId=215044a517222644029551160e16c1&utparam=%7B%22aplus_abtest%22:%2291955be32dbef20ba2a5dca97ebfc99b%22%7D&id=765107390840&ns=1&abbucket=18&skuId=5434780771244">LINK</a>
+                </div>
+            </div>
+            <div class="contline">
+                <img class="prev" src="https://img10.360buyimg.com/n5/s54x54_jfs/t1/109851/15/46660/23294/6528a12eF1357495c/db6daa7b63e35d4c.jpg">
+                <div class="info">
+                    <h4>CUKTECH 酷态科 10 号超级电能棒</h4>
+                    <h5>移动电源</h5>
+                    <h3>￥199</h3>
+                </div>
+                <div class="links">
+                    <a target="_blank" href="https://item.jd.com/100070524545.html">LINK</a>
+                </div>
+            </div>
+            <div class="contline">
+                <img class="prev" src="https://img14.360buyimg.com/n5/s54x54_jfs/t1/87636/15/25664/72554/64979b35F79000db6/b4f1c77ff480a6da.jpg">
+                <div class="info">
+                    <h4>永诺 50mm 定焦镜头 f/1.8 SII</h4>
+                    <h5>镜头 · E卡口</h5>
+                    <h3>￥799</h3>
+                </div>
+                <div class="links">
+                    <a target="_blank" href="https://item.jd.com/100057073134.html">LINK</a>
+                </div>
+            </div>
+            <div class="contline">
+                <img class="prev" src="https://img10.360buyimg.com/n5/jfs/t1/124693/34/33238/48044/6479aeccF4202cd22/741908fabbfb7579.jpg">
+                <div class="info">
+                    <h4>AUTURIA MINIFUSE 1/2</h4>
+                    <h5>声卡·声音界面 · 白色</h5>
+                    <h3>￥849 / ￥1,699</h3>
+                </div>
+                <div class="links">
+                    <a target="_blank" href="https://item.jd.com/10055511119135.html">MINIFUSE 1</a>
+                    <a target="_blank" href="https://item.jd.com/10055511119139.html">MINIFUSE 2</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
