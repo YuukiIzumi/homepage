@@ -24,13 +24,13 @@
     }
 
     function reverse() {
-        if (orientation == 1) {
-            orientation = -1;
+        if (orientation % 2 == 0) {
+            orientation++;
             $("ori").style.opacity = 0;
             $("orir").style.opacity = 0.8;
             // document.getElementById("ori").style.transform = "translateX(-50%)rotateY(180deg)";
         } else {
-            orientation = 1;
+            orientation++;
             // document.getElementById("ori").style.transform = "translateX(-50%)rotateY(0deg)"
             $("ori").style.opacity = 0.8;
             $("orir").style.opacity = 0;
