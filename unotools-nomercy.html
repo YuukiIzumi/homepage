@@ -26,10 +26,10 @@
     function reverse() {
         if (orientation == 1) {
             orientation = -1;
-            document.getElementById("ori").style.transform = "translateX(-50%)scaleX(-1)";
+            document.getElementById("ori").style.transform = "translateX(-50%)rotateY(180deg)";
         } else {
             orientation = 1;
-            document.getElementById("ori").style.transform = "translateX(-50%)scaleX(1)"
+            document.getElementById("ori").style.transform = "translateX(-50%)rotateY(0deg)"
         }
     }
 
@@ -75,10 +75,10 @@
         transform: scaleX(-1);
         height: 100%;
         filter: drop-shadow(0 0 40px #fff5);
-        /* animation-name: rotate;
+        animation-name: rotate;
         animation-duration: 9s;
         animation-timing-function: linear;
-        animation-iteration-count: infinite; */
+        animation-iteration-count: infinite;
     }
     
     .svgc {
