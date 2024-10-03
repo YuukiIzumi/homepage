@@ -287,7 +287,7 @@
             setTimeout(function() {
                 setAlpha("splash", 0);
                 setPointer("splash", "none");
-            }, 2000);
+            }, 000);
         }
 
         setInterval(glitchText, 20);
@@ -313,6 +313,7 @@
             AlbumID = num;
             $("list").style = "transform: translateY(-50%) translateX(" + px + "px);";
             updateCat();
+            seeReach();
         }
 
         // setInterval(updateCat, 100);
@@ -320,19 +321,23 @@
         function updateCat() {
             if (AlbumID <= 3) {
                 $("dls-cat").style.fontWeight = "800";
-                $("dls-cat").style.backgroundColor = "#000";
+                // $("dls-cat").style.backgroundColor = "#000";
+                $("dls-cat").style.backgroundImage = "linear-gradient(173deg, #b797ff, #ffa3ce, #5cbeff, #abb1ff)";
                 $("dls-cat").style.color = "#fff";
                 // console.log("当前处于DLS区域")
                 $("sss-cat").style.fontWeight = "500";
-                $("sss-cat").style.backgroundColor = "#0000";
+                // $("sss-cat").style.backgroundColor = "#fff0";
+                $("sss-cat").style.backgroundImage = "linear-gradient(173deg, #ffffff00, #ffffff00, #ffffff00, #ffffff00)";
                 $("sss-cat").style.color = "#000";
             } else {
                 $("dls-cat").style.fontWeight = "500";
-                $("dls-cat").style.backgroundColor = "#0000";
+                // $("dls-cat").style.backgroundColor = "#fff0";
+                $("dls-cat").style.backgroundImage = "linear-gradient(173deg, #ffffff00, #ffffff00, #ffffff00, #ffffff00)";
                 $("dls-cat").style.color = "#000";
                 // console.log("当前处于SSS区域")
                 $("sss-cat").style.fontWeight = "800";
-                $("sss-cat").style.backgroundColor = "#000";
+                // $("sss-cat").style.backgroundColor = "#000";
+                $("sss-cat").style.backgroundImage = "linear-gradient(173deg, #b797ff, #ffa3ce, #5cbeff, #abb1ff)";
                 $("sss-cat").style.color = "#fff";
             }
         }
@@ -372,7 +377,7 @@
     }
     
     * {
-        font-family: "LINESeedJP_TTF", "Noto Sans SC";
+        font-family: "Objectivity", "LINESeedJP_TTF", "Noto Sans SC";
         transition: 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
         line-height: 110%;
         user-select: none;
@@ -456,30 +461,41 @@
     }
     
     button:active {
-        filter: invert(1);
+        filter: brightness(1.2);
     }
     
     .sqr {
         width: 144px;
         height: 144px;
+        display: flex;
         text-align: center;
+        justify-content: center;
         align-items: center;
         position: fixed;
         top: 50%;
         transform: translateY(-50%);
         z-index: 999;
+        border-radius: 999px;
+        filter: drop-shadow(0 0 12px #1118);
+        background-color: #000a;
+        backdrop-filter: blur(12px);
     }
     
     .sqr:hover {
         width: 160px;
         height: 160px;
-        border-color: rgb(255, 60, 0);
+        border-color: rgb(156, 191, 255) 0px;
+        background-color: #111;
+        filter: drop-shadow(0 0 12px #111);
     }
     
     .sqr:active {
         width: 154px;
         height: 154px;
-        border: solid #fff;
+        border: solid #fff 0px;
+        background-color: #fff;
+        color: #414dec;
+        filter: drop-shadow(0 0 26px #fff);
     }
     
     .edbtn {
@@ -493,6 +509,7 @@
         z-index: 999;
         opacity: 0;
         pointer-events: none;
+        border-radius: 999px;
     }
     
     .edbtn:hover {
@@ -546,7 +563,6 @@
     }
     
     h2 {
-        width: max-content;
         font-size: 24px;
         margin: 8px 0;
         font-weight: 500;
@@ -556,8 +572,10 @@
         margin: 24px;
         padding: 16px 32px 16px 16px;
         width: min-content;
-        color: #fff;
-        background-color: black;
+        color: #1b26bb;
+        background-color: white;
+        border-radius: 16px;
+        filter: drop-shadow(0 0 9px rgba(43, 36, 61, 0.4));
     }
     
     .cover {
@@ -566,13 +584,19 @@
         height: 810px;
         object-fit: cover;
         position: absolute;
+        border-radius: 32px;
     }
     
     .inv {
+        background-size: 200% 200%;
         background-color: rgb(255, 60, 0);
+        background-image: linear-gradient(120deg, #ffdd7e, #ffdaa3, #f8e280, #edffab);
+        animation: flow 10s ease infinite;
         padding: 16px;
         margin: 24px;
         margin-bottom: 0;
+        filter: drop-shadow(0 0 20px #ffa);
+        color: rgb(161, 94, 49);
     }
     
     .center {
@@ -602,14 +626,15 @@
         font-size: 40px;
         margin: 24px 0px 24px 24px;
         font-weight: 500;
-        background-color: black;
-        color: #fff;
+        background-color: #fff;
+        color: #1b26bb;
         width: max-content;
+        border-radius: 0 0 16px 16px;
     }
     
     .pricetag {
         position: absolute;
-        transform: translateY(-425%);
+        transform: translateY(-440%);
         display: flex;
     }
     
@@ -664,11 +689,15 @@
     }
     
     .wbg {
-        background-color: #fff;
+        background-size: 200% 200%;
+        background-image: linear-gradient(160deg, #ab7eff, #849aff, #80aaf8, #e88bff);
+        animation: flow 7s ease infinite;
         padding: 8px 8px 4px 8px;
         font-size: 20px;
         font-weight: 800;
-        color: #000;
+        color: rgb(255, 255, 255);
+        border-radius: 2px 8px 8px 2px;
+        transform: translateY(-20%)translateX(-20px);
     }
     
     .sss {
@@ -681,25 +710,62 @@
         bottom: 3%;
         left: 50%;
         transform: translateX(-50%);
-        padding: 16px;
-        background-color: #eee;
+        padding: 20px 16px;
+        background-color: #fffe;
+        backdrop-filter: blur(12px);
         font-family: Inter, 'LINESeedJP_TTF';
         font-size: 2em;
         z-index: 999;
+        border-radius: 32px;
+    }
+    
+    .gradient-flow {
+        width: 100vw;
+        height: 100vh;
+        background-size: 200% 200%;
+        /* 背景图大小 */
+        background-image: linear-gradient(135deg, #601cff, #ffdb3b, #1b26bb, #c257b0);
+        animation: flow 10s infinite;
+    }
+    
+    @keyframes flow {
+        0% {
+            background-position: 0% 50%;
+        }
+        25% {
+            background-position: 100% 50%;
+        }
+        50% {
+            background-position: 100% 0%;
+        }
+        75% {
+            background-position: 0% 0%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
     }
     
     .category {
-        padding: 10px;
+        padding: 14px;
         border: none;
-        border-bottom: #000 2px solid;
+        border-bottom: rgb(155, 215, 255) 2px solid;
         background-color: #fff0;
         margin: 0 10px;
         color: #1b1b1b;
         font-family: Inter, 'LINESeedJP_TTF';
+        background-size: 200% 200%;
+        background-image: linear-gradient(173deg, #b797ff, #ffa3ce, #5cbeff, #abb1ff);
+        animation: flow 10s ease infinite;
+        border-radius: 16px;
     }
     
     .category:hover {
         font-weight: bold;
+    }
+    
+    .category:active {
+        filter: brightness(1.2);
     }
     
     .oosText {
@@ -709,6 +775,11 @@
         transform: translateY(-50%);
         color: #eee;
         z-index: 9999;
+    }
+    
+    .arrow {
+        width: 60px;
+        height: auto;
     }
 </style>
 
@@ -730,8 +801,8 @@
         <button onclick="stopPlay()" class="edbtn" id="edBtn">×</button>
     </div>
     <div class="wrap" id="wrap">
-        <button onclick="moveNext()" class="sqr" id="nxtBtn">＞</button>
-        <button onclick="movePrev()" class="sqr" id="prvBtn">＜</button>
+        <button onclick="moveNext()" class="sqr" id="nxtBtn"><svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
+        <button onclick="movePrev()" class="sqr" id="prvBtn"><svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
     <div class="category-list" id="category-list">
         <button class="category" id="dls-cat" onclick="cat(1, 'dls-cat')">DON'T LΣT STU.</button>
         <button class="category" id="sss-cat" onclick="cat(4, 'sss-cat')">SSS寄售区</button>
