@@ -261,6 +261,28 @@
         transform: translateY(6px);
     }
     
+    .fsbtn {
+        background-color: rgb(226, 226, 226);
+        border: 4px rgb(175, 175, 175) solid;
+        filter: drop-shadow(0 10px 0 rgb(175, 175, 175));
+        position: fixed;
+        bottom: 40px;
+        left: 40px;
+        width: 120px;
+        height: 120px;
+        color: #000;
+        font-size: 80px;
+        border-radius: 999px;
+        margin: 0%;
+    }
+    
+    .fsbtn:active {
+        background-color: rgb(250, 250, 250);
+        border: 4px rgb(175, 175, 175) solid;
+        filter: drop-shadow(0 4px 0 rgb(175, 175, 175));
+        transform: translateY(6px);
+    }
+    
     button svg {
         position: absolute;
         width: 100%;
@@ -711,6 +733,10 @@
         $("splash").style.pointerEvents = "all";
         $("splash").style.opacity = 1;
     }
+
+    function fs() {
+        document.documentElement.requestFullscreen();
+    }
     /* 以下是代码部分 */
 </script>
 
@@ -720,6 +746,7 @@
         <div id="btnsplash">
             <button class="categoryBtn" onclick="switchList(1)">初赛曲库</button>
             <button class="categoryBtn" onclick="switchList(2)">复赛曲库</button>
+            <button id="return" class="fsbtn" onclick="fs()"><svg t="1729711739042" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="21565" width="500" height="500"><path d="M665.002667 298.666667H512V213.333333h298.666667v298.666667h-85.333334V358.997333L358.997333 725.333333H512v85.333334H213.333333v-298.666667h85.333334v153.002667L665.002667 298.666667z" fill="#2c2c2c" p-id="21566"></path></svg></button>
         </div>
     </div>
     <div class="content">
@@ -745,6 +772,6 @@
         </div>
         <button id="return" class="returnbtn" onclick="ret()"><svg t="1729710497827" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="11613" width="500" height="500"><path d="M206.336 512l264.832 264.832 60.330667-60.330667L326.997333 512l204.501334-204.501333-60.330667-60.330667L206.336 512z m241.066667 0l264.832 264.832 60.330666-60.330667L568.064 512l204.501333-204.501333-60.330666-60.330667L447.402667 512z" fill="#ffffff" p-id="11614"></path></svg></button>
     </div>
-    <h4 class="foot">maimai DX 赛事乐曲抽选机 ver 1.00-A | by 佑木いずみ</h4>
+    <h4 class="foot">maimai DX 赛事乐曲抽选机 ver 1.01-A | by 佑木いずみ</h4>
     <!-- <button onclick="debug()">DEBUG</button> -->
 </body>
