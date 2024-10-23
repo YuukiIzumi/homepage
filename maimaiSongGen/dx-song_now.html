@@ -269,6 +269,16 @@
         top: 50%;
         transform: translateX(-54%)translateY(-50%)scale(0.6);
     }
+    
+    .foot {
+        position: fixed;
+        z-index: 8888;
+        filter: drop-shadow(0 0 6px #0009);
+        bottom: 5px;
+        width: 100%;
+        text-align: center;
+        pointer-events: none;
+    }
 </style>
 <script>
     var scrH, scrW, itemH, itemW, scale;
@@ -733,5 +743,6 @@
         </div>
         <button id="return" class="returnbtn" onclick="ret()"><svg t="1729710497827" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="11613" width="500" height="500"><path d="M206.336 512l264.832 264.832 60.330667-60.330667L326.997333 512l204.501334-204.501333-60.330667-60.330667L206.336 512z m241.066667 0l264.832 264.832 60.330666-60.330667L568.064 512l204.501333-204.501333-60.330666-60.330667L447.402667 512z" fill="#ffffff" p-id="11614"></path></svg></button>
     </div>
+    <h4 class="foot">maimai DX 赛事乐曲抽选机 ver 1.00-A | by 佑木いずみ</h4>
     <!-- <button onclick="debug()">DEBUG</button> -->
 </body>
