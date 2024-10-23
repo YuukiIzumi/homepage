@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<title>乌蒙地插比赛抽歌器 ver 1.01-A</title>
+<title>乌蒙地插比赛抽歌器 ver 1.02-A</title>
 <meta charset="utf-8">
 <meta name="full-screen" content="yes">
 <meta name="browsermode" content="application">
@@ -52,7 +52,7 @@
     
     .card {
         color: #fff;
-        background-color: #000a;
+        background-color: rgba(6, 25, 49, 0.667);
         border-radius: 64px;
         padding: 48px;
         width: 90%;
@@ -302,6 +302,50 @@
         pointer-events: none;
         color: #fff;
         font-size: 1.2em;
+    }
+    
+    @keyframes popupEvents {
+        0% {
+            opacity: 0;
+            transform: translateY(6%)translateX(-50%);
+        }
+        9% {
+            opacity: 1;
+            transform: translateY(0%)translateX(-50%);
+        }
+        91% {
+            opacity: 1;
+            transform: translateY(0%)translateX(-50%);
+        }
+        100% {
+            opacity: 0;
+            transform: translateY(6%)translateX(-50%);
+        }
+    }
+    
+    #popup {
+        background-color: #000d;
+        padding: 14px;
+        border-radius: 999px;
+        z-index: 99999;
+        color: #fff;
+        position: fixed;
+        bottom: 2%;
+        width: 50%;
+        left: 50%;
+        transform: translateY(6%)translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        opacity: 0;
+        font-size: 24px;
+        backdrop-filter: blur(16px);
+    }
+    
+    .animate {
+        animation: popupEvents 3.2s ease-in-out;
     }
 </style>
 <script>
@@ -696,13 +740,31 @@
     }
 
     function startRoll() {
-        changeFunction(lottery, 10);
-        $("songinfo").style.transform = "scale(1.14)"
+        if (songlist == null) {
+            $("popTxt").innerHTML = "还没有指定曲库！";
+            var element = $("popup");
+            if (!element) throw new Error('动画元素未找到');
+            element.classList.remove('animate');
+            void element.offsetWidth; // 触发重绘
+            element.classList.add('animate');
+        } else {
+            changeFunction(lottery, 10);
+            $("songinfo").style.transform = "scale(1.14)"
+        }
     }
 
     function stopRoll() {
-        changeFunction(lottOff, 100000);
-        $("songinfo").style.transform = "scale(1)"
+        if (currentFunction == lottOff) {
+            $("popTxt").innerHTML = "还没有开始随机选曲，请先按下“开始”按钮！";
+            var element = $("popup");
+            if (!element) throw new Error('动画元素未找到');
+            element.classList.remove('animate');
+            void element.offsetWidth; // 触发重绘
+            element.classList.add('animate');
+        } else {
+            changeFunction(lottOff, 100000);
+            $("songinfo").style.transform = "scale(1)"
+        }
     }
 
     function lottOff() {
@@ -712,11 +774,21 @@
     function switchList(list) {
         if (list == 1) {
             songlist = [...list1];
+            $("popTxt").innerHTML = "已经切换到 初赛曲库 。";
         } else {
             songlist = [...list2];
+            $("popTxt").innerHTML = "已经切换到 复赛曲库 。";
         }
         totalWght = songlist.reduce((sum, songlist) => sum + songlist.wght, 0);
         console.log("已经切换到" + list + "。" + JSON.stringify(songlist))
+
+
+        var element = $("popup");
+        if (!element) throw new Error('动画元素未找到');
+        element.classList.remove('animate');
+        void element.offsetWidth; // 触发重绘
+        element.classList.add('animate');
+
         $("splash").style.pointerEvents = "none";
         $("splash").style.opacity = 0;
     }
@@ -736,6 +808,12 @@
 
     function fs() {
         document.documentElement.requestFullscreen();
+        $("popTxt").innerHTML = "已经切换到全屏模式！";
+        var element = $("popup");
+        if (!element) throw new Error('动画元素未找到');
+        element.classList.remove('animate');
+        void element.offsetWidth; // 触发重绘
+        element.classList.add('animate');
     }
     /* 以下是代码部分 */
 </script>
@@ -772,6 +850,9 @@
         </div>
         <button id="return" class="returnbtn" onclick="ret()"><svg t="1729710497827" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="11613" width="500" height="500"><path d="M206.336 512l264.832 264.832 60.330667-60.330667L326.997333 512l204.501334-204.501333-60.330667-60.330667L206.336 512z m241.066667 0l264.832 264.832 60.330666-60.330667L568.064 512l204.501333-204.501333-60.330666-60.330667L447.402667 512z" fill="#ffffff" p-id="11614"></path></svg></button>
     </div>
-    <h4 class="foot">maimai DX 赛事乐曲抽选机 ver 1.01-A | by 佑木いずみ</h4>
+    <h4 class="foot">maimai DX 赛事乐曲抽选机 ver 1.02-A | by 佑木いずみ</h4>
+    <div class="popup" id="popup">
+        <h3 id="popTxt">事件弹窗</h3>
+    </div>
     <!-- <button onclick="debug()">DEBUG</button> -->
 </body>
