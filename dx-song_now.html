@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<title>乌蒙地插比赛抽歌器 ver 1.00-A</title>
+<meta charset="utf-8">
+<style></style>
+<script>
+    /* 这里指定了比赛时的乐曲、分类、版本、等级和权重 */
+    function $(id) {
+        return document.getElementById(id);
+    }
+
+    const list1 = [{
+        "name": "虹と太陽",
+        "cat": "舞萌",
+        "ver": "maimai",
+        "diff": "MASTER",
+        "lvl": "12+",
+        "wght": 7
+    }, {
+        "name": "Knight Rider",
+        "cat": "其他游戏",
+        "ver": "FESTiVAL+",
+        "diff": "MASTER",
+        "lvl": "13+",
+        "wght": 1
+    }, {
+        "name": "アージェントシンメトリー",
+        "cat": "舞萌",
+        "ver": "PiNK",
+        "diff": "MASTER",
+        "lvl": "13",
+        "wght": 1
+    }, {
+        "name": "No Routine",
+        "cat": "东方Project",
+        "ver": "PiNK+",
+        "diff": "MASTER",
+        "lvl": "12+",
+        "wght": 1
+    }, {
+        "name": "キラメキ居残り大戦争",
+        "cat": "其他游戏",
+        "ver": "Splash+",
+        "diff": "MASTER",
+        "lvl": "13",
+        "wght": 1
+    }, {
+        "name": "ネガティブ進化論",
+        "cat": "niconico＆VOCALOID™",
+        "ver": "Splash+",
+        "diff": "MASTER",
+        "lvl": "12+",
+        "wght": 1
+    }, {
+        "name": "Alice in 冷凍庫",
+        "cat": "niconico＆VOCALOID™",
+        "ver": "Splash+",
+        "diff": "MASTER",
+        "lvl": "12+",
+        "wght": 1
+    }, {
+        "name": "まにまに",
+        "cat": "niconico＆VOCALOID™",
+        "ver": "FESTiVAL+",
+        "diff": "MASTER",
+        "lvl": "12+",
+        "wght": 1
+    }, {
+        "name": "秋の未確認生物",
+        "cat": "niconico＆VOCALOID™",
+        "ver": "FESTiVAL",
+        "diff": "MASTER",
+        "lvl": "12+",
+        "wght": 1
+    }, {
+        "name": "KING",
+        "cat": "niconico＆VOCALOID™",
+        "ver": "Splash+",
+        "diff": "MASTER",
+        "lvl": "12+",
+        "wght": 1
+    }, {
+        "name": "無敵We are one!!",
+        "cat": "音击&中文节奏",
+        "ver": "PiNK+",
+        "diff": "MASTER",
+        "lvl": "13",
+        "wght": 1
+    }, {
+        "name": "Big Daddy",
+        "cat": "其他游戏",
+        "ver": "Splash+",
+        "diff": "MASTER",
+        "lvl": "13+",
+        "wght": 1
+    }, {
+        "name": "アトロポスと最果の探究者",
+        "cat": "其他游戏",
+        "ver": "DX+",
+        "diff": "MASTER",
+        "lvl": "13+",
+        "wght": 1
+    }, {
+        "name": "終点",
+        "cat": "niconico＆VOCALOID™",
+        "ver": "FiNALE",
+        "diff": "MASTER",
+        "lvl": "13+",
+        "wght": 1
+    }, {
+        "name": "遺伝子レベル∞スパイラル",
+        "cat": "舞萌",
+        "ver": "UNiVERSE+",
+        "diff": "MASTER",
+        "lvl": "13+",
+        "wght": 1
+    }, {
+        "name": "スカーレット警察のゲットーパトロール24時",
+        "cat": "东方Project",
+        "ver": "FESTiVAL",
+        "diff": "MASTER",
+        "lvl": "13",
+        "wght": 1
+    }, {
+        "name": "ラグトレイン",
+        "cat": "niconico＆VOCALOID™",
+        "ver": "UNiVERSE",
+        "diff": "MASTER",
+        "lvl": "12+",
+        "wght": 1
+    }, {
+        "name": "共感覚おばけ",
+        "cat": "niconico＆VOCALOID™",
+        "ver": "MiLK",
+        "diff": "MASTER",
+        "lvl": "12+",
+        "wght": 1
+    }, ];
+
+    let songlist;
+    // let totalWght = songlist.reduce((sum, songlist) => sum + songlist.wght, 0);
+    let totalWght = 0;
+
+    function debug() {
+        alert(totalWght + funcname + interv);
+    }
+
+    let res = {
+        "name": "虹と太陽",
+        "cat": "舞萌",
+        "ver": "maimai",
+        "diff": "MASTER",
+        "lvl": "12+",
+        "wght": 5
+    };
+    // var wgt = songlist.map(song => song.wght);
+    var random;
+
+    function lottery() {
+        random = Math.random() * totalWght;
+        var cumulativeWght = 0; // 累加权重
+        for (let i = 0; i < songlist.length; i++) {
+            cumulativeWght += songlist[i].wght;
+            if (random < cumulativeWght) {
+                res = songlist[i]; // 选中对应的歌曲
+                console.log("本次抽奖结果：", res);
+                break;
+            }
+        }
+        $("songName").innerHTML = res.name;
+        $("songCat").innerHTML = res.cat;
+        $("songDiff").innerHTML = res.diff;
+        $("songLvl").innerHTML = res.lvl;
+        $("songVer").innerHTML = res.ver;
+    }
+
+    let currentFunction = function() {
+        console.log("抽歌姬目前关着");
+    };
+
+    let intervalId = setInterval(lottOff, 999999);
+
+    function changeFunction(func, interv) {
+        clearInterval(intervalId); // 清除当前的 interval
+        currentFunction = func;
+        intervalId = setInterval(currentFunction, interv); // 设置新的 interval
+    }
+
+    function startRoll() {
+        changeFunction(lottery, 10);
+    }
+
+    function stopRoll() {
+        changeFunction(lottOff, 100000);
+    }
+
+    function lottOff() {
+        console.log("抽歌姬目前关着")
+    }
+
+    function switchList(list) {
+        if (list == 1) {
+            songlist = [...list1];
+        } else {
+            songlist = [...list2];
+        }
+        totalWght = songlist.reduce((sum, songlist) => sum + songlist.wght, 0);
+        console.log("已经切换到" + list + "。" + JSON.stringify(songlist))
+    }
+
+    function debug() {
+        console.log("currentSonglist: " + JSON.stringify(songlist));
+        console.log("sumValue: " + totalWght);
+        console.log("currentFn: " + currentFunction);
+        console.log("currentValue: " + random);
+        console.log("currentObj: " + JSON.stringify(res))
+    }
+    /* 以下是代码部分 */
+</script>
+
+<body>
+    <video src=""></video>
+    <div class="splash">
+        <button onclick="switchList(1)">初赛曲库</button>
+    </div>
+    <button onclick="startRoll()">开始</button>
+    <button onclick="stopRoll()">停止</button>
+    <h1 id="songName">曲名</h1>
+    <h2 id="songCat">分类</h2>
+    <h3 id="songDiff">MASTER</h3>
+    <h2 id="songLvl">15</h2>
+    <h3 id="songVer">FiNALE</h3>
+    <button onclick="debug()">DEBUG</button>
+</body>

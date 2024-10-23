@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<title>乌蒙地插比赛抽歌器 ver 1.00-A</title>
+<meta charset="utf-8">
+<meta name="full-screen" content="yes">
+<meta name="browsermode" content="application">
+<meta name="screen-orientation" content="landscape">
+<meta name="x5-page-mode" content="app">
+<meta name="x5-fullscreen" content="true">
+<meta name="x5-orientation" content="landscape">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="DLS Audition">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@100;200;300;400;500;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Bowlby+One&family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100..900&display=swap');
+    * {
+        font-family: "IBM Plex Sans JP";
+        font-weight: 500;
+        margin: 4px;
+        transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.2s;
+        overflow: hidden;
+    }
+    
+    video {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        top: 0;
+        left: 0;
+        z-index: -9999;
+        pointer-events: none;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .cardO {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translateX(-50%)translateY(-50%);
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        overflow: visible;
+    }
+    
+    .card {
+        color: #fff;
+        background-color: #000a;
+        border-radius: 64px;
+        padding: 48px;
+        width: 90%;
+        height: auto;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        backdrop-filter: blur(16px);
+        overflow: visible;
+    }
+    
+    #songinfo {
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .line2n {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.5em;
+        padding: 10px 20px;
+        border-radius: 999px;
+    }
+    
+    #segment {
+        margin: 0 1em;
+        /* line-height: 0; */
+        opacity: 0.4;
+    }
+    
+    .name {
+        font-weight: 700;
+        font-size: 4.2em;
+        transform: scale(1);
+        object-fit: cover;
+    }
+    
+    button {
+        border: none;
+        border-radius: 32px;
+        padding: 16px;
+        width: 20%;
+        height: 100px;
+        margin: 0 5%;
+        font-family: "Noto Sans SC";
+    }
+    
+    .panel {
+        margin-top: 2%;
+        bottom: 10%;
+        width: 100%;
+        height: 120px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-end;
+        overflow: visible;
+    }
+    
+    .splash {
+        position: fixed;
+        top: 0;
+        left: 0;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .diff {
+        font-family: "DM Sans";
+        font-weight: 900;
+        font-size: 1.5em;
+    }
+    
+    .lvl {
+        font-family: "Bowlby One";
+        font-size: 3.5em;
+        line-height: 1em;
+    }
+    
+    .lineDiff {
+        width: 160px;
+        height: 160px;
+        padding: 16px;
+        border-radius: 999px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    
+    #lDiff {
+        background-color: rgb(160, 81, 220);
+        color: #fff;
+    }
+    
+    #songVer {
+        filter: drop-shadow(0 0 16px #0007);
+    }
+    
+    #songCat {
+        filter: drop-shadow(0 0 16px #0007);
+    }
+    
+    #startBtn {
+        background-color: rgb(49, 157, 248);
+        border: 4px rgb(28, 126, 206) solid;
+        filter: drop-shadow(0 10px 0 rgb(28, 126, 206));
+        height: 100px;
+        font-size: 40px;
+        font-weight: 800;
+        color: #fff;
+        overflow: visible;
+    }
+    
+    #startBtn:active {
+        background-color: rgb(78, 173, 252);
+        border: 4px rgb(28, 126, 206) solid;
+        filter: drop-shadow(0 4px 0 rgb(28, 126, 206));
+        transform: translateY(6px);
+    }
+    
+    #stopBtn {
+        background-color: rgb(248, 112, 49);
+        border: 4px rgb(212, 80, 19) solid;
+        filter: drop-shadow(0 10px 0 rgb(212, 80, 19));
+        height: 100px;
+        font-size: 40px;
+        font-weight: 800;
+        color: #fff;
+        overflow: visible;
+    }
+    
+    #stopBtn:active {
+        background-color: rgb(255, 132, 75);
+        border: 4px rgb(212, 80, 19) solid;
+        filter: drop-shadow(0 4px 0 rgb(212, 80, 19));
+        transform: translateY(6px);
+    }
+</style>
+<script>
+    var scrH, scrW, itemH, itemW, scale;
+
+    function init() {
+        scrH = window.innerHeight;
+        scrW = window.innerWidth;
+        itemH = Math.floor(scrH * 0.75);
+        itemW = Math.floor(scrW * 0.75);
+        scale = scrW / 1920;
+        // document.getElementsByClassName("item").style = "width:" + itemW + "px !important;height:" + itemH + "px !important;margin: 0 50px;display: flex;flex-direction: column-reverse;overflow: hidden;z-index: 10;";
+    }
+
+    setInterval(function() {
+        // $("data").innerHTML = scale + "<br>(" + scrH + "," + scrW + ")<br>[" + itemH + "," + itemW + "]<br>" + movePx + " " + px;
+        scrH = window.innerHeight;
+        scrW = window.innerWidth;
+        itemH = Math.floor(scrH * 0.75);
+        itemW = Math.floor(scrW * 0.75);
+        scale = scrW / 1920;
+        document.body.style.zoom = scale;
+    }, 10);
+    /* 这里指定了比赛时的乐曲、分类、版本、等级和权重 */
+    function $(id) {
+        return document.getElementById(id);
+    }
+
+    const list1 = [{
+        "name": "虹と太陽",
+        "cat": "舞萌",
+        "ver": "maimai",
+        "diff": "MASTER",
+        "lvl": "12+",
+        "wght": 7
+    }, {
+        "name": "Knight Rider",
+        "cat": "其他游戏",
+        "ver": "FESTiVAL+",
+        "diff": "MASTER",
+        "lvl": "13+",
+        "wght": 1
+    }, {
+        "name": "アージェントシンメトリー",
+        "cat": "舞萌",
+        "ver": "PiNK",
+        "diff": "MASTER",
+        "lvl": "13",
+        "wght": 1
+    }, {
+        "name": "No Routine",
+        "cat": "东方Project",
+        "ver": "PiNK+",
+        "diff": "MASTER",
+        "lvl": "12+",
+        "wght": 1
+    }, {
+        "name": "キラメキ居残り大戦争",
+        "cat": "其他游戏",
+        "ver": "Splash+",
+        "diff": "MASTER",
+        "lvl": "13",
+        "wght": 1
+    }, {
+        "name": "ネガティブ進化論",
+        "cat": "niconico＆VOCALOID™",
+        "ver": "Splash+",
+        "diff": "MASTER",
+        "lvl": "12+",
+        "wght": 1
+    }, {
+        "name": "Alice in 冷凍庫",
+        "cat": "niconico＆VOCALOID™",
+        "ver": "Splash+",
+        "diff": "MASTER",
+        "lvl": "12+",
+        "wght": 1
+    }, {
+        "name": "まにまに",
+        "cat": "niconico＆VOCALOID™",
+        "ver": "FESTiVAL+",
+        "diff": "MASTER",
+        "lvl": "12+",
+        "wght": 1
+    }, {
+        "name": "秋の未確認生物",
+        "cat": "niconico＆VOCALOID™",
+        "ver": "FESTiVAL",
+        "diff": "MASTER",
+        "lvl": "12+",
+        "wght": 1
+    }, {
+        "name": "KING",
+        "cat": "niconico＆VOCALOID™",
+        "ver": "Splash+",
+        "diff": "MASTER",
+        "lvl": "12+",
+        "wght": 1
+    }, {
+        "name": "無敵We are one!!",
+        "cat": "音击&中二节奏",
+        "ver": "PiNK+",
+        "diff": "MASTER",
+        "lvl": "13",
+        "wght": 1
+    }, {
+        "name": "Big Daddy",
+        "cat": "其他游戏",
+        "ver": "Splash+",
+        "diff": "MASTER",
+        "lvl": "13+",
+        "wght": 1
+    }, {
+        "name": "アトロポスと最果の探究者",
+        "cat": "其他游戏",
+        "ver": "DX+",
+        "diff": "MASTER",
+        "lvl": "13+",
+        "wght": 1
+    }, {
+        "name": "終点",
+        "cat": "niconico＆VOCALOID™",
+        "ver": "FiNALE",
+        "diff": "MASTER",
+        "lvl": "13+",
+        "wght": 1
+    }, {
+        "name": "遺伝子レベル∞スパイラル",
+        "cat": "舞萌",
+        "ver": "UNiVERSE+",
+        "diff": "MASTER",
+        "lvl": "13+",
+        "wght": 1
+    }, {
+        "name": "スカーレット警察のゲットーパトロール24時",
+        "cat": "东方Project",
+        "ver": "FESTiVAL",
+        "diff": "MASTER",
+        "lvl": "13",
+        "wght": 1
+    }, {
+        "name": "ラグトレイン",
+        "cat": "niconico＆VOCALOID™",
+        "ver": "UNiVERSE",
+        "diff": "MASTER",
+        "lvl": "12+",
+        "wght": 1
+    }, {
+        "name": "共感覚おばけ",
+        "cat": "niconico＆VOCALOID™",
+        "ver": "MiLK",
+        "diff": "MASTER",
+        "lvl": "12+",
+        "wght": 1
+    }, ];
+
+    const list2 = [{
+        "name": "Revive The ave",
+        "cat": "舞萌",
+        "ver": "PiNK",
+        "diff": "MASTER",
+        "lvl": "13+",
+        "wght": 1
+    }, {
+        "name": "BIRTH",
+        "cat": "舞萌",
+        "ver": "Splash",
+        "diff": "MASTER",
+        "lvl": "14",
+        "wght": 1
+    }, {
+        "name": "MYTHOS",
+        "cat": "舞萌",
+        "ver": "GreeN+",
+        "diff": "MASTER",
+        "lvl": "14",
+        "wght": 1
+    }, {
+        "name": "少女幻葬戦慄曲 ～ Necro Fantasia",
+        "cat": "东方Project",
+        "ver": "PiNK",
+        "diff": "MASTER",
+        "lvl": "13",
+        "wght": 1
+    }, {
+        "name": "GEMINI -M-",
+        "cat": "舞萌",
+        "ver": "PiNK",
+        "diff": "MASTER",
+        "lvl": "13+",
+        "wght": 1
+    }, {
+        "name": "Credits",
+        "cat": "其他游戏",
+        "ver": "MiLK",
+        "diff": "MASTER",
+        "lvl": "14",
+        "wght": 1
+    }, {
+        "name": "HAGAKIRI",
+        "cat": "舞萌",
+        "ver": "UNiVERSE+",
+        "diff": "MASTER",
+        "lvl": "13+",
+        "wght": 1
+    }, {
+        "name": "デッドレッドガールズ",
+        "cat": "niconico＆VOCALOID™",
+        "ver": "FESTiVAL+",
+        "diff": "MASTER",
+        "lvl": "13+",
+        "wght": 1
+    }, {
+        "name": "8-EM",
+        "cat": "音击&中二节奏",
+        "ver": "UNiVERSE",
+        "diff": "MASTER",
+        "lvl": "13+",
+        "wght": 1
+    }, {
+        "name": "Oshama Scramble! (DX)",
+        "cat": "舞萌",
+        "ver": "ORANGE+/DX",
+        "diff": "MASTER",
+        "lvl": "13+",
+        "wght": 1
+    }, {
+        "name": "いっしそう電☆舞舞神拳",
+        "cat": "舞萌",
+        "ver": "MURASAKI",
+        "diff": "MASTER",
+        "lvl": "13+",
+        "wght": 1
+    }, {
+        "name": "Scarlet Lance",
+        "cat": "其他游戏",
+        "ver": "FiNALE",
+        "diff": "MASTER",
+        "lvl": "14",
+        "wght": 1
+    }, {
+        "name": "ツムギボシ",
+        "cat": "舞萌",
+        "ver": "FESTiVAL+",
+        "diff": "MASTER",
+        "lvl": "14",
+        "wght": 1
+    }, {
+        "name": "ハードコア・シンドローム",
+        "cat": "音击&中二节奏",
+        "ver": "UNiVERSE",
+        "diff": "MASTER",
+        "lvl": "13+",
+        "wght": 1
+    }, {
+        "name": "竹",
+        "cat": "其他游戏",
+        "ver": "UNiVERSE",
+        "diff": "MASTER",
+        "lvl": "13+",
+        "wght": 1
+    }, {
+        "name": "Reach For The Stars (Re-Colors)",
+        "cat": "其他游戏",
+        "ver": "UNiVERSE+",
+        "diff": "MASTER",
+        "lvl": "13+",
+        "wght": 1
+    }, {
+        "name": "Southern Cross",
+        "cat": "其他游戏",
+        "ver": "UNiVERSE",
+        "diff": "Re:MASTER",
+        "lvl": "13+",
+        "wght": 1
+    }, {
+        "name": "超常マイマイン",
+        "cat": "舞萌",
+        "ver": "DX",
+        "diff": "Re:MASTER",
+        "lvl": "13+",
+        "wght": 1
+    }, {
+        "name": "花と、雪と、ドラムンベース。",
+        "cat": "舞萌",
+        "ver": "MiLK+",
+        "diff": "MASTER",
+        "lvl": "14",
+        "wght": 1
+    }, {
+        "name": "ViRTUS",
+        "cat": "舞萌",
+        "ver": "FESTiVAL",
+        "diff": "MASTER",
+        "lvl": "14+",
+        "wght": 1
+    }, {
+        "name": "VERTeX (rintaro soma deconstructed remix)",
+        "cat": "舞萌",
+        "ver": "FESTiVAL+",
+        "diff": "MASTER",
+        "lvl": "14+",
+        "wght": 1
+    }, {
+        "name": "VSpook!",
+        "cat": "舞萌",
+        "ver": "FESTiVAL",
+        "diff": "MASTER",
+        "lvl": "14",
+        "wght": 1
+    }, {
+        "name": "DADDY MULK -Groove remix-",
+        "cat": "其他游戏",
+        "ver": "GreeN",
+        "diff": "Re:MASTER",
+        "lvl": "13+",
+        "wght": 1
+    }, ];
+
+    let songlist;
+    // let totalWght = songlist.reduce((sum, songlist) => sum + songlist.wght, 0);
+    let totalWght = 0;
+
+    function debug() {
+        alert(totalWght + funcname + interv);
+    }
+
+    let res = {
+        "name": "虹と太陽",
+        "cat": "舞萌",
+        "ver": "maimai",
+        "diff": "MASTER",
+        "lvl": "12+",
+        "wght": 5
+    };
+    // var wgt = songlist.map(song => song.wght);
+    var random;
+
+    function lottery() {
+        random = Math.random() * totalWght;
+        var cumulativeWght = 0; // 累加权重
+        for (let i = 0; i < songlist.length; i++) {
+            cumulativeWght += songlist[i].wght;
+            if (random < cumulativeWght) {
+                res = songlist[i]; // 选中对应的歌曲
+                console.log("本次抽奖结果：", res);
+                break;
+            }
+        }
+        $("songName").innerHTML = res.name;
+        $("songCat").innerHTML = res.cat;
+        $("songDiff").innerHTML = res.diff;
+        $("songLvl").innerHTML = res.lvl;
+        $("songVer").innerHTML = res.ver;
+        if (res.cat == "niconico＆VOCALOID™") {
+            setCatColor("rgb(2,200,211)")
+        } else if (res.cat == "东方Project") {
+            setCatColor("rgb(156,87,209")
+        } else if (res.cat == "流行&动漫") {
+            setCatColor("rgb(255,151,42)")
+        } else if (res.cat == "其他游戏") {
+            setCatColor("rgb(72,224,112)")
+        } else if (res.cat == "舞萌") {
+            setCatColor("rgb(246,72,73)")
+        } else if (res.cat == "音击&中二节奏") {
+            setCatColor("rgb(53,132,254)")
+        }
+
+        if (res.diff == "MASTER") {
+            $("lDiff").style.backgroundColor = "rgb(160, 81, 220)";
+            $("lDiff").style.color = "rgb(255,255,255)";
+        } else if (res.diff == "Re:MASTER") {
+            $("lDiff").style.backgroundColor = "rgb(252,252,252)";
+            $("lDiff").style.color = "rgb(195,70,237)";
+        }
+    }
+
+    let currentFunction = function() {
+        console.log("抽歌姬目前关着");
+    };
+
+    let intervalId = setInterval(lottOff, 999999);
+
+    function changeFunction(func, interv) {
+        clearInterval(intervalId); // 清除当前的 interval
+        currentFunction = func;
+        intervalId = setInterval(currentFunction, interv); // 设置新的 interval
+    }
+
+    function setCatColor(color) {
+        $("line2n").style.backgroundColor = color;
+    }
+
+    function startRoll() {
+        changeFunction(lottery, 10);
+        $("songinfo").style.transform = "scale(1.14)"
+    }
+
+    function stopRoll() {
+        changeFunction(lottOff, 100000);
+        $("songinfo").style.transform = "scale(1)"
+    }
+
+    function lottOff() {
+        console.log("抽歌姬目前关着")
+    }
+
+    function switchList(list) {
+        if (list == 1) {
+            songlist = [...list1];
+        } else {
+            songlist = [...list2];
+        }
+        totalWght = songlist.reduce((sum, songlist) => sum + songlist.wght, 0);
+        console.log("已经切换到" + list + "。" + JSON.stringify(songlist))
+    }
+
+    function debug() {
+        console.log("currentSonglist: " + JSON.stringify(songlist));
+        console.log("sumValue: " + totalWght);
+        console.log("currentFn: " + currentFunction);
+        console.log("currentValue: " + random);
+        console.log("currentObj: " + JSON.stringify(res))
+    }
+    /* 以下是代码部分 */
+</script>
+
+<body>
+    <video src="bg.mp4" autoplay muted loop></video>
+    <div class="splash">
+        <button onclick="switchList(1)">初赛曲库</button>
+        <button onclick="switchList(2)">复赛~决赛曲库</button>
+    </div>
+    <div class="content">
+        <div class="cardO">
+            <div class="card" id="card">
+                <div id="songinfo">
+                    <div class="line2n" id="line2n">
+                        <h2 id="songVer">FiNALE</h3>
+                            <h2 id="segment"> / </h2>
+                            <h2 id="songCat">分类</h2>
+                    </div>
+                    <h1 id="songName" class="name">曲名</h1>
+                    <div class="lineDiff" id="lDiff">
+                        <h3 id="songDiff" class="diff">MASTER</h3>
+                        <h2 id="songLvl" class="lvl">15</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="panel">
+                <button id="startBtn" onclick="startRoll()">开始</button>
+                <button id="stopBtn" onclick="stopRoll()">停止</button>
+            </div>
+        </div>
+    </div>
+    <!-- <button onclick="debug()">DEBUG</button> -->
+</body>
