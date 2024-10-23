@@ -21,6 +21,7 @@
         margin: 4px;
         transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.2s;
         overflow: hidden;
+        user-select: none;
     }
     
     video {
@@ -104,6 +105,29 @@
         height: 100px;
         margin: 0 5%;
         font-family: "Noto Sans SC";
+        background-color: rgb(229, 255, 183);
+        border: 4px rgb(173, 214, 77) solid;
+        filter: drop-shadow(0 10px 0 rgb(173, 214, 77));
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .categoryBtn {
+        width: 300px;
+        height: 300px;
+        padding: 32px;
+        border-radius: 999px;
+        font-weight: 800;
+        font-size: 48px;
+        color: rgb(110, 153, 9)
+    }
+    
+    button:active {
+        background-color: rgb(210, 245, 149);
+        border: 4px rgb(173, 214, 77) solid;
+        filter: drop-shadow(0 4px 0 rgb(173, 214, 77));
+        transform: translateY(6px);
     }
     
     .panel {
@@ -118,12 +142,29 @@
         overflow: visible;
     }
     
+    #btnsplash {
+        width: 90%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-end;
+        overflow: visible;
+    }
+    
     .splash {
         position: fixed;
+        width: 100%;
+        height: 100%;
         top: 0;
         left: 0;
         margin: 0;
         padding: 0;
+        background-color: #000d;
+        backdrop-filter: blur(32px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 999;
     }
     
     .diff {
@@ -196,6 +237,37 @@
         border: 4px rgb(212, 80, 19) solid;
         filter: drop-shadow(0 4px 0 rgb(212, 80, 19));
         transform: translateY(6px);
+    }
+    
+    .returnbtn {
+        background-color: rgb(56, 56, 56);
+        border: 4px rgb(14, 14, 14) solid;
+        filter: drop-shadow(0 10px 0 rgb(14, 14, 14));
+        position: fixed;
+        bottom: 40px;
+        left: 40px;
+        width: 120px;
+        height: 120px;
+        color: #eee;
+        font-size: 80px;
+        border-radius: 999px;
+        margin: 0%;
+    }
+    
+    .returnbtn:active {
+        background-color: rgb(34, 34, 34);
+        border: 4px rgb(14, 14, 14) solid;
+        filter: drop-shadow(0 4px 0 rgb(14, 14, 14));
+        transform: translateY(6px);
+    }
+    
+    button svg {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 50%;
+        top: 50%;
+        transform: translateX(-54%)translateY(-50%)scale(0.6);
     }
 </style>
 <script>
@@ -611,6 +683,8 @@
         }
         totalWght = songlist.reduce((sum, songlist) => sum + songlist.wght, 0);
         console.log("已经切换到" + list + "。" + JSON.stringify(songlist))
+        $("splash").style.pointerEvents = "none";
+        $("splash").style.opacity = 0;
     }
 
     function debug() {
@@ -620,14 +694,21 @@
         console.log("currentValue: " + random);
         console.log("currentObj: " + JSON.stringify(res))
     }
+
+    function ret() {
+        $("splash").style.pointerEvents = "all";
+        $("splash").style.opacity = 1;
+    }
     /* 以下是代码部分 */
 </script>
 
 <body>
     <video src="bg.mp4" autoplay muted loop></video>
-    <div class="splash">
-        <button onclick="switchList(1)">初赛曲库</button>
-        <button onclick="switchList(2)">复赛~决赛曲库</button>
+    <div class="splash" id="splash">
+        <div id="btnsplash">
+            <button class="categoryBtn" onclick="switchList(1)">初赛曲库</button>
+            <button class="categoryBtn" onclick="switchList(2)">复赛~决赛曲库</button>
+        </div>
     </div>
     <div class="content">
         <div class="cardO">
@@ -650,6 +731,7 @@
                 <button id="stopBtn" onclick="stopRoll()">停止</button>
             </div>
         </div>
+        <button id="return" class="returnbtn" onclick="ret()"><svg t="1729710497827" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="11613" width="500" height="500"><path d="M206.336 512l264.832 264.832 60.330667-60.330667L326.997333 512l204.501334-204.501333-60.330667-60.330667L206.336 512z m241.066667 0l264.832 264.832 60.330666-60.330667L568.064 512l204.501333-204.501333-60.330666-60.330667L447.402667 512z" fill="#ffffff" p-id="11614"></path></svg></button>
     </div>
     <!-- <button onclick="debug()">DEBUG</button> -->
 </body>
